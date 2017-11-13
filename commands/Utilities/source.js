@@ -18,7 +18,7 @@ class Source extends Command {
     if (!args[0]) return message.reply('please supply a category to view.');
     const command = args[1];
     if (!args[1]) return message.reply('please supply a command to view that is in the specified category.');
-    const source = `https://github.com/Novuh-Bot/Guardian/blob/dev-v4/commands/${category}/${command}.js`;
+    const source = `https://github.com/Novuh-Bot/Custodian/blob/master/commands/${category}/${command}.js`;
     message.channel.send(`This is the source code for the command ${command}. ${source}`);
   }
 }
