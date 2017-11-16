@@ -1,5 +1,5 @@
 const Command = require('../../base/Command.js');
-const snekfetch = require('snekfetch');
+const snek = require('snekfetch');
 
 class Reddit extends Command {
   constructor(client) {

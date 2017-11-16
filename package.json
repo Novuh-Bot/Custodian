@@ -1,10 +1,10 @@
 {
-  "name": "guidebot",
-  "version": "3.4.6",
-  "description": "A boilerplate example bot with command handler and reloadable commands. Updated and Maintained by the Idiot's Guide Community",
+  "name": "custodian",
+  "version": "1.1.0",
+  "description": "Custodian is a utilitarian and moderation bot designed to make moderating your Discord server easier. It features per server settings and a dashboard to keep track of your servers settings.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"This is a test.\"",
     "start": "node index.js"
   },
   "engines": {
@@ -12,17 +12,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/An-Idiots-Guide/guidebot-class.git"
+    "url": "git+https://github.com/Novuh-Bot/Custodian.git"
   },
-  "author": "Evelyne Lachance <eslachance@gmail.com> (http://evie.codes)",
-  "contributors": [
-    "York (http://anidiots.guide)"
-  ],
-  "license": "MIT",
+  "author": "OGNovuh",
+  "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/An-Idiots-Guide/guidebot-class/issues"
+    "url": "https://github.com/Novuh-Bot/Custodian"
   },
-  "homepage": "https://github.com/An-Idiots-Guide/guidebot-class#readme",
+  "homepage": "https://github.com/Novuh-Bot/Custodian#readme",
   "dependencies": {
     "canvas": "github:Automattic/node-canvas",
     "canvas-constructor": "github:kyranet/canvasConstructor#2.0",
@@ -46,6 +43,7 @@
     "passport-discord": "^0.1.2",
     "querystring": "^0.2.0",
     "request": "^2.83.0",
+    "simple-youtube-api": "^3.0.1",
     "snekfetch": "^3.5.2",
     "spotify-web-api-node": "^2.5.0",
     "unfluff": "^1.1.0",
