@@ -21,4 +21,4 @@ commands/Fun/csgo.js
 commands/Fun/respect.js
 commands/Moderation/hackban.js
 commands/Moderation/search.js
-commands/Moderation/inf\.js
+commands/Moderation/inf.js
