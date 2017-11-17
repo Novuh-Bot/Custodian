@@ -11,7 +11,7 @@ exports.run = async (client, message, level) => {
   nmsEnabled = (nmsEnabled === 'true') ? true : false;
   if (!nmsEnabled) return;
   nmsRate = parseInt(nmsRate, 10);
-  nmsBanCount = parseInt(nmsBanCount, 10);
+  nmsbanCount = parseInt(nmsbanCount, 10);
 
   if (!message.guild.me.hasPermission('BAN_MEMBERS') || !message.member.bannable) return;
   
@@ -49,7 +49,7 @@ exports.run = async (client, message, level) => {
 exports.init = async (client) => {
   const defaults = client.settings.get('default');
   if (!defaults.nmsEnabled) defaults.nmsEnabled = 'false';
-  if (!defaults.nmsbanCount) defaults.nmsbanCount = '10';
+  if (!defaults.nmsbanCount) defaults.nmsanCount = '10';
   if (!defaults.nmsRate) defaults.nmsRate = '7500';
   client.settings.set('default', defaults);
 };
