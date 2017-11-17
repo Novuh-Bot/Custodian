@@ -4,12 +4,13 @@ const snek = require('snekfetch');
 class Yomamma extends Command {
   constructor(client) {
     super(client, {
-      name: 'yomomma',
+      name: 'yomamma',
       description: 'Disrespect someone\'s mother with this.',
       category: 'Fun',
-      usage: 'yomomma',
+      usage: 'yomamma',
       aliases: ['yomama'],
-      botPerms: ['SEND_MESSAGES']
+      botPerms: ['SEND_MESSAGES'],
+      cost: 2
     });
   }
 

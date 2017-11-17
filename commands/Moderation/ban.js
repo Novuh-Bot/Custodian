@@ -8,7 +8,7 @@ class Ban extends Moderation {
       usage: 'ban <@mention> [reason]',
       extended: 'This bans the mentioned user, with or without a reason.',
       category: 'Moderation',
-      aliases: ['B&', 'b&', 'banne', 'bean'],
+      aliases: ['B&', 'b&', 'banne', 'bean', 'bent'],
       botPerms: ['SEND_MESSAGES', 'BAN_MEMBERS', 'EMBED_LINKS'],
       permLevel: 'Moderator'
     });
