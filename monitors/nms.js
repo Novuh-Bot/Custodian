@@ -7,7 +7,7 @@ exports.run = async (client, message, level) => {
   if (!message.member) await message.guild.fetchMember(message.author).catch( O_o => {});
   if (!message.member) return;
   
-  let { nmsRate, nmsBanCount, nmsEnabled } = message.settings;
+  let { nmsRate, nmsbanCount, nmsEnabled } = message.settings;
   nmsEnabled = (nmsEnabled === 'true') ? true : false;
   if (!nmsEnabled) return;
   nmsRate = parseInt(nmsRate, 10);
@@ -25,7 +25,7 @@ exports.run = async (client, message, level) => {
   
   entry += message.mentions.users.size + message.mentions.roles.size;
   
-  if (entry > nmsBanCount) {
+  if (entry > nmsbanCount) {
     client.log('log', `[${message.guild.name}] ${message.author.username} spamming mentions x${entry}`);
     message.member.ban(1).then(member => {
       message.channel.send(`:no_entry_sign: User ${member.user.tag} (${member.id}) has just been banned for mentioning ${entry} users. :hammer:
@@ -49,7 +49,7 @@ exports.run = async (client, message, level) => {
 exports.init = async (client) => {
   const defaults = client.settings.get('default');
   if (!defaults.nmsEnabled) defaults.nmsEnabled = 'false';
-  if (!defaults.nmsBanCount) defaults.nmsBanCount = '10';
+  if (!defaults.nmsbanCount) defaults.nmsbanCount = '10';
   if (!defaults.nmsRate) defaults.nmsRate = '7500';
   client.settings.set('default', defaults);
 };
