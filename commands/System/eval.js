@@ -20,7 +20,9 @@ class Eval extends Command {
       if (evaled.length > 1500) {
         const hasteURL = await require('snekfetch')
           .post('https://hastebin.com/documents')
-          .send(log).catch(e => {throw new Error(`Error posting data: ${e}`);});
+          .send(evaled).catch(e => {throw new Error(`Error posting data: ${e}`);});
+        const url = `https://hastebin.com/${hasteURL.body.key}.js`;
+        message.channel.send(`Here is the output: ${url}.`);
       } else {
         const clean = await this.client.clean(this.client, evaled);
         message.channel.send(`\`\`\`js\n${clean}\n\`\`\``);
