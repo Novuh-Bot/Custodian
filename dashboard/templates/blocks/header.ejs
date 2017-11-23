@@ -6,7 +6,7 @@
     <meta name="GuideBot" />
     <meta property="og:title" content="<%= bot.user.username %> Dashboard" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://dashboard.ban-hammered.me" /> <!--This redirects to the this site no matter what link-->
+    <meta property="og:url" content="http://b1nb1n-banned.me:8080" /> <!--This redirects to the this site no matter what link-->
     <meta property="og:description" content="<% if(bot.appInfo.description.length > 3) { %> <%= bot.appInfo.description %> <% } else { %>No description given.<% }%>" />
     <meta property="og:image" content="<%= bot.user.displayAvatarURL %>"/>
     <meta property="og:site_name" content="<%= bot.user.username %> Dashboard">
@@ -36,6 +36,7 @@
         <div class="collapse navbar-collapse" id="navbar01">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item"><a class="nav-link" href="/commands">Commands</a></li>
+            <li class="nav-item"><a class="nav-link" href="/status">Status</a></li>
             <li class="nav-item"><a class="nav-link<% if(!bot.appInfo.botPublic) { %> disabled<% } %>" href="https://discordapp.com/oauth2/authorize?client_id=<%= bot.appInfo.id %>&scope=bot&response_type=code&redirect_uri=<%= encodeURIComponent(bot.config.dashboard.callbackURL) %>">Add to Server</a></li>
             <li class="nav-item"><a class="nav-link" href="/stats">On <%= bot.guilds.size %> Servers</a></li>
           </ul>

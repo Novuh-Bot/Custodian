@@ -9,7 +9,7 @@ class Set extends Command {
       category: 'System',
       usage: 'set <view/get/edit> <key> <value>',
       guildOnly: true,
-      aliases: ['setting', 'settings', 'conf'],
+      aliases: ['setting', 'settings'],
       permLevel: 'Administrator',
       botPerms: ['SEND_MESSAGES']
     });
