@@ -22,3 +22,5 @@ class Enable extends Command {
     message.reply(`The command \`${commands.help.name}\` has been loaded.`);
   }
 }
+
+module.exports = Enable;

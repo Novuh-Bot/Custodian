@@ -20,5 +20,8 @@ class Disable extends Command {
     if (response) return message.reply(`Error unloading: ${response}`);
 
     message.reply(`The command \`${commands.help.name}\` has been unloaded.`);
+    this.client.log('log', `Unloaded Command: ${args[0]}`, 'CMD');
   }
 }
+
+module.exports = Disable;

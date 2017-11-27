@@ -11,10 +11,10 @@ module.exports = class {
 
     const defaults = this.client.config.defaultSettings;
     const settings = message.guild ? this.client.settings.get(message.guild.id) : defaults;
+    message.settings = settings;
+    
     const level = this.client.permlevel(message);
     monitor.run(this.client, message, level);
-
-    message.settings = settings;
 
     const mentionPrefix = new RegExp(`^<@!?${this.client.user.id}> `);
     const prefixMention = mentionPrefix.exec(message.content);
