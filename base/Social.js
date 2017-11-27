@@ -1,6 +1,6 @@
 const Command = require('./Command.js');
 const moment = require('moment');
-
+const ms = require('ms');
 class Social extends Command {
 
   constructor(client, options) {
@@ -52,21 +52,45 @@ class Social extends Command {
     try {
       // payee: The user getting paid
       const getPayee = this.client.points.get(`${message.guild.id}-${payee}`) ||
-      this.client.points.set(`${message.guild.id}-${payee}`, { points: 0, level: 0, user: payee, guild: message.guild.id, daily: 1504120109 }).get(`${message.guild.id}-${payee}`);
+        this.client.points.set(`${message.guild.id}-${payee}`, {
+          points: 0,
+          level: 0,
+          user: payee,
+          guild: message.guild.id,
+          daily: 1504120109
+        }).get(`${message.guild.id}-${payee}`);
 
       // payer: The user paying.
       const getPayer = this.client.points.get(`${message.guild.id}-${payer}`) ||
-      this.client.points.set(`${message.guild.id}-${payer}`, { points: 0, level: 0, user: payer, guild: message.guild.id, daily: 1504120109 }).get(`${message.guild.id}-${payer}`);
+        this.client.points.set(`${message.guild.id}-${payer}`, {
+          points: 0,
+          level: 0,
+          user: payer,
+          guild: message.guild.id,
+          daily: 1504120109
+        }).get(`${message.guild.id}-${payer}`);
 
       if (Date.now() > getPayer.daily) {
+        let reminded = false;
+        if (message.content.indexOf('-r') !== -1) {
+          reminded = true;
+          const time = '1 day',
+            action = `claim daily in ${message.guild.name}`;
+          this.client.reminders.set(`${message.author.id}-${message.createdTimestamp + ms(time)}`, {
+            id: message.author.id,
+            reminder: action,
+            reminderTimestamp: message.createdTimestamp + ms(time)
+          });
+        }
+
         if (payer === payee) {
-          const msg = await message.channel.send(`You have claimed your daily ${pointsReward}${this.emoji(message.guild.id)} points, Ain't that dandy?`);
+          const msg = await message.channel.send(`You have claimed your daily ${pointsReward}${this.emoji(message.guild.id)} points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
           getPayer.daily = msg.createdTimestamp + (dailyTime * 60 * 60 * 1000);
           getPayer.points += pointsReward;
           this.client.points.set(`${message.guild.id}-${payer}`, getPayer);
           return msg;
         } else {
-          const msg = await message.channel.send(`You have donated your daily ${pointsReward}${this.emoji(message.guild.id)} points, Ain't that dandy?`);
+          const msg = await message.channel.send(`You have donated your daily ${pointsReward}${this.emoji(message.guild.id)} points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
           getPayer.daily = msg.createdTimestamp + (dailyTime * 60 * 60 * 1000);
           getPayee.points += pointsReward;
           this.client.points.set(`${message.guild.id}-${payee}`, getPayee);
@@ -86,11 +110,23 @@ class Social extends Command {
     try {
       // payer: The user paying.
       const getPayer = this.client.points.get(`${message.guild.id}-${payer}`) ||
-        this.client.points.set(`${message.guild.id}-${payer}`, { points: 0, level: 0, user: payer, guild: message.guild.id, daily: 1504120109 }).get(`${message.guild.id}-${payer}`);
+        this.client.points.set(`${message.guild.id}-${payer}`, {
+          points: 0,
+          level: 0,
+          user: payer,
+          guild: message.guild.id,
+          daily: 1504120109
+        }).get(`${message.guild.id}-${payer}`);
 
       // payee: The user getting paid
       const getPayee = this.client.points.get(`${message.guild.id}-${payee}`) ||
-        this.client.points.set(`${message.guild.id}-${payee}`, { points: 0, level: 0, user:payee, guild: message.guild.id, daily: 1504120109 }).get(`${message.guild.id}-${payee}`);
+        this.client.points.set(`${message.guild.id}-${payee}`, {
+          points: 0,
+          level: 0,
+          user: payee,
+          guild: message.guild.id,
+          daily: 1504120109
+        }).get(`${message.guild.id}-${payee}`);
 
       if (getPayer.points < parseInt(amount)) {
         throw `Insufficient funds, you have ${getPayer.points}${this.emoji(message.guild.id)}`;
@@ -119,7 +155,13 @@ class Social extends Command {
 
   async usrBal(message, user) {
     const id = await this.verifySocialUser(user);
-    const score = this.client.points.get(`${message.guild.id}-${id}`) || this.client.points.set(`${message.guild.id}-${id}`, { points: 0, level: 0, user: id,guild: message.guild.id, daily: 1504120109 }).get(`${message.guild.id}-${id}`);
+    const score = this.client.points.get(`${message.guild.id}-${id}`) || this.client.points.set(`${message.guild.id}-${id}`, {
+      points: 0,
+      level: 0,
+      user: id,
+      guild: message.guild.id,
+      daily: 1504120109
+    }).get(`${message.guild.id}-${id}`);
     const level = this.ding(message.guild.id, score);
     score.level = level;
     this.client.points.set(`${message.guild.id}-${id}`, score);
@@ -136,7 +178,7 @@ class Social extends Command {
     }
     return Math.ceil(cost);
   }
-  
+
   async cmdPay(message, user, cost, perms) {
     const amount = parseInt(cost) * parseInt(perms.length) * Math.floor(parseInt(message.settings.costMulti));
     try {

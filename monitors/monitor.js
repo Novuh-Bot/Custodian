@@ -9,7 +9,6 @@ module.exports = class {
 
   static run(client, message, level) {
     this.givePoints(client, message, level);
-    this.nms = require('./nms.js').run(client, message, level);
   }
 
   static givePoints(client, message, level) {

@@ -18,10 +18,10 @@ module.exports = class {
       return false;
     }
 
-    if (!message || !message.id || !message.content || !message.guild) return;
-    const channel = message.guild.channels.find('name', 'raw-logs');
+    if (!oldMessage || !oldMessage.id || !oldMessage.content || !oldMessage.guild) return;
+    const channel = oldMessage.guild.channels.find('name', 'raw-logs');
     if (!channel) return;
-    channel.send(`📝 ${message.author.tag} (${message.author.id}) : Message Edited in ${message.channel.name}:\n**B**: ${message.cleanContent}\n**N**: ${newMessage.cleanContent}`);
+    channel.send(`📝 ${oldMessage.author.tag} (${oldMessage.author.id}) : Message Edited in ${oldMessage.channel.name}:\n**B**: ${oldMessage.cleanContent}\n**N**: ${newMessage.cleanContent}`);
 
     const settings = this.client.settings.get(oldMessage.guild.id);
     const Edit = new RichEmbed()

@@ -8,7 +8,7 @@ const EnmapLevel = require('enmap-level');
 const klaw = require('klaw');
 const path = require('path');
 
-class Guardian extends Discord.Client {
+class Custodian extends Discord.Client {
   constructor(options) {
     super(options);
 
@@ -85,7 +85,7 @@ class Guardian extends Discord.Client {
   }
 }
 
-const client = new Guardian({
+const client = new Custodian({
   fetchAllMembers: true
 });
 console.log(client.config.permLevels.map(p=>`${p.level} : ${p.name}`));
