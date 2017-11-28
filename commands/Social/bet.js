@@ -4,7 +4,8 @@ class Bet extends Social {
   constructor(client) {
     super(client, {
       name: 'bet',
-      description: 'Bet some of your money in a chance to earn big..',
+      description: 'Bet some of your money in a chance to earn big.',
+      category: 'Social',
       usage: 'famous',
       aliases: []
     });

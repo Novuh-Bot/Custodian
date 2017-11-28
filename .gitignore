@@ -1,6 +1,7 @@
 # Directories
 /node_modules/
 /data/
+/Experimental/
 
 # Specific Files
 pakage-lock.json
