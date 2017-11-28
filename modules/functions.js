@@ -25,18 +25,27 @@ module.exports = (client) => {
     return text;
   };
 
-  client.pointsMonitor = (client, message) => {
-    if (message.channel.type !== 'text') return;
-    const settings = client.setttings.get(message.guild.id);
-    if (message.content.startsWith(settings.prefix)) return;
-    const score = client.points.get(message.author.id) || { points: 0, level: 0 };
-    score.points++;
-    const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
-    if (score.level < curLevel) {
-      message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
-      score.level = curLevel;
+  client.getSettings = (id) => {
+    const defaults = client.settings.get('default');
+    let guild = client.settings.get(id);
+    if (typeof guild != 'object') guild = {};
+    const returnObject = {};
+    Object.keys(defaults).forEach((key) => {
+      returnObject[key] = guild[key] ? guild[key] : defaults[key];
+    });
+    return returnObject;
+  };
+  
+  client.writeSettings = (id, newSettings) => {
+    const defaults = client.settings.get('default');
+    let settings = client.settings.get(id);
+    if (typeof settings != 'object') settings = {};
+    for (const key in newSettings) {
+      if (defaults[key] !== newSettings[key])  {
+        settings[key] = newSettings[key];
+      }
     }
-    client.points.set(message.author.id, score);
+    client.settings.set(id, settings);
   };
 
 
