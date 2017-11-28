@@ -32,9 +32,10 @@ class Help extends Command {
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
-      message.channel.send(output, {code:'asciidoc'});
+      message.channel.send(output, {code:'asciidoc', split: true});
     } else {
       let command = args[0];
+      const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
       if (this.client.commands.has(command)) {
         command = this.client.commands.get(command);
         if (level < this.client.levelCache[command.conf.permLevel]) return;

@@ -1,45 +1,34 @@
 const Command = require('../../base/Command.js');
-const Discord = require('discord.js');
-function checkDays(date) {
-    let now = new Date();
-    let diff = now.getTime() - date.getTime();
-    let days = Math.floor(diff / 86400000);
-    return days + (days == 1 ? " day" : " days") + " ago";
-};
+const { RichEmbed } = require('discord.js');
 
-class Serverinfo extends Command {
-    constructor(client) {
-        super(client, {
-            name: 'serverinfo',
-            description: 'Displays information about the server.',
-            extended: 'Displays a servers verification level, owner, region, member count, and emojis.',
-            usage: 'serverinfo',
-            category: 'System',
-            botPerms: ['SEND_MESSAGES', 'EMBED_LINKS'],
-            permLevel: 'User'
-        })
-    }
+class ServerInfo extends Command {
+  constructor(client) {
+    super(client, {
+      name: 'serverinfo',
+      description: 'Displays server information & statistics.',
+      usage: 'serverinfo',
+      extended: 'This command will return an organised embed with server information and statistics.',
+      guildOnly: true,
+      category: 'Utilities',
+      aliases: ['serverstats','guildinfo','guildstats'],
+      botPerms: ['EMBED_LINKS']
+    });
+  }
 
-    async run(message, level) {
-        let verifLevels = ["None", "Low", "Medium", "(╯°□°）╯︵  ┻━┻", "┻━┻ミヽ(ಠ益ಠ)ノ彡┻━┻"];
-        const embed = new RichEmbed();
-        var emojis;
-        if (message.guild.emojis.size === 0) {
-            emojis = 'None';
-        } else {
-            emojis = message.channel.guild.emojis.map(e => e).join(" ");
-        }
-        embed.setAuthor(message.guild.name, message.guild.iconURL ? message.guild.iconURL : this.client.displayAvatarURL)
-             .addField('Created', `${message.guild.createdAt.toString().substr(0, 15)},\n${checkDays(message.guild.createdAt)}`, true)
-             .addField("ID", message.guild.id, true)
-             .addField("Owner", `${message.guild.owner.user.username}#${message.guild.owner.user.discriminator}`, true)
-             .addField("Members", message.guild.memberCount, true)
-             .addField("Roles", message.guild.roles.size, true)
-             .addField("Channels", message.guild.channels.size, true)
-             .addField("Verification Level", verifLevels[message.guild.verificationLevel], true)
-             .addField("Default Channel", message.guild.defaultChannel, true)
-
-    }
+  async run(message, args, level) { // eslint-disable-line no-unused-vars
+    const embed = new RichEmbed()
+      .setAuthor(message.guild.name, message.guild.iconURL)
+      .setColor(3447003)
+      .setDescription(`Owner: ${message.guild.owner.user.tag} (${message.guild.owner.id})`)
+      .addField('Member Count', `${message.guild.memberCount - message.guild.members.filter(m=>m.user.bot).size} + ${message.guild.members.filter(m=>m.user.bot).size} bots`, true)
+      .addField('Location', message.guild.region, true)
+      .addField('Created', message.guild.createdAt.toLocaleString(), true)
+      .addField('Roles', message.guild.roles.size, true)
+      .addBlankField(true)
+      .setTimestamp()
+      .setFooter(this.client.user.username, this.client.user.avatarURL);
+    message.channel.send({embed}).catch(e => console.error(e));
+  }
 }
 
-module.exports = Serverinfo;
+module.exports = ServerInfo;

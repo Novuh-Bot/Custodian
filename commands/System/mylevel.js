@@ -1,11 +1,12 @@
-const Command = require("../base/Command.js");
+const Command = require('../../base/Command.js');
 
-class MyLevel extends Command {
+class Mylevel extends Command {
   constructor(client) {
     super(client, {
-      name: "mylevel",
-      description: "Displays your permission level for your location.",
-      usage: "mylevel",
+      name: 'mylevel',
+      description: 'Displays your permission level for your location.',
+      usage: 'mylevel',
+      category: 'System',
       guildOnly: true
     });
   }
@@ -16,4 +17,4 @@ class MyLevel extends Command {
   }
 }
 
-module.exports = MyLevel;
+module.exports = Mylevel;
