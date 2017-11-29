@@ -7,6 +7,9 @@
 pakage-lock.json
 config.js
 
+# Classes
+base/Music.js
+
 
 # Commands
 commands/Music/pause.js
