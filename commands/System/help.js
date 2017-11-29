@@ -1,4 +1,5 @@
 const Command = require('../../base/Command.js');
+const {RichEmbed} = require('discord.js');
 
 class Help extends Command {
   constructor(client) {
@@ -32,7 +33,15 @@ class Help extends Command {
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
-      message.channel.send(output, {code:'asciidoc', split: true});
+      await message.channel.send(output, {code:'asciidoc', split: true});
+      
+      const TOS = new RichEmbed()
+        .setAuthor('Custodian', `${this.client.user.displayAvatarURL}`)
+        .setTitle('Custodian Terms of Service')
+        .setFooter('\n\nCustodian © 2017 OGNovuh', `${this.client.user.displayAvatarURL}`)
+        .setTimestamp()
+        .addField('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.', '➢ Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
+      message.channel.send({ embed: TOS });
     } else {
       let command = args[0];
       const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
