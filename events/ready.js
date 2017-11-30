@@ -21,7 +21,7 @@ module.exports = class {
     this.client.log('Log', `${this.client.user.tag}, ready to serve ${this.client.users.size} users in ${this.client.guilds.size} servers.`, 'Ready!');
 
     this.client.guilds.filter(g => !this.client.settings.has(g.id)).forEach(g => this.client.settings.set(g.id, this.client.config.defaultSettings));
-    this.client.user.setGame(`-help | Keeping ${this.client.guilds.size} servers clean.`);
+    this.client.user.setGame(`/help | Keeping ${this.client.guilds.size} servers clean.`);
 
     setInterval(() => {
       const toRemind = this.client.reminders.filter(r => r.reminderTimestamp <= Date.now());
