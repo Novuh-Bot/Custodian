@@ -5,9 +5,7 @@ The following is a set of guidelines for contributing to Custodian. These are mo
 ### Table of Contents
 
 [Code of Conduct](#code-of-conduct)
-
 [I just have a little question!](#i-just-have-a-little-question)
-
 [How can I contribute?](#how-can-i-contribute)
   * [Reporting Bugs](#reporting-bugs)
   * [Suggesting Enhancements](#suggesting-enhancements)
