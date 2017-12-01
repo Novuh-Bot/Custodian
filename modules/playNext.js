@@ -5,12 +5,12 @@ const yt = require('ytdl-core');
 const playNext = (message) => {
   const thisPlaylist = message.client.playlists.get(message.guild.id);
   const nextSong = thisPlaylist.queue[++thisPlaylist.position];
-  const dispatcher = message.guild.voiceConnection.playStream(yt(nextSong.url, {quality:'lowest', filter:'audioOnly'}), {passes: 3, volume: message.guild.voiceConnection.volume || 0.2});
+  const dispatcher = message.guild.voiceConnection.playStream(yt(nextSong.url, {quality:'lowest', filter:'audioonly'}), {passes: 3, volume: message.guild.voiceConnection.volume || 0.2});
 
   thisPlaylist.dispatcher = dispatcher;
 
   if (embedCheck(message)) {
-    const embed = Discord.RichEmbed()
+    const embed = new Discord.RichEmbed()
       .setTitle(`Now playing **${nextSong.songTitle}** (${nextSong.playTime})`)
       .setColor(0xDD2825)
       .setFooter(`Requested by ${nextSong.requester}`, nextSong.requesterIcon)

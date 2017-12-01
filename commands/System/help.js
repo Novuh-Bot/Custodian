@@ -40,7 +40,8 @@ class Help extends Command {
         .setTitle('Custodian Terms of Service')
         .setFooter('\n\nCustodian © 2017 OGNovuh', `${this.client.user.displayAvatarURL}`)
         .setTimestamp()
-        .addField('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.', '➢ Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
+        .setDescription('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.')
+        .addField('\u200B', '➢ Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
       message.channel.send({ embed: TOS });
     } else {
       let command = args[0];

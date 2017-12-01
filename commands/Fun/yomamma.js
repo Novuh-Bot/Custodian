@@ -8,7 +8,7 @@ class Yomamma extends Command {
       description: 'Disrespect someone\'s mother with this.',
       category: 'Fun',
       usage: 'yomamma',
-      aliases: ['yomama'],
+      aliases: ['yomama', 'yomomma'],
       botPerms: ['SEND_MESSAGES'],
       cost: 2
     });

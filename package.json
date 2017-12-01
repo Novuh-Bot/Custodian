@@ -21,8 +21,6 @@
   },
   "homepage": "https://github.com/Novuh-Bot/Custodian#readme",
   "dependencies": {
-    "canvas": "github:Automattic/node-canvas",
-    "canvas-constructor": "github:kyranet/canvasConstructor#2.0",
     "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.1.0",
     "ejs": "^2.5.7",
@@ -43,7 +41,7 @@
     "passport-discord": "^0.1.2",
     "querystring": "^0.2.0",
     "request": "^2.83.0",
-    "simple-youtube-api": "^3.0.1",
+    "simple-youtube-api": "^2.1.0",
     "snekfetch": "^3.5.2",
     "spotify-web-api-node": "^2.5.0",
     "unfluff": "^1.1.0",

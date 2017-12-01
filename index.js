@@ -14,6 +14,7 @@ class Custodian extends Discord.Client {
 
     this.config = require('./config.js');
     this.queue = {};
+    this.playlists = new Enmap();
     this.commands = new Enmap();
     this.aliases = new Enmap();
     this.invspam = new Enmap();

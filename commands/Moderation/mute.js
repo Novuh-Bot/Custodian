@@ -6,7 +6,7 @@ class Mute extends Moderation {
       name: 'mute',
       description: 'Mutes a mentioned user.',
       usage: 'mute <@mention> [reason]',
-      extended: 'This mutes the mentioned user, with or without a reason',
+      extended: 'This mutes the mentioned user, with a reason',
       category: 'Moderation',           
       aliases: [],
       botPerms: ['SEND_MESSAGES', 'MANAGE_ROLES', 'EMBED_LINKS'],
