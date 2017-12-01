@@ -23,6 +23,8 @@ class Stop extends Command {
       queue.queue = [];
       queue.dispatcher.end();
     }
+
+    voiceChannel.leave();
   } 
 }
 
