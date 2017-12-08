@@ -11,7 +11,7 @@ module.exports = class {
     if (!message || !message.id || !message.content || !message.guild) return;
     const channel = message.guild.channels.find('name', 'raw-logs');
     if (!channel) return;
-    channel.send(`🗑 ${message.author.tag} (${message.author.id}) : Message Deleted in ${message.channel.name}:\n${message.cleanContent}`);
+    channel.send(`\`[${moment(message.createdAt).format('h:mm:ss')}]\` 🗑 ${message.author.tag} (${message.author.id}) : Message Deleted in ${message.channel.name}:\n${message.cleanContent}`);
     
     const settings = this.client.settings.get(message.guild.id);
     const Deletion = new RichEmbed()
