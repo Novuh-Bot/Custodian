@@ -12,14 +12,8 @@ base/Music.js
 
 
 # Commands
-commands/Music/pause.js
-commands/Music/play.js
 commands/Music/queue.js
-commands/Music/resume.js
-commands/Music/search.js
 commands/Music/skip.js
-commands/Music/stop.js
-commands/Music/volume.js
 commands/Music/spotify.js
 commands/Fun/csgo.js
 commands/Fun/respect.js
