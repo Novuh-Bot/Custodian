@@ -30,17 +30,6 @@ class Play extends Command {
       message.reply('Please join a channel first.');
     }
 
-    if (!this.client.playlists.has(message.guild.id)) {
-      var firstSong = true;
-      this.client.playlists.set(message.guild.id, {
-        dispatcher: null,
-        queue: [],
-        connection: null,
-        position: -1
-      });
-      await voiceChannel.join();
-    }
-
     let id = (() => {
       const parsed = parse(song, true);
       if (/^(www\.)?youtube\.com/.test(parsed.hostname)) {
@@ -60,6 +49,19 @@ class Play extends Command {
       info = await youtube.getVideo(id);
     } catch (e) {
       return message.channel.send(`\`An error occured: ${e}\``);
+    }
+
+    if (!this.client.playlists.has(message.guild.id)) {
+      var firstSong = true;
+      this.client.playlists.set(message.guild.id, {
+        dispatcher: null,
+        queue: [],
+        connection: null,
+        position: -1
+      });
+      await voiceChannel.join();
+    } else {
+      message.channel.send(`Added ${info.title} to the queue.`);
     }
 
     if (message.author.permLevel < 2 && parseInt(info.durationSeconds) > 900) return message.reply('Songs can be no longer than 15 minutes.').catch(console.error);  
@@ -83,12 +85,13 @@ class Play extends Command {
       playNext(message);
     } else {
       const embed = new RichEmbed()
-        .setTitle(`**${info.title}** (${minutes}:${seconds}) has been added to the queue.`)
+        .setTitle('Song has been added to the queue.')
         .setColor(0xDD2825)
         .setFooter(`Requested by ${message.member.displayName}`, message.author.displayAvatarURL)
-        .setImage(`https://i.ytimg.com/vi/${info.id}/mqdefault.jpg`)
+        .setThumbnail(`https://i.ytimg.com/vi/${info.id}/mqdefault.jpg`)
         .setTimestamp()
-        .setURL(`https://www.youtube.com/watch?v=${info.id}`);
+        .setURL(`https://www.youtube.com/watch?v=${info.id}`)
+        .addField(`**${info.title}** (${minutes}:${seconds})`, `By ${info.channel.title}`);
       if (embedCheck(message)) {
         message.channel.send(embed, { disableEveryone:true }).catch(console.error);
       } else {
