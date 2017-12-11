@@ -1,6 +1,5 @@
 const Command = require('../../base/Command.js');
 const config = require('../../config.js');
-
 const { RichEmbed } = require('discord.js');
 const embedCheck = require('../../modules/embedPerms.js');
 const playNext = require('../../modules/playNext.js');
