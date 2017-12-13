@@ -17,7 +17,7 @@ class Moderation extends Command {
       s: { color: 0xFF2F00, display: 'Softban' },
       b: { color: 0xFF0000, display: 'Ban'     },
       u: { color: 0x006699, display: 'Unban'   },
-      l: { color: 0x7289DA, display: 'Lockdown'}
+      ld: { color: 0x7289DA, display: 'Lockdown'}
     };
     
   }
@@ -86,6 +86,13 @@ class Moderation extends Command {
     const embed = await this.caseEmbed(thisAction.color, `**Action:** ${thisAction.display}\n**Target:** ${target.user.tag} (${target.id})\n**Reason:** ${reason}`,`${mod.tag} (${mod.id})`, new Date(), `Case ${caseNumber}`);
     return guild.channels.find('name', settings.modLogChannel).send({embed});
   }
+  
+  /* async buildRequest(client, guild, action, reason) {
+    const settings = client.settings.get(guild.id);
+    const thisAction = this.actions[action];
+    const embed = await this.caseEmbed(thisAction.color, `**Type:** ${thisAction.display}\n**Reason** ${reason}`);
+  } */
+
   
 }
 
