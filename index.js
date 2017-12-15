@@ -23,6 +23,7 @@ class Custodian extends Discord.Client {
     this.consent = new Enmap({provider: new EnmapLevel({name: 'consent'})});
     this.reminders = new Enmap({provider: new EnmapLevel({name: 'reminders'})});
     this.points = new Enmap({provider: new EnmapLevel({name: 'points'})});
+    this.blacklist = new Enmap({provider: new EnmapLevel({name: 'blacklist'})});
   }
 
   permlevel(message) {

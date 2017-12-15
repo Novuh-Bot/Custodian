@@ -49,7 +49,7 @@ class Help extends Command {
       if (this.client.commands.has(command)) {
         command = this.client.commands.get(command);
         if (level < this.client.levelCache[command.conf.permLevel]) return;
-        message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\ncost:: ${parseInt(command.help.cost) * parseInt(command.conf.botPerms.length + 1) * Math.floor(parseInt(settings.costMulti))} points (excluding role discounts)\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
+        message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
       }
     }
   }

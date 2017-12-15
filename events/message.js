@@ -8,6 +8,8 @@ module.exports = class {
   async run(message) {
 
     if (message.author.bot) return;
+    const blacklist = this.client.blacklist.get('list');
+    if (blacklist.includes(message.author.id)) return;
 
     const defaults = this.client.config.defaultSettings;
     const settings = message.guild ? this.client.settings.get(message.guild.id) : defaults;

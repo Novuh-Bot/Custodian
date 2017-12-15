@@ -17,7 +17,8 @@ class Moderation extends Command {
       s: { color: 0xFF2F00, display: 'Softban' },
       b: { color: 0xFF0000, display: 'Ban'     },
       u: { color: 0x006699, display: 'Unban'   },
-      ld: { color: 0x7289DA, display: 'Lockdown'}
+      ld: { color: 0x7289DA, display: 'Lockdown'},
+      bl: { color: 0x7289DA, display: 'Blacklist'}
     };
     
   }

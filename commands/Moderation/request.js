@@ -1,5 +1,4 @@
 const Moderation = require('../../base/Moderation.js');
-const { RichEmbed } = require('discord.js');
 
 class Request extends Moderation {
   constructor(client) {
@@ -24,7 +23,9 @@ class Request extends Moderation {
     const reason = args.splice(1, args.length).join(' ');
     if (!reason) `${message.author} |\`❌\`| Invalid command usage, you must supply a reason to use this command.`;
     const request = `= Action Requested =\n\n[Requested by ${user.username}#${user.discriminator}]\n\n== Action ==\n${action}\n\n== Reason == \n${reason}`; 
-    const channel = message.guild.channels.find('name', settings.requestChannel).send(`${request}`, {code:'asciidoc'});
+    const channel = message.guild.channels.find('name', settings.requestChannel);
+    await channel.send(`<@&${settings.requestNotif}>`);
+    channel.send(`${request}`, {code:'asciidoc'});
   }
 }
 
