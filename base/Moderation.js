@@ -88,11 +88,17 @@ class Moderation extends Command {
     return guild.channels.find('name', settings.modLogChannel).send({embed});
   }
   
-  /* async buildRequest(client, guild, action, reason) {
+  // await this.buildModLog(this.client, message.guild, 'b', target, message.author, reason);
+
+  async buildRequest(client, guild, action, reason) {
     const settings = client.settings.get(guild.id);
-    const thisAction = this.actions[action];
-    const embed = await this.caseEmbed(thisAction.color, `**Type:** ${thisAction.display}\n**Reason** ${reason}`);
-  } */
+    const thisAction = action;
+    const thisReason = reason;
+    const request = `= Action Requested =\n\n[See Custodian Logs to View Requester]\n\n== Action ==\n${thisAction}\n\n== Reason == \n${thisReason}`;
+    const channel = guild.channels.find('name', settings.requestChannel);
+    await channel.send(`<@&${settings.requestRole}>`);
+    channel.send(`${request}`, {code:'asciidoc'});
+  } 
 
   
 }

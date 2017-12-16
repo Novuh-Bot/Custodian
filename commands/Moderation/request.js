@@ -16,16 +16,16 @@ class Request extends Moderation {
 
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
-    const user = message.author;
     const action = args[0];
     if (!action) throw `${message.author} |\`❌\`| Invalid command usage, you must supply an action to use this 
     command.`;
     const reason = args.splice(1, args.length).join(' ');
     if (!reason) `${message.author} |\`❌\`| Invalid command usage, you must supply a reason to use this command.`;
-    const request = `= Action Requested =\n\n[Requested by ${user.username}#${user.discriminator}]\n\n== Action ==\n${action}\n\n== Reason == \n${reason}`; 
-    const channel = message.guild.channels.find('name', settings.requestChannel);
-    await channel.send(`<@&${settings.requestNotif}>`);
-    channel.send(`${request}`, {code:'asciidoc'});
+    try {
+      await this.buildRequest(this.client, message.guild, action, reason);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
