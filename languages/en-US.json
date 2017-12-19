@@ -1,0 +1,6 @@
+{
+  "incorrectUsage": "${message.author} |❌| Invalid command usage, please use this as a reference point. ${this.help.usage}.",
+  "commandReload": "The command ${commands.help.name} has been reloaded.",
+  "commandUnloadFail": "Error unloading:",
+  "commandLoadFail": "Error loading: "
+}

@@ -92,7 +92,7 @@ class Play extends Command {
         .setURL(`https://www.youtube.com/watch?v=${info.id}`)
         .addField(`**${info.title}** (${minutes}:${seconds})`, `By ${info.channel.title}`);
       if (embedCheck(message)) {
-        message.channel.send(embed, { disableEveryone:true }).catch(console.error);
+        message.channel.send({embed, disableEveryone:true }).catch(console.error);
       } else {
         message.channel.send(`**${info.title}** (${minutes}:${seconds}) has been added to the queue.`);
       }
