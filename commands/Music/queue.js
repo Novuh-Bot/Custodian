@@ -14,6 +14,8 @@ class Queue extends Command {
 
   async run(message, args, level) {
     message.channel.send('Coming soon!');
+    const playlists = this.client.playlists(message.guild.id);
+    playlists.map().join('➢\n');
   }
 }
 

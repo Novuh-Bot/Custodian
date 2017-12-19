@@ -24,7 +24,9 @@ class Hackban extends Moderation {
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
     try {
-      await target.ban({days:0, reason: reason.length < 1 ? 'No reason supplied.': reason});
+      message.guild.fetchMember(`${target}`).then(member => {
+        member.ban(target, {days:7, reason: reason.length < 1 ? 'No reason supplied.': reason});
+      });
       await this.buildModLog(this.client, message.guild, 'hb', target, message.author, reason);
       await message.channel.send(`\`${target.user.tag}\` was successfully banned.`);
     } catch (error) {
