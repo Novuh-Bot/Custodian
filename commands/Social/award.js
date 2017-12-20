@@ -18,6 +18,9 @@ class Award extends Social {
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     try {
+      const settings = this.client.settings.get(message.guild.id);
+      const serverLang = `${settings.lang}`;
+      const lang = require(`../../languages/${setLang}.json`);
       const user = await this.verifySocialUser(args[0]);
       if (isNaN(args[1])) throw 'Not a valid amount';
       if (args[1] < 0) throw 'You cannot pay less than zero, whatcha trying to do? rob em?';

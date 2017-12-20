@@ -13,6 +13,9 @@ class Volume extends Command {
   }
 
   async run(message, args, level) {
+    const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${setLang}.json`);
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guild.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {
       message.reply('Please join a voice channel first.');

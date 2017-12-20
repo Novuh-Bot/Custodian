@@ -14,6 +14,9 @@ class Slap extends Command {
   }
 
   async run(message, args, level) {
+    const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${setLang}.json`);
     const target = message.mentions.users.first();
     if (message.mentions.users.first() < 1) return message.reply('Please mention a user to slap them.');
     message.channel.send(`${message.author.username} slapped ${target}. OOOOOOOO`);

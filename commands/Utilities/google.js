@@ -26,6 +26,9 @@ class Google extends Command {
 
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
+    const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${setLang}.json`);
     const time = Date.now();
     const term = args.join(' ');
     const searchurl = 'http://google.com/search?safe=active&gl=uk&hl=en&q=' + encodeURIComponent(term);

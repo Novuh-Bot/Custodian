@@ -14,9 +14,12 @@ class Blacklist extends Moderation {
   }
 
   async run(message, args, level) {
+    const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${serverLang}.json`);
     if (!args[0] && !message.flags.length) message.flags.push('list');
     if (!message.flags.length) {
-      throw `${message.author} |\`❌\`| Invalid command usage, \`${this.help.usage}\`.`;
+      throw `${message.author} |\`❌\`| ${lang.incorrectArgUsage} \`${this.help.usage}\`.`;
     }
     const blacklist = this.client.blacklist.get('list');
     
@@ -43,7 +46,7 @@ class Blacklist extends Moderation {
         if (!blacklist.includes(author.id)) return message.reply('That user is not blacklisted.');
         blacklist.remove(author.id);
         this.client.blacklist.set('list', blacklist);
-        message.channel.send('User successfully removed from blacklist.');
+        message.channel.send('That user is not blacklisted.');
         break;
       }
 

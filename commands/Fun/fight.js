@@ -31,6 +31,9 @@ class Fight extends Command {
   }
 
   async run(message, args, level) {
+    const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${setLang}.json`);
     const user = message.mentions.users.first();
     if (!user) throw `${message.author} |\`❌\`| You must choose someone to fight.`;
     if (message.mentions.users.first() < 1) return message.reply('You can\'t fight thin air dude, pick someone to fight.');

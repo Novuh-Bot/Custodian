@@ -20,6 +20,9 @@ class Weather extends Command {
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     try {
+      const settings = this.client.settings.get(message.guild.id);
+      const serverLang = `${settings.lang}`;
+      const lang = require(`../../languages/${setLang}.json`);
       const _message = await message.reply('Please wait...');
       if (!args[0]) {
         _message.edit('No data given');

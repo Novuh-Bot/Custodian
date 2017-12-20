@@ -16,6 +16,8 @@ class Request extends Moderation {
 
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
+    const serverLang = `${settings.lang}`;
+    const lang = require(`../../languages/${setLang}.json`);
     const action = args[0];
     if (!action) throw `${message.author} |\`❌\`| Invalid command usage, you must supply an action to use this 
     command.`;
