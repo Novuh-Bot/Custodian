@@ -32,7 +32,7 @@ class Fight extends Command {
 
   async run(message, args, level) {
     const user = message.mentions.users.first();
-    if (!user) throw `${message.author} |\`❌\`| You must choose someone to fight`;
+    if (!user) throw `${message.author} |\`❌\`| You must choose someone to fight.`;
     if (message.mentions.users.first() < 1) return message.reply('You can\'t fight thin air dude, pick someone to fight.');
     message.channel.send(`${message.author.username} is fighting ${user.username}${fights[Math.floor(Math.random() * fights.length)]}`);
   }
