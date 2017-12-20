@@ -18,9 +18,9 @@ class Pick extends Command {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${setLang}.json`);
     const options = args.join(' ');
-    if (options.length < 2) throw `${message.author} |\`❌\`| Invalid command usage, you must supply text.`;
+    if (options.length < 2) throw `${message.author} |\`❌\`| ${lang.pickNoTxt}`;
     const list = options.split(',');
-    if (list.length < 2)  throw `${message.author} |\`❌\`| Invalid command usage, you must supply at least two items to pick from.`;  
+    if (list.length < 2)  throw `${message.author} |\`❌\`| ${lang.pickInvalidAmnt}`;  
     try {
       return message.channel.send(`${list[Math.floor(Math.random()*list.length)].trim()}`);
     } catch (error) {

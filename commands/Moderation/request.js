@@ -19,10 +19,9 @@ class Request extends Moderation {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${setLang}.json`);
     const action = args[0];
-    if (!action) throw `${message.author} |\`❌\`| Invalid command usage, you must supply an action to use this 
-    command.`;
+    if (!action) throw `${message.author} |\`❌\`| ${lang.requestNoActn}`;
     const reason = args.splice(1, args.length).join(' ');
-    if (!reason) `${message.author} |\`❌\`| Invalid command usage, you must supply a reason to use this command.`;
+    if (!reason) `${message.author} |\`❌\`| ${lang.modNoReason}`;
     try {
       await this.buildRequest(this.client, message.guild, action, reason);
     } catch (error) {

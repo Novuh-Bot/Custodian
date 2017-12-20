@@ -88,7 +88,7 @@ class Google extends Command {
     ]
     */
 
-    if (!result.length) return searchmessage.edit('No results found for ' + term);
+    if (!result.length) return searchmessage.edit(`${lang.noRslt}` + term);
     const first = result.shift();
     const vanityurl_1 = /^https?:\/\/[\w\.\-_]+(?::\d+|\.\w*)(?:\/|$)/g.exec(first.url);
     const vanityurl = vanityurl_1 && vanityurl_1[0] ? vanityurl_1[0] : first.url;   

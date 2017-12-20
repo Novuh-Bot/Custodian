@@ -22,11 +22,11 @@ class Mute extends Moderation {
     if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
     const muteRole = this.client.guilds.get(message.guild.id).roles.find('name', settings.muteRole);
     const target   = await this.verifyMember(message.guild, args[0]);
-    if (!target)     throw `${message.author} |\`❌\`| Invalid command usage, You must mention someone to use this command.`;
+    if (!target)     throw `${message.author} |\`❌\`| ${lang.incorrectModCmdUsage}`;
     const modLevel = this.modCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
-    if (!reason)     throw `${message.author} |\`❌\`| Invalid command usage, You must supply a reason to use this command.`;
+    if (!reason)     throw `${message.author} |\`❌\`| ${lang.modNoReason}`;
     try {
       await target.addRole(muteRole);
       await this.buildModLog(this.client, message.guild, 'm', target, message.author, reason);

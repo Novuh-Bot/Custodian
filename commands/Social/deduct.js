@@ -22,10 +22,10 @@ class Deduct extends Social {
       const serverLang = `${settings.lang}`;
       const lang = require(`../../languages/${setLang}.json`);
       const user = await this.verifySocialUser(args[0]);
-      if (isNaN(args[1])) throw 'Not a valid amount';
-      if (args[1] < 0) throw 'You cannot deduct less than zero, whatcha trying to do? reward em?';
-      else if (args[1] < 1) throw 'You trying to deduct their air? boi don\'t make me slap you 👋';
-      if (message.author.id === user) throw 'You cannot punish yourself, why did you even try it?';
+      if (isNaN(args[1])) throw `${lang.NaN}`;
+      if (args[1] < 0) throw `${lang.incorrectDeductAmnt}`;
+      else if (args[1] < 1) throw `${lang.incorrectDeductBal}`;
+      if (message.author.id === user) throw `${lang.socialDeductYrslf}`;
       await this.cmdPun(message, user, parseInt(args[1]));
     } catch (error) {
       throw error;

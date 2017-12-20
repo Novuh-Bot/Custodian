@@ -25,11 +25,11 @@ class Play extends Command {
     const lang = require(`../../languages/${setLang}.json`);
     const youtube = new ytapi(config.youtubeAPIKey);
     const song = args.join(' ');
-    if (!song.length) throw `${message.author} |\`❌\`| Invalid command usage, you must supply a YouTube link or a search term.`;
+    if (!song.length) throw `${message.author} |\`❌\`| ${lang.musicIncorrectURL}`;
     
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {
-      message.reply('Please join a channel first.');
+      message.reply(`${lang.musicNoChnl}`);
     }
 
     let id = (() => {

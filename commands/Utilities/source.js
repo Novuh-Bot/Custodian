@@ -18,9 +18,9 @@ class Source extends Command {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${setLang}.json`);
     const category = args[0];
-    if (!args[0]) return message.reply('Please supply a category to view.');
+    if (!args[0]) return message.reply(`${lang.srcNoCat}`);
     const command = args[1];
-    if (!args[1]) return message.reply('Please supply a command to view that is in the specified category.');
+    if (!args[1]) return message.reply(`${lang.srcNoCmd}`);
     const source = `https://github.com/Novuh-Bot/Custodian/tree/master/commands/${category}/${command}.js`;
     message.channel.send(`This is the source code for the command ${command}. ${source}`);
   }

@@ -18,11 +18,11 @@ class Resume extends Command {
     const lang = require(`../../languages/${setLang}.json`);
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {
-      message.reply('Please join a channel first.');
+      message.reply(`${lang.musicNoChnl}`);
     }
 
-    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply('Playback has not been paused.');
-    message.channel.send('Resuming playback.');
+    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply(`${lang.musicNoPause}`);
+    message.channel.send(`${lang.musicPlybckResume}`);
     this.client.playlists.get(message.guild.id).dispatcher.resume();
   } 
 }

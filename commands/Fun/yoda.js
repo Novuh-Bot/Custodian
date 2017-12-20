@@ -19,7 +19,7 @@ class Yoda extends Social {
       const serverLang = `${settings.lang}`;
       const lang = require(`../../languages/${setLang}.json`);
       const speech = args.join(' ');
-      if (speech.length < 2) throw `${message.author} |\`❌\`| Invalid command usage, you must supply text for Yoda. Yes.`;
+      if (speech.length < 2) throw `${message.author} |\`❌\`| ${lang.yodaNoTxt}`;
       const { text } = await snek.get(`http://yoda-api.appspot.com/api/v1/yodish?text=${encodeURIComponent(speech.toLowerCase())}`);
       message.channel.send(JSON.parse(text).yodish);
     } catch (error) {

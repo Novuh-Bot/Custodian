@@ -23,9 +23,9 @@ class Weather extends Command {
       const settings = this.client.settings.get(message.guild.id);
       const serverLang = `${settings.lang}`;
       const lang = require(`../../languages/${setLang}.json`);
-      const _message = await message.reply('Please wait...');
+      const _message = await message.reply(`${lang.weatherReply}`);
       if (!args[0]) {
-        _message.edit('No data given');
+        _message.edit(`${lang.weatherNoArgs}`);
       } else {
         const cb = '```'; // lazy af yo
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {

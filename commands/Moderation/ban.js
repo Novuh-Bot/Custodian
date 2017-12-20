@@ -21,7 +21,7 @@ class Ban extends Moderation {
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
     if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
     const target   = await this.verifyMember(message.guild, args[0]);
-    if (!target)     throw `${message.author} |\`❌\`| Invalid command usage, You must mention someone to use this command.`;
+    if (!target)     throw `${message.author} |\`❌\`| ${lang.incorrectModCmdUsage}.`;
     const modLevel = this.modCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
