@@ -2,11 +2,12 @@
 /node_modules/
 /data/
 /Experimental/
+/VPS/
 
 # Specific Files
 pakage-lock.json
 config.js
-
+/VPS/config.js
 # Classes
 base/Music.js
 
