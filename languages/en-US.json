@@ -12,7 +12,7 @@
   "blacklistNoMntn": "You must supply a user id or mention to blacklist them.",
   "blacklistExists": "That user is already blacklisted.",
   "blacklistYrslf": "You cannot blacklist yourself. ~~idiot~~",
-  "blacklistAdd": "User successfully added to blacklist.');",
+  "blacklistAdd": "User successfully added to blacklist.",
   "blacklistRmvFail": "That user is not blacklisted.",
   "blacklistRmv": "That user is no longer blacklisted.",
   "blacklistNoExist": "No one is blacklisted.",
