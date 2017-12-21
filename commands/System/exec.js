@@ -7,6 +7,7 @@ class Exec extends Command {
       name: 'exec',
       description: 'Executes a new process, very dangerous.',
       usage: 'exec <expression>',
+      aliases: ['shell'],
       category: 'System',
       extended: 'This will spawn a child process and execute the given command.',
       botPerms: ['SEND_MESSAGES'],
