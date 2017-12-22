@@ -22,7 +22,7 @@ class Weather extends Command {
     try {
       const settings = this.client.settings.get(message.guild.id);
       const serverLang = `${settings.lang}`;
-      const lang = require(`../../languages/${setLang}.json`);
+      const lang = require(`../../languages/${serverLang}.json`);
       const _message = await message.reply(`${lang.weatherReply}`);
       if (!args[0]) {
         _message.edit(`${lang.weatherNoArgs}`);

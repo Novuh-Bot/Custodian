@@ -14,7 +14,7 @@ class Skip extends Command {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
 
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {

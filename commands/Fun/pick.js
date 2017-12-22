@@ -16,7 +16,7 @@ class Pick extends Command {
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const options = args.join(' ');
     if (options.length < 2) throw `${message.author} |\`❌\`| ${lang.pickNoTxt}`;
     const list = options.split(',');

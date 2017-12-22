@@ -16,7 +16,7 @@ class Source extends Command {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const category = args[0];
     if (!args[0]) return message.reply(`${lang.srcNoCat}`);
     const command = args[1];

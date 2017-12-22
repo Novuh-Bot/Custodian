@@ -18,7 +18,7 @@ class Lockdown extends Moderation {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     if (!this.client.lockit) this.client.lockit = [];
     const time = args.join(' ');
     const validUnlocks = ['release', 'unlock'];

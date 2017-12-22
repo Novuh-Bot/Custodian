@@ -17,7 +17,7 @@ class Mute extends Moderation {
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
     if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
     const muteRole = this.client.guilds.get(message.guild.id).roles.find('name', settings.muteRole);

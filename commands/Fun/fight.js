@@ -33,7 +33,7 @@ class Fight extends Command {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const user = message.mentions.users.first();
     if (!user) throw `${message.author} |\`❌\`| ${lang.fightNoMntn}`;
     if (message.mentions.users.first() < 1) return message.reply(`|\`❌\`| ${lang.fightNoMntn}`);

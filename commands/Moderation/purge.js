@@ -15,7 +15,7 @@ class Purge extends Moderation {
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const user = message.mentions.users.first();
     const amount = parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2]);
     if (!amount) return message.reply(`${lang.purgeNoAmnt}`);

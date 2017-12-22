@@ -22,7 +22,7 @@ class Play extends Command {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${setLang}.json`);
+    const lang = require(`../../languages/${serverLang}.json`);
     const youtube = new ytapi(config.youtubeAPIKey);
     const song = args.join(' ');
     if (!song.length) throw `${message.author} |\`❌\`| ${lang.musicIncorrectURL}`;
