@@ -21,3 +21,5 @@ commands/Fun/respect.js
 commands/Moderation/hackban.js
 commands/Moderation/inf.js
 commands/Moderation/checkban.js
+
+launcher\.js
