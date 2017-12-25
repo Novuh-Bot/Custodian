@@ -1,4 +1,5 @@
 const Command = require('../../base/Command.js');
+const config = require('../../config.js');
 const {RichEmbed} = require('discord.js');
 
 class Eval extends Command {
@@ -73,7 +74,7 @@ class Eval extends Command {
           .setTimestamp()
           .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
           .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
-        this.client.channels.get('389955000299945984').send({ embed });
+        this.client.channels.get(`${config.logChannel}`).send({ embed });
       }
     }
   }
