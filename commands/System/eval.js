@@ -7,14 +7,14 @@ class Eval extends Command {
       name: 'eval',
       description: 'Evaluates arbitrary Javascript.',
       category:'System',
-      usage: 'exeval <expression>',
-      aliases: ['exev'],
+      usage: 'eval < -haste | -post | -direct | -log > <expression>',
+      aliases: ['ev'],
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'Bot Owner'
     });
   }
 
-  async run(message, args, level) { // eslint-disable-line no-unused-vars
+  async run(message, args, level) {
     if (!message.flags.length) {
       throw `|\`❌\`| ${this.help.usage}`;
     }
@@ -44,6 +44,36 @@ class Eval extends Command {
           .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
           .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
         message.channel.send({ embed });
+        break;
+      }
+
+      case ('direct'): {
+        const code = args.join(' ');
+        const evaled = eval(code);
+        const clean = await this.client.clean(this.client, evaled);
+        const embed = new RichEmbed()
+          .setAuthor('Custodian', 'https://cdn.discordapp.com/avatars/379424813170819083/ed4021d7989fa4419fa1583af3f8898a')
+          .setFooter('Custodian')
+          .setColor('RANDOM')
+          .setTimestamp()
+          .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
+          .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
+        message.author.send({ embed });
+        break;
+      }
+
+      case ('log'): {
+        const code = args.join(' ');
+        const evaled = eval(code);
+        const clean = await this.client.clean(this.client, evaled);
+        const embed = new RichEmbed()
+          .setAuthor('Custodian', 'https://cdn.discordapp.com/avatars/379424813170819083/ed4021d7989fa4419fa1583af3f8898a')
+          .setFooter('Custodian')
+          .setColor('RANDOM')
+          .setTimestamp()
+          .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
+          .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
+        this.client.channels.get('389955000299945984').send({ embed });
       }
     }
   }

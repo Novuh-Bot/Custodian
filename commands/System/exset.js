@@ -15,7 +15,7 @@ class Exset extends Command {
     });
   }
   
-  async run(message, args, level) {
+  async run(message, [action, key, ...value], level) {
     const settings = this.client.settings.get(message.guild.id);
 
     if (!message.flags.length) {
@@ -50,8 +50,6 @@ class Exset extends Command {
     
     switch (message.flags[0]) {
       case ('add'): {
-        const key = args[1];
-        const value = args[2];
         if (!key) return message.reply('Please specify a key to add.');
         if (settings[key]) return message.reply('This key already exists in the settings.');
         if (value.length < 1) return message.reply('Please specify a value');
