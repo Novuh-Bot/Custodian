@@ -7,14 +7,6 @@ class Music extends Command {
       category: 'Music',
       guildOnly: true
     }));
-
-    this.actions = {
-      pl: { color: 0xDD2825, display: 'Now Playing'},
-      st: { color: 0xFFFFFF, display: 'Stopped Playback'},
-      sk: { color: 0xDD2825, display: 'Skipped Song'},
-      re: { color: 0xFFFFFF, display: 'Resumed Playback'}
-    };
-
   }
 
   async embedPerms(message) {
@@ -29,7 +21,7 @@ class Music extends Command {
   async playNext(message) {
     const thisPlaylist = message.client.playlists.get(message.guild.id);
     const nextSong = thisPlaylist.queue[++thisPlaylist.position];
-    const dispatcher = message.guild.voiceConnection.playStream(yt(nextSong.url, {quality:'lowest', filter:'audioOnly'}), {passes: 3, volume: message.guild.voiceConnection.volume || 0.2});
+    const dispatcher = message.guild.voiceConnection.playStream(yt(nextSong.url, {quality:'lowest', filter:'audioonly'}), {passes: 3, volume: message.guild.voiceConnection.volume || 0.2});
   
     thisPlaylist.dispatcher = dispatcher;
   

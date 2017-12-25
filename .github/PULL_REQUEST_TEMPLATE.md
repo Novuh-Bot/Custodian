@@ -11,9 +11,9 @@
 
 <!-- Explain what other alternates were considered and why the proposed version was selected -->
 
-### Why Should This Be In Core?
+### Why Should This Be In Production?
 
-<!-- Explain why this functionality should be in atom/atom as opposed to a package -->
+<!-- Explain why this functionality should be in the production bot. -->
 
 ### Benefits
 
