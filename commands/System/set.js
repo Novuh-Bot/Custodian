@@ -1,6 +1,4 @@
-const { inspect } = require('util');
 const Command = require('../../base/Command.js');
-const {RichEmbed} = require('discord.js');
 
 class Set extends Command {
   constructor(client) {
@@ -11,26 +9,15 @@ class Set extends Command {
       usage: 'set <view/get/edit> <key> <value>',
       guildOnly: true,
       aliases: ['setting', 'settings'],
-      permLevel: 'Administrator',
-      botPerms: ['SEND_MESSAGES']
+      permLevel: 'Administrator'
     });
   }
 
-  async run(message, [action, key, ...value], level) { // eslint-disable-line no-unused-vars
+  async run(message, [action, key, ...value], level) {
 
-    const settings = this.client.settings.get(message.guild.id);
+    const settings = message.settings;
+    const defaults = this.client.settings.get('default');
   
-    if (action === 'add') {
-      if (!key) return message.reply('Please specify a key to add');
-      if (settings[key]) return message.reply('This key already exists in the settings');
-      if (value.length < 1) return message.reply('Please specify a value');
-
-      settings[key] = value.join(' ');
-  
-      this.client.settings.set(message.guild.id, settings);
-      message.reply(`${key} successfully added with the value of ${value.join(' ')}`);
-    } else
-
     if (action === 'edit') {
       if (!key) return message.reply('Please specify a key to edit');
       if (!settings[key]) return message.reply('This key does not exist in the settings');
@@ -42,55 +29,36 @@ class Set extends Command {
       message.reply(`${key} successfully edited to ${value.join(' ')}`);
     } else
   
-    if (action === 'del') {
-      if (!key) return message.reply('Please specify a key to delete.');
+    if (action === 'del' || action === 'reset') {
+      if (!key) return message.reply('Please specify a key to delete (reset).');
       if (!settings[key]) return message.reply('This key does not exist in the settings');
       
-      const response = await this.client.awaitReply(message, `Are you sure you want to permanently delete ${key}? This **CANNOT** be undone.`);
+      const response = await this.client.awaitReply(message, `Are you sure you want to reset \`${key}\` to the default \`${defaults[key]}\`?`);
 
       if (['y', 'yes'].includes(response)) {
 
         delete settings[key];
         this.client.settings.set(message.guild.id, settings);
-        message.reply(`${key} was successfully deleted.`);
+        message.reply(`${key} was successfully reset to default.`);
       } else
+
       if (['n','no','cancel'].includes(response)) {
-        message.reply('Action cancelled.');
+        message.reply(`Your setting for \`${key}\` remains at \`${settings[key]}\``);
       }
     } else
-  
+
     if (action === 'get') {
       if (!key) return message.reply('Please specify a key to view');
       if (!settings[key]) return message.reply('This key does not exist in the settings');
       message.reply(`The value of ${key} is currently ${settings[key]}`);
+      
     } else {
-      const embed = new RichEmbed()
-        .setAuthor(message.guild.name, message.guild.iconURL)
-        .setFooter(this.client.user.username, this.client.user.avatarURL)
-        .setTimestamp()
-        .setColor('RANDOM')
-        .addField('Prefix', `${settings.prefix}`, true)
-        .addField('Language', `${settings.lang}`, true)
-        .addField('Mod Role', `${settings.modRole}`, true)
-        .addField('Admin Role', `${settings.adminRole}`, true)
-        .addField('Mute Role', `${settings.muteRole}`, true)
-        .addField('System Notice', `${settings.systemNotice}`, true)
-        .addField('Welcome Enabled', `${settings.welcomeEnabled}`, true)
-        .addField('Welcome Channel', `${settings.welcomeChannel}`, true)
-        .addField('Welcome Message', `${settings.welcomeMessage}`, true)
-        .addField('Extensive Logging', `${settings.extensiveLogging}`, true)
-        .addField('Level Up Notice', `${settings.levelNotice}`, true)
-        .addField('Minimum Points', `${settings.minPoints}`, true)
-        .addField('Maximum Points', `${settings.maxPoints}`, true)
-        .addField('Daily Reward', `${settings.pointsReward}`, true)
-        .addField('Daily Time', `${settings.dailyTime}`, true)
-        .addField('Cost Multiplier', `${settings.costMulti}`, true)
-        .addField('Custom Emoji', `${settings.customEmoji}`, true)
-        .addField('Global Emoji ID', `${settings.gEmojiID}`, true)
-        .addField('Server Emoji', `${settings.uEmoji}`, true)
-        .addField('Request Channel', `${settings.requestChannel}`, true)
-        .addField('Request Role', `${settings.requestRole}`, true);
-      message.channel.send({ embed });
+      const array = [];
+      Object.entries(settings).forEach(([key, value]) => {
+        array.push(`${key}${' '.repeat(20 - key.length)}::  ${value}`); 
+      });
+      await message.channel.send(`= Current Guild Settings =
+${array.join('\n')}`, {code: 'asciidoc'});
     }
   }
 }

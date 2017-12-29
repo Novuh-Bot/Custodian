@@ -16,15 +16,7 @@ class Role extends Command {
 
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
-    const flag = args[0];
-    const role = args[1];
-    if (flag === '-g') {
-      if (settings.roles.includes(`${role}`)) {
-        message.member.addRole(`${role}`);
-      } else {
-        message.channel.send('Please give me a valid role ID.');
-      }
-    }
+    message.channel.send('Coming soon!'); 
   }
 }
 

@@ -43,7 +43,28 @@ class Reminder extends Command {
       reminderTimestamp: message.createdTimestamp + ms(blah.split('#')[1])
     });
 
-    message.channel.send(`I will remind you to \`${blah.split('#')[0]}\`, ${blah.split('#')[1]} from now.`);
+    message.channel.send(`I've created a reminder with the ID ${message.createdTimestamp + ms(blah.split('#')[1])}, to \`${blah.split('#')[0]}\`, ${blah.split('#')[1]} from now.`);
+
+    // switch (message.flags[0]) {
+    //   case ('view'): {
+    //     let reminders = this.client.reminders.findAll('id', message.author.id).map(r => `${r.reminder} - ${moment(r.reminderTimestamp).fromNow()}`);
+    //     reminders.length === 0 ? reminders = 'You do not have any reminders set.' : '**Your Reminders:**\n' + reminders;
+    //     message.channel.send(reminders);
+    //     break;
+    //   }
+
+    //   case ('add'): {
+    //     const blah = await regCheck(args.join(' '));
+    //     if (!blah) throw '|`❌`| Invalid Command usage, you must supply a reminder message and duration e.g; `Do the laundry in 20 minutes`.';
+    //     this.client.reminders.set(`${message.author.id}-${message.createdTimestamp + ms(blah.split('#')[1])}`, {
+    //       id: message.author.id,
+    //       reminder: blah.split('#')[0],
+    //       reminderTimestamp: message.createdTimestamp + ms(blah.split('#')[1])
+    //     });
+    
+    //     message.channel.send(`I've created a reminder with the ID ${message.createdTimestamp + ms(blah.split('#')[1])}, to \`${blah.split('#')[0]}\`, ${blah.split('#')[1]} from now.`);
+    //   }
+    // }
   }
 }
 

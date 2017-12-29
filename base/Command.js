@@ -38,7 +38,7 @@ class Command {
       if (!match) throw 'Invalid user';
       const id = match[1];
       const check = await this.client.fetchUser(id);
-      if (check.username !== undefined) return id;
+      if (check.username !== undefined) return check;
     } catch (error) {
       throw error;
     }

@@ -41,6 +41,7 @@
   "contactNoDM": "This command must be used in DMs.",
   "contactNoMsg": "You must supply a message to send to the support staff.",
   "myLvl": "Your permission level is:",
+  "addRoleNoTarget": "That user isn't a user in this guild. Please try again.",
   "noRslt": "No results found for ",
   "srcNoCat": "Please supply a category.",
   "srcNoCmd": "Please supply a command to view.",
