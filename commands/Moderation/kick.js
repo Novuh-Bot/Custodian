@@ -26,7 +26,7 @@ class Kick extends Moderation {
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
     try {
-      // await target.kick({reason: reason.length < 1 ? 'No reason supplied.': reason});
+      await target.kick({reason: reason.length < 1 ? 'No reason supplied.': reason});
       await this.buildModLog(this.client, message.guild, 'k', target, message.author, reason);
       await message.channel.send(`\`${target.user.tag}\` was successfully kicked.`);
     } catch (error) {

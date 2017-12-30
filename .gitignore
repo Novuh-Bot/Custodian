@@ -3,11 +3,14 @@
 /data/
 /Experimental/
 /VPS/
+/commands/NSFW/
 
 # Specific Files
 pakage-lock.json
 config.js
 /VPS/config.js
+launcher.js
+
 # Classes
 base/Music.js
 
@@ -22,4 +25,6 @@ commands/Moderation/hackban.js
 commands/Moderation/inf.js
 commands/Moderation/checkban.js
 
-launcher\.js
+
+
+

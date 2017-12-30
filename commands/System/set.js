@@ -18,6 +18,17 @@ class Set extends Command {
     const settings = message.settings;
     const defaults = this.client.settings.get('default');
   
+    if (action === 'add') {
+      if (!key) return message.reply('Please specify a key to add');
+      if (settings[key]) return message.reply('This key already exists in the settings');
+      if (value.length < 1) return message.reply('Please specify a value');
+
+      settings[key] = value.join(' ');
+  
+      this.client.settings.set(message.guild.id, settings);
+      message.reply(`${key} successfully added with the value of ${value.join(' ')}`);
+    } else
+
     if (action === 'edit') {
       if (!key) return message.reply('Please specify a key to edit');
       if (!settings[key]) return message.reply('This key does not exist in the settings');

@@ -31,7 +31,7 @@ module.exports = (client) => {
 
   // setInterval(dropPoints, 300000);
 
-  client.matchLetters = async(client, message);
+  // client.matchLetters = async (client, message);
 
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise')
