@@ -24,7 +24,7 @@ class Deduct extends Social {
       const generalErr = require(`../../languages/${serverLang}/general.json`);
       
       const user = await this.verifySocialUser(args[0]);
-      if (isNaN(args[1])) throw `${lang.NaN}`;
+      if (isNaN(args[1])) throw `${generalErr.NaN}`;
       if (args[1] < 0) throw `${lang.incorrectDeductAmnt}`;
       else if (args[1] < 1) throw `${lang.incorrectDeductBal}`;
       if (message.author.id === user) throw `${lang.socialDeductYrslf}`;

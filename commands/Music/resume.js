@@ -17,6 +17,7 @@ class Resume extends Command {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
     const generalErr = require(`../../languages/${serverLang}/general.json`);
+    
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {
       message.reply(`${lang.musicNoChnl}`);

@@ -24,6 +24,7 @@ class Play extends Command {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
     const generalErr = require(`../../languages/${serverLang}/general.json`);
+    
     const youtube = new ytapi(config.youtubeAPIKey);
     const song = args.join(' ');
     if (!song.length) throw `${message.author} |\`❌\`| ${lang.musicIncorrectURL}`;

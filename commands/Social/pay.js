@@ -21,7 +21,7 @@ class Pay extends Social {
       const generalErr = require(`../../languages/${serverLang}/general.json`);
       
       const user = await this.verifySocialUser(args[0]);
-      if (isNaN(args[1])) throw `${lang.NaN}`;
+      if (isNaN(args[1])) throw `${generalErr.NaN}`;
       if (args[1] < 0) throw `${lang.incorrectSocialAmnt}`;
       else if (args[1] < 1) throw `${lang.incorrectPayBal}`;
       if (message.author.id === user) throw `${lang.socialPayYrslf}`;

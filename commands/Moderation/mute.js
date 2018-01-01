@@ -19,16 +19,16 @@ class Mute extends Moderation {
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
     const generalErr = require(`../../languages/${serverLang}/general.json`);
-    
+
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
     if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
     const muteRole = this.client.guilds.get(message.guild.id).roles.find('name', settings.muteRole);
     const target   = await this.verifyMember(message.guild, args[0]);
-    if (!target)     throw `${message.author} |\`❌\`| ${lang.incorrectModCmdUsage}`;
+    if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;
     const modLevel = this.modCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
-    if (!reason)     throw `${message.author} |\`❌\`| ${lang.modNoReason}`;
+    if (!reason)     throw `${message.author} |\`❌\`| ${generalErr.modNoReason}`;
     try {
       await target.addRole(muteRole);
       await this.buildModLog(this.client, message.guild, 'm', target, message.author, reason);

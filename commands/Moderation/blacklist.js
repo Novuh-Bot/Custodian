@@ -21,7 +21,7 @@ class Blacklist extends Moderation {
     
     if (!args[0] && !message.flags.length) message.flags.push('list');
     if (!message.flags.length) {
-      throw `${message.author} |\`❌\`| ${lang.incorrectArgUsage} \`${this.help.usage}\`.`;
+      throw `${message.author} |\`❌\`| ${generalErr.incorrectArgUsage} \`${this.help.usage}\`.`;
     }
     const blacklist = this.client.blacklist.get('list');
     
