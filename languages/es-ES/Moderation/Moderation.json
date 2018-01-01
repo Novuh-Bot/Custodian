@@ -1,0 +1,13 @@
+{
+  "blacklistNoMntn": "Debe proporcionar una identificación de usuario o mencionarla para ponerla en una lista negra.",
+  "blacklistExists": "Ese usuario ya está en la lista negra.",
+  "blacklistYrslf": "No puedes ponerte en la lista negra. ~~ idiota ~~",
+  "blacklistAdd": "Usuario agregado con éxito a la lista negra.",
+  "blacklistRmvFail": "Ese usuario no está en la lista negra.",
+  "blacklistRmv": "Ese usuario ya no está en la lista negra.",
+  "blacklistNoExist": "Nadie está en la lista negra.",
+  "lockdownNoTime": "El uso de comandos no es válido, debe proporcionar un tiempo para usar este comando.",
+  "purgeNoAmnt": "Debe especificar una cantidad para eliminar.",
+  "purgeIncorrectUsage": "Debe especificar un usuario y una cantidad, o solo una cantidad de mensajes para purgar.",
+  "requestNoActn": "Uso de comandos no válido, debe proporcionar una acción para usar este comando."
+}

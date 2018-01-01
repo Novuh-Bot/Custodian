@@ -1,0 +1,8 @@
+{
+  "addRoleNoTarget": "That user isn't a user in this guild. Please try again.",
+  "noRslt": "No se encontraron resultados para",
+  "srcNoCat": "Por favor, proporcione una categoría.",
+  "srcNoCmd": "Por favor, proporcione un comando para ver.",
+  "weatherReply": "Por favor espera...",
+  "weatherNoArgs": "Sin datos dados."
+}

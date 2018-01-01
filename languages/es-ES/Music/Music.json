@@ -1,0 +1,13 @@
+{
+  "musicNoChnl": "Por favor, únase a un canal primero.",
+  "musicPlybckAlrdyPause": "La reproducción ya está en pausa.",
+  "musicPlybackPause": "Pausando la reproducción.",
+  "musicIncorrectURL": "El uso de comandos no es válido, debe proporcionar un enlace de YouTube o un término de búsqueda.",
+  "musicPlybackNoPause": "La reproducción no ha sido pausada.",
+  "musicPlybackResume": "Reanudando la reproducción.",
+  "musicSkipping": "Saltando la canción.",
+  "musicNoVotes": "Nadie votó, lo siento!",
+  "musicVol": "El volumen actual está configurado para",
+  "musicVolInvalidAmnt": "El volumen debe ser un valor entre 0 y 100%.",
+  "musicVolSet": "Configurando el volumen a"
+}

@@ -1,6 +1,6 @@
 {
   "name": "custodian",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "Custodian is a utilitarian and moderation bot designed to make moderating your Discord server easier. It features per server settings and a dashboard to keep track of your servers settings.",
   "main": "index.js",
   "scripts": {
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Novuh-Bot/Custodian#readme",
   "dependencies": {
-    "chalk": "^2.3.0",
     "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.1.0",
     "ejs": "^2.5.7",
@@ -40,6 +39,7 @@
     "node-opus": "^0.2.7",
     "passport": "^0.4.0",
     "passport-discord": "^0.1.2",
+    "pornsearch": "^2.2.5",
     "querystring": "^0.2.0",
     "request": "^2.83.0",
     "simple-youtube-api": "^2.1.0",

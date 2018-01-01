@@ -17,7 +17,9 @@ class Pay extends Social {
     try {
       const settings = this.client.settings.get(message.guild.id);
       const serverLang = `${settings.lang}`;
-      const lang = require(`../../languages/${serverLang}.json`);
+      const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
+      const generalErr = require(`../../languages/${serverLang}/general.json`);
+      
       const user = await this.verifySocialUser(args[0]);
       if (isNaN(args[1])) throw `${lang.NaN}`;
       if (args[1] < 0) throw `${lang.incorrectSocialAmnt}`;

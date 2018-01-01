@@ -1,0 +1,7 @@
+{
+  "fightNoMntn": "You must choose someone to fight.",
+  "pickNoTxt": "Invalid command usage, you must supply items to pick between.",
+  "pickInvalidAmnt": "Invalid command usage, you must supply at least two items to pick from.",
+  "slapNoMntn": "Please mention a user to slap them.",
+  "yodaNoTxt": "Invalid command usage, you must supply text for Yoda. Yes."
+}

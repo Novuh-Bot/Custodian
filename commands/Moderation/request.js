@@ -17,7 +17,9 @@ class Request extends Moderation {
   async run(message, args, level) {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${serverLang}.json`);
+    const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
+    const generalErr = require(`../../languages/${serverLang}/general.json`);
+    
     const action = args[0];
     if (!action) throw `${message.author} |\`❌\`| ${lang.requestNoActn}`;
     const reason = args.splice(1, args.length).join(' ');

@@ -1,0 +1,13 @@
+{
+  "blacklistNoMntn": "You must supply a user id or mention to blacklist them.",
+  "blacklistExists": "That user is already blacklisted.",
+  "blacklistYrslf": "You cannot blacklist yourself. ~~idiot~~",
+  "blacklistAdd": "User successfully added to blacklist.",
+  "blacklistRmvFail": "That user is not blacklisted.",
+  "blacklistRmv": "That user is no longer blacklisted.",
+  "blacklistNoExist": "No one is blacklisted.",
+  "lockdownNoTime": "Invalid command usage, you must supply a time to use this command.",
+  "purgeNoAmnt": "Must specify an amount to delete.",
+  "purgeIncorrectUsage": "Must specify a user and amount, or just an amount, of messages to purge.",
+  "requestNoActn": "Invalid command usage, you must supply an action to use this command."
+}

@@ -1,0 +1,13 @@
+{
+  "musicNoChnl": "Please join a channel first.",
+  "musicPlybckAlrdyPause": "Playback is already paused.",
+  "musicPlybckPause": "Pausing playback.",
+  "musicIncorrectURL": "Invalid command usage, you must supply a YouTube link or a search term.",
+  "musicPlybackNoPause": "Playback has not been paused.",
+  "musicPlybackResume": "Resuming playback.",
+  "musicSkipping": "Skipping song.",
+  "musicNoVotes": "No one voted, sorry!",
+  "musicVol": "Current volume is currently set to",
+  "musicVolInvalidAmnt": "Volume must be a value between 0 and 100%.",
+  "musicVolSet": "Setting volume to"
+}

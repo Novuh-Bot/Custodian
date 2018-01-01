@@ -22,12 +22,14 @@ class Weather extends Command {
     try {
       const settings = this.client.settings.get(message.guild.id);
       const serverLang = `${settings.lang}`;
-      const lang = require(`../../languages/${serverLang}.json`);
+      const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
+      const generalErr = require(`../../languages/${serverLang}/general.json`);
+
       const _message = await message.reply(`${lang.weatherReply}`);
       if (!args[0]) {
         _message.edit(`${lang.weatherNoArgs}`);
       } else {
-        const cb = '```'; // lazy af yo
+        const cb = '```';
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {
           _message.edit(`${cb}\n${data.text}\n${cb}`);
         }).catch(console.error);

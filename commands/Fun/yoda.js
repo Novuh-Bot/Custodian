@@ -17,7 +17,9 @@ class Yoda extends Social {
     try {
       const settings = this.client.settings.get(message.guild.id);
       const serverLang = `${settings.lang}`;
-      const lang = require(`../../languages/${serverLang}.json`);
+      const lang = require(`../../languages/${serverLang}/${this.help.category}.json`);
+      const generalErr = require(`../../languages/${serverLang}/general.json`);
+      
       const speech = args.join(' ');
       if (speech.length < 2) throw `${message.author} |\`❌\`| ${lang.yodaNoTxt}`;
       const { text } = await snek.get(`http://yoda-api.appspot.com/api/v1/yodish?text=${encodeURIComponent(speech.toLowerCase())}`);

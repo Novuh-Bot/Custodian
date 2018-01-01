@@ -1,0 +1,7 @@
+{
+  "fightNoMntn": "Debes elegir a alguien para pelear.",
+  "pickNoTxt": "El uso de comandos no es válido, debe proporcionar elementos para elegir.",
+  "pickInvalidAmnt": "El uso de comandos no es válido, debe proporcionar al menos dos elementos para elegir.",
+  "slapNoMntn": "Por favor mencione a un usuario para abofetearlos.",
+  "yodaNoTxt": "El uso de comandos no es válido, debe proporcionar texto para Yoda. Sí."
+}
