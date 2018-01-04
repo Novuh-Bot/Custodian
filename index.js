@@ -24,6 +24,7 @@ class Custodian extends Discord.Client {
     this.reminders = new Enmap({provider: new EnmapLevel({name: 'reminders'})});
     this.points = new Enmap({provider: new EnmapLevel({name: 'points'})});
     this.blacklist = new Enmap({provider: new EnmapLevel({name: 'blacklist'})});
+    this.store = new Enmap({provider: new EnmapLevel({name: 'shop'})});
   }
 
   permlevel(message) {

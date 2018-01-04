@@ -1,0 +1,11 @@
+{
+  "settingsNoKeyValue": "Please specify a value.",
+  "settingsActnCancel": "Action cancelled.",
+  "settingsKeyAlrdyExist": "This key already exists in the settings.",
+  "settingsKeyEditNotExist": "This key does not exist in the settings.",
+  "settingsNoNewVal": "Please specify a new value.",
+  "settingsNoKeyAdd": "Please specify a key to add.",
+  "settingsNoKeyEdit": "Please specify a key to edit.",
+  "settingsNoKeyDel": "Please specify a key to delete.",
+  "settingsNoKeyView": "Please specify a key to view."
+}

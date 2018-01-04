@@ -43,7 +43,7 @@ class Eval extends Command {
           .setColor('RANDOM')
           .setTimestamp()
           .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
-          .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
+          .addField('Output :outbox_tray:', `\`\`\`\n${clean}\n\`\`\``);
         message.channel.send({ embed });
         break;
       }
@@ -58,7 +58,7 @@ class Eval extends Command {
           .setColor('RANDOM')
           .setTimestamp()
           .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
-          .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
+          .addField('Output :outbox_tray:', `\`\`\`\n${clean}\n\`\`\``);
         message.author.send({ embed });
         break;
       }
@@ -73,7 +73,7 @@ class Eval extends Command {
           .setColor('RANDOM')
           .setTimestamp()
           .addField('Input :inbox_tray:', `\`\`\`\n${args}\n\`\`\``)
-          .addField('Output :output_tray:', `\`\`\`\n${clean}\n\`\`\``);
+          .addField('Output :outbox_tray:', `\`\`\`\n${clean}\n\`\`\``);
         this.client.channels.get(`${config.logChannel}`).send({ embed });
       }
     }

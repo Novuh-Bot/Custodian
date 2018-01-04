@@ -19,9 +19,9 @@ class Set extends Command {
     const defaults = this.client.settings.get('default');
   
     if (action === 'add') {
-      if (!key) return message.reply('Please specify a key to add');
-      if (settings[key]) return message.reply('This key already exists in the settings');
-      if (value.length < 1) return message.reply('Please specify a value');
+      if (!key) return message.reply(`${lang.settingsNoKeyAdd}`);
+      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
+      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
 
       settings[key] = value.join(' ');
   
@@ -30,9 +30,9 @@ class Set extends Command {
     } else
 
     if (action === 'edit') {
-      if (!key) return message.reply('Please specify a key to edit');
-      if (!settings[key]) return message.reply('This key does not exist in the settings');
-      if (value.length < 1) return message.reply('Please specify a new value');
+      if (!key) return message.reply(`${lang.settingsNoKeyEdit}`);
+      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
+      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
     
       settings[key] = value.join(' ');
 
@@ -41,8 +41,8 @@ class Set extends Command {
     } else
   
     if (action === 'del' || action === 'reset') {
-      if (!key) return message.reply('Please specify a key to delete (reset).');
-      if (!settings[key]) return message.reply('This key does not exist in the settings');
+      if (!key) return message.reply(`${lang.settingsNoKeyDel}`);
+      if (!settings[key]) return message.reply(`${lang.settingsKeyNotExist}`);  
       
       const response = await this.client.awaitReply(message, `Are you sure you want to reset \`${key}\` to the default \`${defaults[key]}\`?`);
 
@@ -59,8 +59,8 @@ class Set extends Command {
     } else
 
     if (action === 'get') {
-      if (!key) return message.reply('Please specify a key to view');
-      if (!settings[key]) return message.reply('This key does not exist in the settings');
+      if (!key) return message.reply(`${lang.settingsNoKeyView}`);
+      if (!settings[key]) return message.reply(`${lang.settingsKeyNotExist}`);
       message.reply(`The value of ${key} is currently ${settings[key]}`);
       
     } else {
