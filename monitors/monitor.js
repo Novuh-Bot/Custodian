@@ -2,6 +2,7 @@ const timeout = new Map();
 function giveRandomPoints(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
+  console.log(`${Math.random()}`);
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
