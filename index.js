@@ -86,6 +86,41 @@ class Custodian extends Discord.Client {
     delete require.cache[require.resolve(`${commandPath}/${commandName}.js`)];
     return false;
   }
+
+  /* SETTINGS FUNCTIONS
+  These functions are used by any and all location in the bot that wants to either
+  read the current *complete* guild settings (default + overrides, merged) or that
+  wants to change settings for a specific guild.
+  */
+
+  // getSettings merges the client defaults with the guild settings. guild settings in
+  // enmap should only have *unique* overrides that are different from defaults.
+  getSettings(id) {
+    const defaults = client.settings.get('default');
+    let guild = client.settings.get(id);
+    if (typeof guild != 'object') guild = {};
+    const returnObject = {};
+    Object.keys(defaults).forEach((key) => {
+      returnObject[key] = guild[key] ? guild[key] : defaults[key];
+    });
+    return returnObject;
+  }
+
+  // writeSettings overrides, or adds, any configuration item that is different
+  // than the defaults. This ensures less storage wasted and to detect overrides.
+  writeSettings(id, newSettings) {
+    const defaults = client.settings.get('default');
+    let settings = client.settings.get(id);
+    if (typeof settings != 'object') settings = {};
+    for (const key in newSettings) {
+      if (defaults[key] !== newSettings[key]) {
+        settings[key] = newSettings[key];
+      } else {
+        delete settings[key];
+      }
+    }
+    client.settings.set(id, settings);
+  }
 }
 
 const client = new Custodian({
