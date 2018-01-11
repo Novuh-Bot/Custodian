@@ -7,6 +7,7 @@ const Enmap = require('enmap');
 const EnmapLevel = require('enmap-level');
 const klaw = require('klaw');
 const path = require('path');
+const fs = require('fs');
 
 class Custodian extends Discord.Client {
   constructor(options) {
@@ -57,7 +58,6 @@ class Custodian extends Discord.Client {
     try {
       const props = new (require(`${commandPath}${path.sep}${commandName}`))(client);
       props.conf.location = commandPath;
-      client.log('Log', `Loading Command: ${props.help.name}. 👌`);
       if (props.init) {
         props.init(client);
       }
@@ -67,7 +67,7 @@ class Custodian extends Discord.Client {
       });
       return false;
     } catch (e) {
-      return `Unable to load command ${commandName}: ${e}`;
+      return client.log('Log', `Unable to load command ${commandName}: ${e}`, 'ERROR');
     }
   }
 
@@ -132,20 +132,37 @@ require('./modules/functions.js')(client);
 
 const init = async () => {
 
+  const commandList = [];
   klaw('./commands').on('data', (item) => {
-    const file = path.parse(item.path);
-    if (!file.ext || file.ext !== '.js') return;
-    const response = client.loadCommand(file.dir, `${file.name}${file.ext}`);
+    const cmdFile = path.parse(item.path);
+    if (!cmdFile.ext || cmdFile.ext !== '.js') return;
+    const response = client.loadCommand(cmdFile.dir, `${cmdFile.name}${cmdFile.ext}`);
+    commandList.push(cmdFile.name);
     if (response) console.log(response);
-  });
+  }).on('end', () => {
+    client.log('Log', `Loaded a total of ${commandList.length} commands.`);
+  }).on('error', (error) => client.log('ERROR', error));
 
-  const evtFiles = await readdir('./events/');
-  client.log('Log', `Loading a total of ${evtFiles.length} events.`);
-  evtFiles.forEach(file => {
-    const eventName = file.split('.')[0];
-    const event = new (require(`./events/${file}`))(client);
-    client.on(eventName, (...args) => event.run(...args));
-    delete require.cache[require.resolve(`./events/${file}`)];
+  const eventList = [];
+  klaw('./events').on('data', (item) => {  
+    const eventFile = path.parse(item.path);
+    if (!eventFile.ext || eventFile.ext !== '.js') return;
+    const eventName = eventFile.name.split('.')[0];
+    try {
+      const event = new (require(`${eventFile.dir}${path.sep}${eventFile.name}${eventFile.ext}`))(client);    
+      eventList.push(event);      
+      client.on(eventName, (...args) => event.run(...args));
+      delete require.cache[require.resolve(`${eventFile.dir}${path.sep}${eventFile.name}${eventFile.ext}`)];
+    } catch (error) {
+      client.logger.error(`Error loading event ${eventFile.name}: ${error}`);
+    }
+  }).on('end', () => {
+    client.log('Log', `Loaded a total of ${eventList.length} events.`);
+  }).on('error', (error) => client.log('ERROR', error));
+
+  fs.readdir('./commands/', (err, files) => {
+    client.log('Log', `Loaded a total of ${files.length} command groups.`);
+    if (err) client.log('Log', err, 'ERROR');
   });
 
   client.levelCache = {};

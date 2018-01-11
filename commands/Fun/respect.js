@@ -1,7 +1,7 @@
 const Social = require('../../base/Social.js');
-const { Canvas } = require('canvas-constructor');
+// const { Canvas } = require('canvas-constructor');
 const snek = require('snekfetch');
-const fsn = require('fs-nextra');
+// const fsn = require('fs-nextra');
 
 const giveRespect = async (person) => {
   console.log(`${person}`);
