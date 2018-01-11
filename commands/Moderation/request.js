@@ -21,11 +21,12 @@ class Request extends Moderation {
     const generalErr = require(`../../languages/${serverLang}/general.json`);
     
     const action = args[0];
+    const author = message.author.tag;
     if (!action) throw `${message.author} |\`❌\`| ${lang.requestNoActn}`;
     const reason = args.splice(1, args.length).join(' ');
     if (!reason) `${message.author} |\`❌\`| ${generalErr.modNoReason}`;
     try {
-      await this.buildRequest(this.client, message.guild, action, reason);
+      await this.buildRequest(this.client, message.guild, author, action, reason);
     } catch (error) {
       throw error;
     }

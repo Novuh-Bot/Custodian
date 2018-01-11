@@ -90,11 +90,12 @@ class Moderation extends Command {
   
   // await this.buildModLog(this.client, message.guild, 'b', target, message.author, reason);
 
-  async buildRequest(client, guild, action, reason) {
+  async buildRequest(client, guild, author, action, reason) {
     const settings = client.settings.get(guild.id);
+    const thisRequester = author;
     const thisAction = action;
     const thisReason = reason;
-    const request = `= Action Requested =\n\n[See Custodian Logs to View Requester]\n\n== Action ==\n${thisAction}\n\n== Reason == \n${thisReason}`;
+    const request = `= Action Requested =\n\n[ Requested by ${thisRequester} ]\n\n== Action ==\n${thisAction}\n\n== Reason == \n${thisReason}`;
     const channel = guild.channels.find('name', settings.requestChannel);
     await channel.send(`<@&${settings.requestRole}>`);
     channel.send(`${request}`, {code:'asciidoc'});
