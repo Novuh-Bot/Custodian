@@ -23,7 +23,8 @@ class Eval extends Command {
     switch (message.flags[0]) {
       case ('haste'): {
         const code = args.join(' ');
-        const evaled = eval(code);
+        const asyncCode = `(async() => { ${code} })()`;        
+        const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const hasteURL = await require('snekfetch')
           .post('https://hastebin.com/documents')
@@ -35,7 +36,8 @@ class Eval extends Command {
 
       case ('post'): {
         const code = args.join(' ');
-        const evaled = eval(code);
+        const asyncCode = `(async() => { ${code} })()`;
+        const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
           .setAuthor('Custodian', 'https://cdn.discordapp.com/avatars/379424813170819083/ed4021d7989fa4419fa1583af3f8898a')
@@ -50,7 +52,8 @@ class Eval extends Command {
 
       case ('direct'): {
         const code = args.join(' ');
-        const evaled = eval(code);
+        const asyncCode = `(async() => { ${code} })()`;        
+        const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
           .setAuthor('Custodian', 'https://cdn.discordapp.com/avatars/379424813170819083/ed4021d7989fa4419fa1583af3f8898a')
@@ -65,7 +68,8 @@ class Eval extends Command {
 
       case ('log'): {
         const code = args.join(' ');
-        const evaled = eval(code);
+        const asyncCode = `(async() => { ${code} })()`;
+        const evaled = eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
           .setAuthor('Custodian', 'https://cdn.discordapp.com/avatars/379424813170819083/ed4021d7989fa4419fa1583af3f8898a')
