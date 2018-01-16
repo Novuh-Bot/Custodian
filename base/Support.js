@@ -11,12 +11,12 @@ class Support extends Command {
   }
 
   async checkConsent(client, message, msg) {
-    const embed = this.client.supportMsg(message, msg);
+    const embed = this.supportMsg(message, msg);
     const agree = ['yes', 'y'];
     const disagree = ['no', 'n'];
     const consent = this.client.consent.get(message.author.id);
     const channel = this.client.guilds.get('335951728560046080').channels.exists('topic', message.author.id);
-    if (!consent) this.client.conset.set(message.author.id, false);
+    if (!consent) this.client.consent.set(message.author.id, false);
     if (consent && channel) {
       this.client.channels.find('topic', message.author.id).send({
         embed
@@ -29,7 +29,7 @@ class Support extends Command {
           c.send({
             embed
           });
-          message.channel.send('Support channel opened');
+          message.channel.send('Support channel opened. Your ticket ID is Math.random().toString(36).replace(/[^a-z]+/g, \'\')');
         });
       } else
 

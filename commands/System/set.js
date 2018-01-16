@@ -31,7 +31,6 @@ class Set extends Command {
 
     if (action === 'edit') {
       if (!key) return message.reply(`${lang.settingsNoKeyEdit}`);
-      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
       if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
     
       settings[key] = value.join(' ');
