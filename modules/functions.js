@@ -1,4 +1,48 @@
 module.exports = (client) => {
+  
+  client.checkConsent= async (client, message, msg) => {
+    const embed = client.supportMsg(message, msg);
+    const agree = ['yes', 'y'];
+    const disagree = ['no', 'n'];
+    const ticketIdentifier = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    const consent = client.consent.get(message.author.id);
+    const channel = client.guilds.get('335951728560046080').channels.exists('topic', message.author.id);
+    if (!consent) client.consent.set(message.author.id, false);
+    if (consent && channel) {
+      this.client.channels.find('topic', message.author.id).send({
+        embed
+      }).then(() => message.channel.send('Sent Successfully'));
+    } else {
+      const response = await client.awaitReply(message, '```By submitting the Support ticket below, you authorise the bot, the bot creator, and other bot support members ("the Staff") to store and use your Username, Discriminator, Message Content, and any other End User Data in matters relative to usage of the bot, record keeping, and support. You also agree not to hold the Staff responsible for any actions that are taken, that also comply with these terms.```\n\nDo you wish to send this message? (**y**es | **n**o)\n\n\nReply with `cancel` to cancel the message. The message will timeout after 60 seconds.\n\n\n', 60000, embed);
+      if (agree.includes(response)) {
+        client.consent.set(message.author.id, true);
+        const channel = (await client.guilds.get('335951728560046080').createChannel(message.author.tag.replace('#', '-').toLowerCase(), 'text')).setTopic(message.author.id).then(c => {
+          c.send({
+            embed
+          });
+          message.channel.send(`Support channel opened. Your ticket ID is ${ticketIdentifier}`);
+        });
+      } else
+
+      if (disagree.includes(response)) {
+        message.channel.send('Cancelled message.');
+      } else {
+        message.channel.send('That is not a valid response.');
+      }
+    }
+  };
+
+  client.supportMsg = (message, msg) => {
+    const {
+      RichEmbed
+    } = require('discord.js');
+    const embed = new RichEmbed()
+      .setColor(0x00ffb8)
+      .setAuthor(message.author.username, message.author.displayAvatarURL)
+      .setDescription(msg)
+      .setTimestamp();
+    return embed;
+  };
 
   client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m=>m.author.id == msg.author.id;
@@ -10,28 +54,6 @@ module.exports = (client) => {
       return false;
     }
   };
-
-  // async function dropPoints() {
-  //   if (message.channel.type !== 'text') return;
-  //   console.log('Shit\'s happening');
-  //   const actions = ['mine', 'drill', 'blob', 'coin'];
-  //   const score = client.points.get(`${message.guild.id}-${message.author.id}`) || { points: 1, level: 0, user: message.author.id, guild: message.guild.id };
-  //   const settings = client.settings.get(message.guild.id);
-  //   const pickMethod = `${actions[Math.floor(Math.random() * actions.length)]}`;
-  //   const response = await client.awaitReply(message, `Respond with ${settings.prefix}${pickMethod} to get a random amount of Blob Coins!`);
-  //   if ([`${pickMethod}`].includes(response.toLowerCase())) {
-  //     console.log('Blob Coin mined!');
-  //     await response.delete();
-  //     const points = (parseInt(settings.chatDrop));
-  //     score.points += points;
-  //     message.channel.send(`${message.author.username} grabbed the coins!`);
-  //   }
-  //   client.points.set(`${message.guild.id}-${message.author.id}`, score);
-  // }
-
-  // setInterval(dropPoints, 300000);
-
-  // client.matchLetters = async (client, message);
 
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise')

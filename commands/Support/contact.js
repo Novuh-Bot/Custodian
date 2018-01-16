@@ -1,6 +1,6 @@
-const Support = require('../../base/Support.js');
+const Command = require('../../base/Command.js');
 
-class Contact extends Support {
+class Contact extends Command {
   constructor(client) {
     super(client, {
       name: 'contact',
@@ -18,7 +18,7 @@ class Contact extends Support {
     const msg = args.join(' ');
     if (msg.length < 1) throw 'You must type a message to send.';
     try {
-      this.checkConsent(this.client, message, msg);
+      this.client.checkConsent(this.client, message, msg);
     } catch (error) {
       throw error;
     }
