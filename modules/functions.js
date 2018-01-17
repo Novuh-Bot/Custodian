@@ -1,5 +1,11 @@
 module.exports = (client) => {
   
+  /**
+   * Check to gain consent to store messages from the user, and open a support case under their account name and ID.
+   * @param {Client} client The client that is calling this function.
+   * @param {message} message The message on which the check is being preformed.
+   * @param {msg} msg The supplied message that is sent to support.
+   */
   client.checkConsent= async (client, message, msg) => {
     const embed = client.supportMsg(message, msg);
     const agree = ['yes', 'y'];
@@ -32,6 +38,11 @@ module.exports = (client) => {
     }
   };
 
+  /**
+   * Support message to be sent to the support guild.
+   * @param {message} message The message object.
+   * @param {msg} msg The message that is sent to support.
+   */
   client.supportMsg = (message, msg) => {
     const {
       RichEmbed
@@ -44,6 +55,12 @@ module.exports = (client) => {
     return embed;
   };
 
+  /**
+   * Simplified method of awaitMessages. Creates a message filter searching for replies from the author.
+   * @param {msg} msg Message object.
+   * @param {message} question Message object assigned to the question value.
+   * @param {integer} limit Integer defined to the limit value.
+   */
   client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m=>m.author.id == msg.author.id;
     await msg.channel.send(question);
@@ -55,6 +72,11 @@ module.exports = (client) => {
     }
   };
 
+  /**
+   * Function to clean an evaled string.
+   * @param {Client} client 
+   * @param {text} text 
+   */
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise')
       text = await text;
@@ -69,6 +91,10 @@ module.exports = (client) => {
     return text;
   };
 
+  /**
+   * Simplified version of getting Guild settings.
+   * @param {GuildID} id 
+   */
   client.getSettings = (id) => {
     const defaults = client.settings.get('default');
     let guild = client.settings.get(id);
@@ -80,6 +106,11 @@ module.exports = (client) => {
     return returnObject;
   };
   
+  /**
+   * Simplified version of setting Guild settings.
+   * @param {GuildID} id 
+   * @param {Value} newSettings 
+   */
   client.writeSettings = (id, newSettings) => {
     const defaults = client.settings.get('default');
     let settings = client.settings.get(id);

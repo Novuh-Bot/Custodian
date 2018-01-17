@@ -2,6 +2,10 @@ const Discord = require('discord.js');
 const embedCheck = require('./embedPerms.js');
 const yt = require('ytdl-core');
 
+/**
+ * Function to automatically advance the Guild queue on dispatcher end.
+ * @param {Message} message Message object. 
+ */
 const playNext = (message) => {
   const thisPlaylist = message.client.playlists.get(message.guild.id);
   const nextSong = thisPlaylist.queue[++thisPlaylist.position];

@@ -12,6 +12,12 @@ module.exports = class {
     this.givePoints(client, message, level);
   }
 
+  /**
+   * Method to give a random amount of points per message.
+   * @param {Client} client The client that is calling this method.
+   * @param {Message} message The message object the method is called upon.
+   * @param {Level} level The users level.
+   */
   static givePoints(client, message, level) {
     if (message.channel.type !== 'text') return;
     const settings = client.settings.get(message.guild.id);
