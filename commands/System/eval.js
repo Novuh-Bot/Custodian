@@ -23,7 +23,7 @@ class Eval extends Command {
     switch (message.flags[0]) {
       case ('haste'): {
         const code = args.join(' ');
-        const asyncCode = `(async() => { ${code} })()`;        
+        const asyncCode = `(async() => ${code} )()`;
         const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const hasteURL = await require('snekfetch')
@@ -36,7 +36,7 @@ class Eval extends Command {
 
       case ('post'): {
         const code = args.join(' ');
-        const asyncCode = `(async() => { ${code} })()`;
+        const asyncCode = `(async() => ${code} )()`;
         const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
@@ -52,7 +52,7 @@ class Eval extends Command {
 
       case ('direct'): {
         const code = args.join(' ');
-        const asyncCode = `(async() => { ${code} })()`;        
+        const asyncCode = `(async() => ${code} )()`;        
         const evaled = await eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
@@ -68,7 +68,7 @@ class Eval extends Command {
 
       case ('log'): {
         const code = args.join(' ');
-        const asyncCode = `(async() => { ${code} })()`;
+        const asyncCode = `(async() => ${code} )()`;
         const evaled = eval(asyncCode);
         const clean = await this.client.clean(this.client, evaled);
         const embed = new RichEmbed()
