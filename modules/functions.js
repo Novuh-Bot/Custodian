@@ -7,10 +7,10 @@ module.exports = (client) => {
    * @param {msg} msg The supplied message that is sent to support.
    */
   client.checkConsent= async (client, message, msg) => {
-    const embed = client.supportMsg(message, msg);
+    const ticketIdentifier = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
+    const embed = client.supportMsg(message, msg, ticketIdentifier);
     const agree = ['yes', 'y'];
     const disagree = ['no', 'n'];
-    const ticketIdentifier = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     const consent = client.consent.get(message.author.id);
     const channel = client.guilds.get('335951728560046080').channels.exists('topic', message.author.id);
     if (!consent) client.consent.set(message.author.id, false);
@@ -42,14 +42,16 @@ module.exports = (client) => {
    * Support message to be sent to the support guild.
    * @param {message} message The message object.
    * @param {msg} msg The message that is sent to support.
+   * @param {ticketIdentifier} ticketIdentifier Case ticket identifier.
    */
-  client.supportMsg = (message, msg) => {
+  client.supportMsg = (message, msg, ticketIdentifier) => {
     const {
       RichEmbed
     } = require('discord.js');
     const embed = new RichEmbed()
       .setColor(0x00ffb8)
       .setAuthor(message.author.username, message.author.displayAvatarURL)
+      .setFooter(ticketIdentifier)
       .setDescription(msg)
       .setTimestamp();
     return embed;
