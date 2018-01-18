@@ -1,4 +1,5 @@
 {
+  "categoryDesc": "This category features basic moderation commands, such as ban, mute, and kick. It also features command such as checking for advertising in users playing statuses, archiving messages, and clearing messages.",
   "blacklistNoMntn": "You must supply a user id or mention to blacklist them.",
   "blacklistExists": "That user is already blacklisted.",
   "blacklistYrslf": "You cannot blacklist yourself. ~~idiot~~",

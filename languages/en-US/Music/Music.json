@@ -1,4 +1,5 @@
 {
+  "categoryDesc": "This category features standard music commands, such as play, pause, stop, resume, skip, and queue.",
   "musicNoChnl": "Please join a channel first.",
   "musicPlybckAlrdyPause": "Playback is already paused.",
   "musicPlybckPause": "Pausing playback.",

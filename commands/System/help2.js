@@ -41,15 +41,21 @@ class Help2 extends Command {
         .setFooter('\n\nCustodian © 2017 OGNovuh', `${this.client.user.displayAvatarURL}`)
         .setTimestamp()
         .setDescription('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.')
-        .addField('\u200B', '➢ Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
+        .addField('\u200B', 'Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
       message.channel.send({ embed: TOS });
     }
 
     switch (message.flags[0]) {
       case ('cat'): {
+        const settings = this.client.settings.get(message.guild.id);
+        const serverLang = `${settings.lang}`;
         const category = args[0];
-        const text = require('../../data/catDesc/descriptions.json');
-        message.channel.send(`${text.category}`);
+        const cap = category.toProperCase();
+        let output = `= ${cap} =\n\n`;
+        const lang = require(`../../languages/${serverLang}/${category}/${category}.json`);
+        const desc = `${lang.categoryDesc}`;
+        output += `${desc}`;
+        message.channel.send(output, {code:'asciidoc'});
       }
     }
   }

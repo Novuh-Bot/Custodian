@@ -1,4 +1,5 @@
 {
+  "categoryDesc": "This category houses useful features such as reminders, a Google command, and a weather command.",
   "addRoleNoTarget": "That user isn't a user in this guild. Please try again.",
   "noRslt": "No results found for ",
   "srcNoCat": "Please supply a category.",

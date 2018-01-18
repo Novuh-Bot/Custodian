@@ -1,4 +1,5 @@
 {
+  "categoryDesc": "This category houses the per guild settings, and various commands locked to the bot owner.",
   "settingsNoKeyValue": "Please specify a value.",
   "settingsActnCancel": "Action cancelled.",
   "settingsKeyAlrdyExist": "This key already exists in the settings.",
