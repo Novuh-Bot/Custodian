@@ -56,9 +56,20 @@ class Help2 extends Command {
         const desc = `${lang.categoryDesc}`;
         output += `${desc}`;
         message.channel.send(output, {code:'asciidoc'});
+        break;
+      }
+
+      case ('cmd'): {
+        let command = args[0];
+        const settings = this.client.getSettings(message.guild.id);
+        if (this.client.commands.has(command)) {
+          command = this.client.commands.get(command);
+          message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
+        }
       }
     }
   }
 }
+
 
 module.exports = Help2;
