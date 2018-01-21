@@ -13,7 +13,7 @@ module.exports = class {
     if (!channel) return;
     channel.send(`\`[${moment(message.createdAt).format('h:mm:ss')}]\` 🗑 ${message.author.tag} (${message.author.id}) : Message Deleted in ${message.channel.name}:\n${message.cleanContent}`);
     
-    const settings = this.client.settings.get(message.guild.id);
+    const settings = this.client.getSettings(message.guild.id);
     const Deletion = new RichEmbed()
       .setColor(0x00AE86)
       .setTimestamp()

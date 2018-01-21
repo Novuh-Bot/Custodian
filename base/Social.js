@@ -26,7 +26,7 @@ class Social extends Command {
 
 
   emoji(guild) {
-    const settings = this.client.settings.get(guild);
+    const settings = this.client.getSettings(guild);
     const pointEmoji = settings.customEmoji ? this.client.emojis.get(settings.gEmojiID) : settings.uEmoji;
     return pointEmoji;
   }
@@ -45,7 +45,7 @@ class Social extends Command {
 
   async usrDay(message, payer, payee) {
     await this.verifySocialUser(payee);
-    const settings = this.client.settings.get(message.guild.id);
+    const settings = this.client.getSettings(message.guild.id);
     const dailyTime = parseInt(settings.dailyTime);
     const pointsReward = parseInt(settings.pointsReward);
 

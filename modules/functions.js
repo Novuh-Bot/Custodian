@@ -98,8 +98,8 @@ module.exports = (client) => {
    * @param {GuildID} id 
    */
   client.getSettings = (id) => {
-    const defaults = client.settings.get('default');
-    let guild = client.settings.get(id);
+    const defaults = client.getSettings('default');
+    let guild = client.getSettings(id);
     if (typeof guild != 'object') guild = {};
     const returnObject = {};
     Object.keys(defaults).forEach((key) => {
@@ -114,8 +114,8 @@ module.exports = (client) => {
    * @param {Value} newSettings 
    */
   client.writeSettings = (id, newSettings) => {
-    const defaults = client.settings.get('default');
-    let settings = client.settings.get(id);
+    const defaults = client.getSettings('default');
+    let settings = client.getSettings(id);
     if (typeof settings != 'object') settings = {};
     for (const key in newSettings) {
       if (defaults[key] !== newSettings[key])  {

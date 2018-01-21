@@ -25,8 +25,8 @@ class Conf extends Command {
   async run(message, [action, key, ...value], level) { // eslint-disable-line no-unused-vars
     
   // Retrieve Default Values from the default settings in the bot.
-    const defaults = this.client.settings.get('default');
-    const settings = this.client.settings.get(message.guild.id);
+    const defaults = this.client.getSettings('default');
+    const settings = this.client.getSettings(message.guild.id);
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${serverLang}/${this.help.category}/${this.help.category}.json`);
     const generalErr = require(`../../languages/${serverLang}/general.json`);
@@ -97,7 +97,7 @@ class Conf extends Command {
       // Display all default settings.
     } else {
       const array = [];
-      Object.entries(this.client.settings.get('default')).forEach(([key, value]) => {
+      Object.entries(this.client.getSettings('default')).forEach(([key, value]) => {
         array.push(`${key}${' '.repeat(20 - key.length)}::  ${value}`); 
       });
       await message.channel.send(`= Bot Default Settings =

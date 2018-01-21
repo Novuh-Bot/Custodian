@@ -96,8 +96,8 @@ class Custodian extends Discord.Client {
   // getSettings merges the client defaults with the guild settings. guild settings in
   // enmap should only have *unique* overrides that are different from defaults.
   getSettings(id) {
-    const defaults = client.settings.get('default');
-    let guild = client.settings.get(id);
+    const defaults = client.getSettings('default');
+    let guild = client.getSettings(id);
     if (typeof guild != 'object') guild = {};
     const returnObject = {};
     Object.keys(defaults).forEach((key) => {
@@ -109,8 +109,8 @@ class Custodian extends Discord.Client {
   // writeSettings overrides, or adds, any configuration item that is different
   // than the defaults. This ensures less storage wasted and to detect overrides.
   writeSettings(id, newSettings) {
-    const defaults = client.settings.get('default');
-    let settings = client.settings.get(id);
+    const defaults = client.getSettings('default');
+    let settings = client.getSettings(id);
     if (typeof settings != 'object') settings = {};
     for (const key in newSettings) {
       if (defaults[key] !== newSettings[key]) {

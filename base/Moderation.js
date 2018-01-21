@@ -80,7 +80,7 @@ class Moderation extends Command {
   }
 
   async buildModLog(client, guild, action, target, mod, reason) {
-    const settings = client.settings.get(guild.id);
+    const settings = client.getSettings(guild.id);
     const caseNumber = await this.caseNumber(client, guild.channels.find('name', settings.modLogChannel));
     const thisAction = this.actions[action];
     if (reason.length < 1) reason = `Awaiting moderator's input. Use ${settings.prefix}reason ${caseNumber} <reason>.`;
@@ -91,7 +91,7 @@ class Moderation extends Command {
   // await this.buildModLog(this.client, message.guild, 'b', target, message.author, reason);
 
   async buildRequest(client, guild, author, action, reason) {
-    const settings = client.settings.get(guild.id);
+    const settings = client.getSettings(guild.id);
     const thisRequester = author;
     const thisAction = action;
     const thisReason = reason;

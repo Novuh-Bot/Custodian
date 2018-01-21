@@ -13,7 +13,7 @@ class Bet extends Social {
   
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     const score = this.client.points.get(`${message.guild.id}-${message.author.ir}`);
-    const j = await this.client.settings.get(message.guild.id).getField('settings').getField('jackpot').run();
+    const j = await this.client.getSettings(message.guild.id).getField('settings').getField('jackpot').run();
     const jackpot = Number(j);
     if (score < 100) return message.reply('you are too poor to bet. Please try again later.');
     if (args[0] > score) return message.reply('trying to spend money you don\'t have? Nice try.. Try using the money you **actually** have.');
@@ -29,7 +29,7 @@ class Bet extends Social {
       console.log(betchance);
       if (chance < betchance) {
         const amt = balance + jackpot;
-        await this.client.settings.get(message.guild.id).update({'settings':{'jackpot':3000}}).run();
+        await this.client.getSettings(message.guild.id).update({'settings':{'jackpot':3000}}).run();
         await message.reply(`You won! You've earned the jackpot of $${jackpot}`);
         score.points += amt;
         this.client.points.set(`${message.guild.id}-${message.author.id}`, score);
@@ -38,7 +38,7 @@ class Bet extends Social {
         const amt = balance - args[0];
         const jp = jackpot + Number(args[0]);
         console.log(jp);
-        await this.client.settings.get(message.guild.id).update({'settings':{'jackpot':jp}}).run();
+        await this.client.getSettings(message.guild.id).update({'settings':{'jackpot':jp}}).run();
         await message.reply(`sorry, you lost the bet, -$${args[0]}`);
         score.points -= args[0];
         return this.client.points.set(`${message.guild.id}-${message.author.id}`, score);

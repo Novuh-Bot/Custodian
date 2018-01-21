@@ -15,7 +15,7 @@ class Role extends Command {
   }
 
   async run(message, args, level) {
-    const settings = this.client.settings.get(message.guild.id);
+    const settings = this.client.getSettings(message.guild.id);
     message.channel.send('Coming soon!'); 
   }
 }
