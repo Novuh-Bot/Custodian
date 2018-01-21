@@ -15,7 +15,7 @@ class Help extends Command {
   }
 
   async run(message, args, level) {
-    if (!args[0]) {
+    if (!message.flags.length) {
       const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
       
       const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
@@ -43,13 +43,29 @@ class Help extends Command {
         .setDescription('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.')
         .addField('\u200B', 'Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
       message.channel.send({ embed: TOS });
-    } else {
-      let command = args[0];
-      const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
-      if (this.client.commands.has(command)) {
-        command = this.client.commands.get(command);
-        if (level < this.client.levelCache[command.conf.permLevel]) return;
-        message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
+    }
+
+    switch (message.flags[0]) {
+      case ('cat'): {
+        const settings = this.client.settings.get(message.guild.id);
+        const serverLang = `${settings.lang}`;
+        const category = args[0];
+        const cap = category.toProperCase();
+        let output = `= ${cap} =\n\n`;
+        const lang = require(`../../languages/${serverLang}/${category}/${category}.json`);
+        const desc = `${lang.categoryDesc}`;
+        output += `${desc}`;
+        message.channel.send(output, {code:'asciidoc'});
+        break;
+      }
+
+      case ('cmd'): {
+        let command = args[0];
+        const settings = this.client.getSettings(message.guild.id);
+        if (this.client.commands.has(command)) {
+          command = this.client.commands.get(command);
+          message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
+        }
       }
     }
   }
