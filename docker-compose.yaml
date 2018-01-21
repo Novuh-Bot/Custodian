@@ -1,0 +1,9 @@
+version: '2'
+
+services:
+  bot:
+    build: 
+      context: .
+      dockerfile: .docker/Dockerfile
+    volumes:
+      - ./:/app
