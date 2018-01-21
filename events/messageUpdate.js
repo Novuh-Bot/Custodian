@@ -24,7 +24,7 @@ module.exports = class {
     if (!channel) return;
     channel.send(`\`[${moment(oldMessage.createdAt).format('h:mm:ss')}]\` 📝 ${oldMessage.author.tag} (${oldMessage.author.id}) : Message Edited in ${oldMessage.channel.name}:\n**B**: ${oldMessage.cleanContent}\n**N**: ${newMessage.cleanContent}`);
 
-    const settings = this.client.getSettings(oldMessage.guild.id);
+    const settings = this.client.settings.get(oldMessage.guild.id);
     const Edit = new RichEmbed()
       .setColor(0x00AE86)
       .setTimestamp()

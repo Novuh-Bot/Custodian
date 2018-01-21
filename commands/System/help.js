@@ -16,7 +16,7 @@ class Help extends Command {
 
   async run(message, args, level) {
     if (!message.flags.length) {
-      const settings = message.guild ? this.client.getSettings(message.guild.id) : this.client.config.defaultSettings;
+      const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
       
       const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
       
@@ -47,7 +47,7 @@ class Help extends Command {
 
     switch (message.flags[0]) {
       case ('cat'): {
-        const settings = this.client.getSettings(message.guild.id);
+        const settings = this.client.settings.get(message.guild.id);
         const serverLang = `${settings.lang}`;
         const category = args[0];
         const cap = category.toProperCase();
@@ -61,7 +61,7 @@ class Help extends Command {
 
       case ('cmd'): {
         let command = args[0];
-        const settings = this.client.getSettings(message.guild.id);
+        const settings = this.client.settings.get(message.guild.id);
         if (this.client.commands.has(command)) {
           command = this.client.commands.get(command);
           message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});

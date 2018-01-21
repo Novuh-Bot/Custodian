@@ -16,7 +16,7 @@ module.exports = class {
     const isNew = (new Date() - member.user.createdTimestamp) < 900000 ? '🆕' : '';
     channel.send(`📥 ${member.user.tag} (${member.user.id}) joined. Created: ${fromNow} ${isNew}`);
 
-    const settings = this.client.getSettings(member.guild.id);
+    const settings = this.client.settings.get(member.guild.id);
     if (settings.welcomeEnabled !== 'true') return;
     const welcomeMessage = settings.welcomeMessage.replace('{{user}}', member.user.tag);
     member.guild.channels.find('name', settings.welcomeChannel).send(welcomeMessage).catch(console.error);

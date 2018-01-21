@@ -43,6 +43,7 @@
     "querystring": "^0.2.0",
     "request": "^2.83.0",
     "simple-youtube-api": "^2.1.0",
+    "slot-machine": "^2.1.0",
     "snekfetch": "^3.5.2",
     "spotify-web-api-node": "^2.5.0",
     "unfluff": "^1.1.0",

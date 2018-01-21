@@ -1,7 +1,7 @@
 /**
  * Grab the server settings.
  */
-const settings = this.client.getSettings(message.guild.id);
+const settings = this.client.settings.get(message.guild.id);
 
 /**
  * Declare the servers language based on the lang key in the settings.

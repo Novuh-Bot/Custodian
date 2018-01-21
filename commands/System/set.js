@@ -15,8 +15,8 @@ class Set extends Command {
 
   async run(message, [action, key, ...value], level) {
 
-    const settings = this.client.getSettings(message.guild.id);
-    const defaults = this.client.getSettings('default');
+    const settings = this.client.settings.get(message.guild.id);
+    const defaults = this.client.settings.get('default');
   
     if (action === 'add') {
       if (!key) return message.reply(`${lang.settingsNoKeyAdd}`);

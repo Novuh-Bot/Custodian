@@ -12,7 +12,7 @@ module.exports = class {
     if (blacklist.includes(message.author.id)) return;
 
     const defaults = this.client.config.defaultSettings;
-    const settings = message.guild ? this.client.getSettings(message.guild.id) : defaults;
+    const settings = message.guild ? this.client.settings.get(message.guild.id) : defaults;
     message.settings = settings;
     
     const level = this.client.permlevel(message);

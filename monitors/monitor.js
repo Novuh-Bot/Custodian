@@ -19,7 +19,7 @@ module.exports = class {
    */
   static givePoints(client, message, level) {
     if (message.channel.type !== 'text') return;
-    const settings = client.getSettings(message.guild.id);
+    const settings = client.settings.get(message.guild.id);
     if (message.content.startsWith(settings.prefix)) return;
     const score = client.points.get(`${message.guild.id}-${message.author.id}`) || { points: 200, level: 1, user: message.author.id, guild: message.guild.id, daily: 1504120109 };
     const timedOut = timeout.get(`${message.guild.id}-${message.author.id}`);

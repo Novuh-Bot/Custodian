@@ -15,7 +15,7 @@ class Queue extends Command {
   }
 
   async run(message, args, level) {
-    const settings = this.client.getSettings(message.guild.id);
+    const settings = this.client.settings.get(message.guild.id);
     if (!this.client.playlists.has(message.guild.id)) return message.channel.send(`The queue is empty. Add some songs first with ${settings.prefix}play <song name>`);
 
     let playlist = this.client.playlists.get(message.guild.id);
