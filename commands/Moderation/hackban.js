@@ -24,15 +24,13 @@ class Hackban extends Moderation {
     if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
     const target   = args[0];
     if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;
-    const modLevel = this.modCheck(message, args[0], level);
+    const modLevel = this.hackCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
     try {
-      message.guild.fetchMember(`${target}`).then(member => {
-        member.ban(target, {days:7, reason: reason.length < 1 ? 'No reason supplied.': reason});
-      });
-      await this.buildModLog(this.client, message.guild, 'hb', target, message.author, reason);
-      await message.channel.send(`\`${target.user.tag}\` was successfully banned.`);
+      message.guild.ban(target, {days:7, reason: reason.length < 1 ? 'No reason supplied.': reason});
+      await this.buildHackLog(this.client, message.guild, 'hb', target, message.author, reason);
+      await message.channel.send('They were successfully banned.');
     } catch (error) {
       throw error;
     }

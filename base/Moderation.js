@@ -40,6 +40,18 @@ class Moderation extends Command {
     }
   }
 
+  async hackCheck(message, user, level) {
+    try {
+      const modBot = message.guild.me;
+      const id = await this.verifyUser(user);
+      const target = await this.client.fetchUser(id).catch(() => { message.channel.send(`${message.author}, |\`❓\`| I cannot fetch that member.`); });
+      if (message.author.id === id) message.channel.send(`${message.author}, |\`🛑\`| You cannot moderate yourself.`);
+      return target;
+    } catch (error) {
+      throw error;
+    }
+  }
+
   embedSan(embed) {
     embed.message ? delete embed.message : null;
     embed.footer ? delete embed.footer.embed : null;
@@ -85,6 +97,15 @@ class Moderation extends Command {
     const thisAction = this.actions[action];
     if (reason.length < 1) reason = `Awaiting moderator's input. Use ${settings.prefix}reason ${caseNumber} <reason>.`;
     const embed = await this.caseEmbed(thisAction.color, `**Action:** ${thisAction.display}\n**Target:** ${target.user.tag} (${target.id})\n**Reason:** ${reason}`,`${mod.tag} (${mod.id})`, new Date(), `Case ${caseNumber}`);
+    return guild.channels.find('name', settings.modLogChannel).send({embed});
+  }
+
+  async buildHackLog(client, guild, action, target, mod, reason) {
+    const settings = client.settings.get(guild.id);
+    const caseNumber = await this.caseNumber(client, guild.channels.find('name', settings.modLogChannel));
+    const thisAction = this.actions[action];
+    if (reason.length < 1) reason = `Awaiting moderator's input. Use ${settings.prefix}reason ${caseNumber} <reason>.`;
+    const embed = await this.caseEmbed(thisAction.color, `**Action:** ${thisAction.display}\n**Target:** N/A (${target})\n**Reason:** ${reason}`,`${mod.tag} (${mod.id})`, new Date(), `Case ${caseNumber}`);
     return guild.channels.find('name', settings.modLogChannel).send({embed});
   }
   
