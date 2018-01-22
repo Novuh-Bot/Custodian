@@ -30,6 +30,8 @@
     "express-session": "^1.15.6",
     "fast-html-parser": "^1.0.1",
     "ffmpeg-binaries": "^3.2.2-3",
+    "fs": "0.0.1-security",
+    "fs-nextra": "^0.3.2",
     "helmet": "^3.9.0",
     "klaw": "^2.1.0",
     "level-session-store": "^2.1.0",
