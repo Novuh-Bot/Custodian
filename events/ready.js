@@ -34,7 +34,7 @@ module.exports = class {
       }); 
     }, 60000);
 
-    require('../modules/dashboard')(this.client);    
+    require('../modules/dashboard.js')(this.client);    
   
   }
 };

@@ -11,6 +11,7 @@ pakage-lock.json
 config.js
 /VPS/config.js
 launcher.js
+.js
 
 # Classes
 base/Music.js
@@ -25,7 +26,3 @@ commands/Fun/respect.js
 commands/Moderation/hackban.js
 commands/Moderation/inf.js
 commands/Moderation/checkban.js
-
-
-
-
