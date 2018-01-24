@@ -18,7 +18,6 @@ class Jumbo extends Command {
   async run(message, args, level) {
     try {
       const emote = discord.Util.parseEmoji(args[0]);
-      if (!emote) return message.reply('You need to give me an emote to jumbo.');
       const URL = `https://cdn.discordapp.com/emojis/${emote.id}.png`;
       const { body } = await snek.get(`${URL}`);
       const buffer = body;
