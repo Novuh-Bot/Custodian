@@ -4,7 +4,7 @@ const { Canvas } = require('canvas-constructor');
 
 const buildProfile = async (person) => {
   console.log(`${person}`);
-  const png = person.replace(/\.(gif|jpg|png|jpeg)/, '.png?size=256');
+  const png = person.replace(/\.(gif|jpg|png|jpeg)/, '.png?size=128');
   console.log(`${png}`);
   const { body } = await snek.get(png);
   return await new Canvas(405, 720)
