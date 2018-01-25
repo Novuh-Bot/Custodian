@@ -1,21 +1,6 @@
 const Social = require('../../base/Social.js');
-const { Canvas } = require('canvas-constructor');
 const snek = require('snekfetch');
-
-const giveRespect = async (person) => {
-  console.log(`${person}`);
-  const plate = await snek.get('https://raw.githubusercontent.com/YorkAARGH/Misaki/master/assets/images/image_respects.png');
-  const png = person.replace(/\.(gif|jpg|png|jpeg)/, '.png?size=128');
-  console.log(`${png}`);
-  const { body } = await snek.get(png);
-  return await new Canvas(720, 405)
-    .setColor('#000000')  
-    .addRect(0, 0, 720, 405)
-    .addImage(body, 110, 45, 90, 90)
-    .restore()
-    .addImage(plate, 0, 0, 720, 405)
-    .toBuffer();
-};
+const { yorkAPIKey } = require('../../config.js');
 
 class Respect extends Social {
   constructor(client) {
@@ -32,14 +17,9 @@ class Respect extends Social {
 
   async run(message, args, level) {
     try {
-      const target = await this.verifyUser(args[0] || message.author.id);
-
-      const msg = await message.channel.send('Paying respects...');
-
-      const result = await giveRespect(target.displayAvatarURL);
-      const m = await message.channel.send('Press 🇫 to pay respects.', { files: [{ attachment: result, name: 'paid-respects.png' }] });
-      await msg.delete;
-      m.react('🇫');
+      const person = message.mentions.users.first() || message.member;
+      const { body } = await snek.get(`http://api.anidiots.guide/api/respect/?avatar=${person.displayAvatarURL}`).set('token', `${yorkAPIKey}`);
+      await message.channel.send({ files: [{ attachment: body, name: 'respects.png' }] });
     } catch (error) {
       throw error;
     }
