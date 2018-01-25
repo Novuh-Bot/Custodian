@@ -5,7 +5,7 @@ const snek = require('snekfetch');
 
 const giveRespect = async (person) => {
   console.log(`${person}`);
-  const plate = await snek.get('https://raw.githubusercontent.com/YorkAARGH/York-Dev/master/assets/images/image_respects.png');
+  const plate = await snek.get('https://raw.githubusercontent.com/YorkAARGH/Misaki/master/assets/images/image_respects.png');
   const png = person.replace(/\.(gif|jpg|png|jpeg)\?size=2048/g, '.png?size=128');
   const { body } = await snek.get(png);
   return await new Canvas(720, 405)
