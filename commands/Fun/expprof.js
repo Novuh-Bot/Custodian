@@ -29,6 +29,7 @@ class Profile extends Command {
   async run(message, args, level) {
     try {
       const target = await this.verifyUser(args[0] || message.author.id);
+      const result = await buildProfile(target.displayAvatarURL);
       const m = await message.channel.send({ files: [{ attachment: result, name: 'profile.png '}] });
     } catch (e) {
       throw e;
