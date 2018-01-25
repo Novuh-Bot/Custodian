@@ -23,7 +23,7 @@ class Profile extends Command {
       category: 'Fun',
       usage: 'profile',
       guildOnly: true,
-      botPerms: ['EMBED_LINKS', 'SEND_MESSAGES'],
+      botPerms: ['ATTACH_FILES', 'SEND_MESSAGES'],
       permLevel: 'User'
     });
   }
