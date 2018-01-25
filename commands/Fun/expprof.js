@@ -8,7 +8,7 @@ const buildProfile = async (person) => {
   const { body } = await snek.get(png);
   return await new Canvas(720, 405)
     .addRect(0, 0, 720, 405)
-    .setColor('#000000')
+    .setColor('#FFFFFF')
     .addImage(body, 110, 45, 90, 90)
     .restore()
     .toBuffer();
