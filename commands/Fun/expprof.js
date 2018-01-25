@@ -1,5 +1,6 @@
 const Command = require('../../base/Command.js');
-// const { Canvas } = require('canvas-constructor')
+const snek = require('snekfetch');
+const { Canvas } = require('canvas-constructor');
 
 const buildProfile = async (person) => {
   console.log(`${person}`);
