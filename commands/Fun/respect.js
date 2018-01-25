@@ -9,8 +9,8 @@ const giveRespect = async (person) => {
   console.log(`${png}`);
   const { body } = await snek.get(png);
   return await new Canvas(720, 405)
+    .setColor('#000000')  
     .addRect(0, 0, 720, 405)
-    .setColor('#000000')
     .addImage(body, 110, 45, 90, 90)
     .restore()
     .addImage(plate, 0, 0, 720, 405)
