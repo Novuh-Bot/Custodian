@@ -19,7 +19,7 @@ class Respect extends Social {
     try {
       const person = message.mentions.users.first() || message.member;
       const { body } = await snek.get(`http://api.anidiots.guide/api/respect/?avatar=${person.displayAvatarURL}`).set('token', `${yorkAPIKey}`);
-      await message.channel.send({ files: [{ attachment: body, name: 'respects.png' }] });
+      await message.channel.send('Press F to pay respects', { files: [{ attachment: body, name: 'respects.png' }] });
     } catch (error) {
       throw error;
     }
