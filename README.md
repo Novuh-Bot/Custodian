@@ -13,7 +13,7 @@ I do not give you permission to run the bot yourself in any way, shape, or form.
 
 <b>License Notice</b>
 
-A portion of this bot has been built using [An Idiot's Guide Guidebot](https://github.com/AnIdiotsGuide/guidebot-class), published under the following license.
+A portion of this bot has been built using [An Idiot's Guide Guidebot](https://github.com/AnIdiotsGuide/guidebot-class) and [Misaki](https://github.com/YorkAARGH/Misaki), which are both published under the following license.
 
 ```
 MIT License
