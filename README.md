@@ -6,6 +6,7 @@
 
 Custodian is a utilitarian and moderation bot designed to make moderating your Discord server easier. It features per server settings and a dashboard to keep track of your servers settings.
 
+It utilizes An Idiot's API to create the Canvas commands.
 
 <b>Note</b>
 

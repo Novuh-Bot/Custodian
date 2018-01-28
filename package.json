@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Novuh-Bot/Custodian#readme",
   "dependencies": {
+    "@anidiotsguide/idiotic-api": "^1.0.0",
     "cheerio": "^1.0.0-rc.2",
     "discord.js": "^11.3.0",
     "ejs": "^2.5.7",

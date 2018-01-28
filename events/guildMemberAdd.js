@@ -1,4 +1,5 @@
 const moment = require('moment');
+const { yorkAPIKey } = require('../config.js');
 
 module.exports = class {
   constructor(client) {
@@ -20,5 +21,9 @@ module.exports = class {
     if (settings.welcomeEnabled !== 'true') return;
     const welcomeMessage = settings.welcomeMessage.replace('{{user}}', member.user.tag);
     member.guild.channels.find('name', settings.welcomeChannel).send(welcomeMessage).catch(console.error);
+
+    const { body } = await snekfetch.get(`http://api.anidiots.guide/api/gearz_welcome/?bot=${member.user.bot}&avatar=${member.user.displayAvatarURL({format:'png', size:128})}&usertag=${encodeURIComponent(`${member.user.tag}`)}`).set('token', `${yorkAPIKey}`);
+
+    await channel.send({ files: [{ attachment: body, name: 'welcome.png' }] });
   }
 };
