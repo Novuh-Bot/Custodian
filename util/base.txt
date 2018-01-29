@@ -3,7 +3,7 @@ const config = {
   "admins": [],
 
   // Bot Support, level 8 by default. Array of ID strings.
-  "support" [],
+  "support": [],
 
   // Your bot"s token. Available on Available on https://discordapp.com/developers/applications/me.
   "token": {{token}},
