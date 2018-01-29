@@ -8,18 +8,18 @@ const config = {
   // Your bot"s token. Available on Available on https://discordapp.com/developers/applications/me.
   "token": {{token}},
 
-  "yorkAPIKey": "{{yorkAPIKey}}",
+  "yorkAPIKey": {{yorkAPIKey}},
 
-  "youtubeAPIKey": "{{youtube-api-key}}",
+  "youtubeAPIKey": {{youtube-api-key}},
 
-  "logChannel": "{{log-channel}}",
+  "logChannel": {{log-channel}},
 
   "dashboard": {
-    "oauthSecret": "{{oauth-secret}}",
-    "callbackURL": "{{callback-url}}",
-    "sessionSecret": "{{session-secret}}",
-    "domain": "{{domain}}",
-    "port": "{{port}}"
+    "oauthSecret": {{oauth-secret}},
+    "callbackURL": {{callback-url}},
+    "sessionSecret": {{session-secret}},
+    "domain": {{domain}},
+    "port": {{port}}
   },
 
   "defaultSettings": {
