@@ -48,6 +48,11 @@ let prompts = [
   },
   {
     type: "input",
+    name: "yorkAPIKey",
+    message: "Please enter your API key for An Idiot's API. If you do not have one, enter a random string."
+  },
+  {
+    type: "input",
     name: "youtubeAPIKey",
     message: "Please enter the YouTube API Key."
   },
