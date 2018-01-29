@@ -7,7 +7,7 @@ class Respect extends Social {
     super(client, {
       name: 'respect',
       description: 'Pay respects to someone',
-      category: 'Fun',
+      category: 'Canvas',
       usage: 'respect <@mention|user id>',
       extended: 'A command to pay respects to someone, Advanced Warfare style.',
       aliases: ['pressf', 'f', 'rip', 'ripme'],

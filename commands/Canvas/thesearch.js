@@ -9,18 +9,16 @@ class Achievement extends Command {
       category: 'Canvas',
       usage: 'achievement',
       extended: 'Either mention a user with text to give the achievement their user avatar, or just supply text for your own achievement.',
-      cost: 10,
-      cooldown: 10,
-      aliases: ['get', 'achieveget', 'achievementget']
+      aliases: ['search'],
+      botPerms: ['ATTACH_FILES']
     });
   }
 
   async run(message, args, level) {
     const text = args.slice(1).join(' ');
-    if (text.length < 1) return message.channel.send('You must give an achievement description.');
-    if (text.length > 22) return message.channel.send('I can only handle a maximum of 22 characters');
+    if (text.length < 1) return message.channel.send('What\'s the guy saying?');
     try {
-      await message.channel.send(new Attachment(await this.client.api.achievement((message.mentions.users.first() || message.author).displayAvatarURL, text), 'achievement.png'));
+      await message.channel.send(new Attachment(await this.client.api.thesearch((message.mentions.users.first() || message.author).displayAvatarURL, text), 'thesearch.png'));
     } catch (error) {
       throw error;
     }

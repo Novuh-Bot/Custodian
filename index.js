@@ -156,7 +156,7 @@ const init = async () => {
       client.on(eventName, (...args) => event.run(...args));
       delete require.cache[require.resolve(`${eventFile.dir}${path.sep}${eventFile.name}${eventFile.ext}`)];
     } catch (error) {
-      client.logger.error(`Error loading event ${eventFile.name}: ${error}`);
+      client.log('ERROR', `Error loading event ${eventFile.name}: ${error}`);
     }
   }).on('end', () => {
     client.log('Log', `Loaded a total of ${eventList.length} events.`);
