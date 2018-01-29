@@ -8,12 +8,14 @@ const EnmapLevel = require('enmap-level');
 const klaw = require('klaw');
 const path = require('path');
 const fs = require('fs');
+const Idiot = require('idiotic-api');
 
 class Custodian extends Discord.Client {
   constructor(options) {
     super(options);
 
     this.config = require('./config.js');
+    this.api = new Idiot.Client(this.config.yorkAPIKey);
     this.queue = {};
     this.playlists = new Enmap();
     this.commands = new Enmap();

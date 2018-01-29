@@ -18,11 +18,19 @@ class Jumbo extends Command {
   async run(message, args, level) {
     try {
       const emote = discord.Util.parseEmoji(args[0]);
-      const URL = `https://cdn.discordapp.com/emojis/${emote.id}.png`;
-      const { body } = await snek.get(`${URL}`);
-      const buffer = body;
-      const toSend = fs.writeFileSync('emote.png', buffer);
-      message.channel.send({ file: 'emote.png' });
+      if (emote.animated === true) {
+        const URL = `https://cdn.discordapp.com/emojis/${emote.id}.gif?v=1`;
+        const { body } = await snek.get(`${URL}`);
+        const buffer = body;
+        const toSend = fs.writeFileSync('emote.gif', buffer);
+        message.channel.send({ file: 'emote.gif' });
+      } else {
+        const URL = `https://cdn.discordapp.com/emojis/${emote.id}.png`;
+        const { body } = await snek.get(`${URL}`);
+        const buffer = body;
+        const toSend = fs.writeFileSync('emote.png', buffer);
+        message.channel.send({ file: 'emote.png' });
+      }
     } catch (error) {
       throw error;
     }
