@@ -96,7 +96,7 @@ class Moderation extends Command {
     const caseNumber = await this.caseNumber(client, guild.channels.find('name', settings.modLogChannel));
     const thisAction = this.actions[action];
     if (reason.length < 1) reason = `Awaiting moderator's input. Use ${settings.prefix}reason ${caseNumber} <reason>.`;
-    const embed = await this.caseEmbed(thisAction.color, `**Action:** ${thisAction.display}\n**Target:** ${target.user.tag} (${target.id})\n**Reason:** ${reason}`,`${mod.tag} (${mod.id})`, new Date(), `Case ${caseNumber}`);
+    const embed = await this.caseEmbed(thisAction.color, `**Action:** ${thisAction.display}\n**Target:** ${target.user.tag} (${target.id})\n**Moderator:** ${mod.tag} (${mod.id})\n**Reason:** ${reason}`,`${mod.tag} (${mod.id})`, new Date(), `Case ${caseNumber}`);
     return guild.channels.find('name', settings.modLogChannel).send({embed});
   }
 

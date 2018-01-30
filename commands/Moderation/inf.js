@@ -33,7 +33,8 @@ class Inf extends Moderation {
       modlog.fetchMessage(caseLog.id).then(logMsg => {
         const reason = logMsg.embeds[0];
         reason.reason = reason.description.split('**Reason:** ')[1];
-        message.channel.send(`\`\`\`|     ID     |     Type     |     Moderator     |     Active     |     Reason     |\n|---------------------------------------------------------------------------------|\n|  ${id}     |     Action     |     Moderator     |     Yes     |     ${reason.reason}     |\`\`\``);
+        reason.mod = reason.description.split('\n')[2].replace('**Moderator:** ', '');
+        message.channel.send(`\`\`\`|     ID     |     Type     |     Moderator     |     Active     |     Reason     |\n|---------------------------------------------------------------------------------|\n|  ${id}     |     Action     |     ${reason.mod}     |     Yes     |     ${reason.reason}     |\`\`\``);
       });
     });
   }
