@@ -49,6 +49,7 @@
     "slot-machine": "^2.1.0",
     "snekfetch": "^3.5.2",
     "spotify-web-api-node": "^2.5.0",
+    "twemoji": "^2.5.0",
     "unfluff": "^1.1.0",
     "ytdl-core": "^0.18.7"
   }
