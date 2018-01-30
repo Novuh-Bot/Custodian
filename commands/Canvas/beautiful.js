@@ -5,7 +5,7 @@ class Beautiful extends Social {
   constructor(client) {
     super(client, {
       name: 'beautiful',
-      description: 'Call someone beautiful',
+      description: 'Call someone beautiful.',
       category: 'Canvas',
       usage: 'beautiful <@mention>',
       aliases: ['pretty', 'ooh'],
