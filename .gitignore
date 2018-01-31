@@ -12,6 +12,8 @@ config.js
 /VPS/config.js
 launcher.js
 .js
+emote.png
+emote.gif
 
 # Classes
 base/Music.js
