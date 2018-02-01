@@ -1,4 +1,6 @@
 const monitor = require('../monitors/monitor.js');
+const moment = require('moment');
+require('moment-duration-format');
 
 module.exports = class {
   constructor(client) {
@@ -62,7 +64,7 @@ This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd
       message.flags.push(args.shift().slice(1));
     }
     
-    this.client.log('Log', `${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
+    this.client.log('Log', `[${moment(message.createdAt).format('h:mm:ss')}] ${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
 
     if (message.channel.type === 'text') {      
       const mPerms = this.client.permCheck(message, cmd.conf.botPerms);
