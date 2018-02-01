@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"This is a test.\"",
     "start": "node index.js",
-    "prepublish": "node util/setup.js"
+    "prepublish": "node util/installer.js"
   },
   "engines": {
     "node": ">=8"
