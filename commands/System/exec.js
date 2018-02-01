@@ -6,7 +6,7 @@ class Exec extends Command {
     super(client, {
       name: 'exec',
       description: 'Executes a new process, very dangerous.',
-      usage: 'exec <expression>',
+      usage: 'exec <expression:string>',
       aliases: ['shell'],
       category: 'System',
       extended: 'This will spawn a child process and execute the given command.',

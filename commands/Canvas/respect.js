@@ -8,7 +8,7 @@ class Respect extends Social {
       name: 'respect',
       description: 'Pay respects to someone',
       category: 'Canvas',
-      usage: 'respect <@mention|user id>',
+      usage: 'respect <member:user>',
       extended: 'A command to pay respects to someone, Advanced Warfare style.',
       aliases: ['pressf', 'f', 'rip', 'ripme'],
       botPerms: ['ATTACH_FILES']

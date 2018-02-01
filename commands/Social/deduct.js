@@ -5,7 +5,7 @@ class Deduct extends Social {
     super(client, {
       name: 'deduct',
       description: 'Takes points away from the nominated user.',
-      usage: 'deduct <@mention|userid> <amount>',
+      usage: 'deduct <member:user> <amount:integer>',
       category:'Moderation',
       extended: 'This will take points away from a nominated user.',
       cost: 5,

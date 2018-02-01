@@ -5,7 +5,7 @@ class Inf extends Moderation {
     super(client, {
       name: 'inf',
       description: 'Searches for a moderation action.',
-      usage: 'inf <case number>',
+      usage: 'inf <infraction:integer>',
       aliases: ['infraction'],
       extended: 'Searches for information about a specified moderation action.',
       category: 'Moderation',

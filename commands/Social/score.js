@@ -5,7 +5,7 @@ class Score extends Social {
     super(client, {
       name: 'score',
       description: 'Displays your current score level and points.',
-      usage: 'score',
+      usage: 'score [member:user]',
       category: 'Social',
       cost: 0,
       aliases: ['points', 'level', 'bal', 'balance'],

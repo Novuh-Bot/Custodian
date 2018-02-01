@@ -7,7 +7,7 @@ class Beautiful extends Social {
       name: 'beautiful',
       description: 'Call someone beautiful.',
       category: 'Canvas',
-      usage: 'beautiful <@mention>',
+      usage: 'beautiful <member:user>',
       aliases: ['pretty', 'ooh'],
       botPerms: ['ATTACH_FILES']
     });

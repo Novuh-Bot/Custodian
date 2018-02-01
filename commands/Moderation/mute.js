@@ -5,7 +5,7 @@ class Mute extends Moderation {
     super(client, {
       name: 'mute',
       description: 'Mutes a mentioned user.',
-      usage: 'mute <@mention> [reason]',
+      usage: 'mute <member:user> [reason:string]',
       extended: 'This mutes the mentioned user, with a reason',
       category: 'Moderation',           
       aliases: [],

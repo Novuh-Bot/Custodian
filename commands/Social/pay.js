@@ -5,7 +5,7 @@ class Pay extends Social {
     super(client, {
       name: 'pay',
       description: 'Pay another user your activity points.',
-      usage: 'pay',
+      usage: 'pay<member:user> <amount:integer>',
       category: 'Social',
       cost: 0,
       aliases: ['loan', 'donate'],

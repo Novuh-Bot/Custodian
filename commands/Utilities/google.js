@@ -16,7 +16,7 @@ class Google extends Command {
       name: 'google',
       description: 'Searches something on Google.',
       category: 'Utilities',
-      usage: 'google [search]',
+      usage: 'google <search:string>',
       extended: 'Searches Google for your question.',
       aliases: ['g'],
       botPerms: ['EMBED_LINKS'],

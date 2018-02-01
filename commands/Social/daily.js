@@ -5,7 +5,7 @@ class Daily extends Social {
     super(client, {
       name: 'daily',
       description: 'Claim or give your daily points.',
-      usage: 'daily [user]',
+      usage: 'daily [member:user]',
       category: 'Social',
       extended: 'You can either claim or donate your daily points.',
       cost: 0,

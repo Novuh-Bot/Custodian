@@ -8,7 +8,7 @@ class Csgo extends Command {
     super(client, {
       name: 'csgo',
       description: 'Grabs information about a steam user\'s CS:GO stats.',
-      usage: 'csgo <Steam ID>',
+      usage: 'csgo <id:steamid>',
       category: 'Fun',
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'

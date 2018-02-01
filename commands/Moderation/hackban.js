@@ -5,7 +5,7 @@ class Hackban extends Moderation {
     super(client, {
       name: 'hackban',
       description: 'Forcebans a user.',
-      usage: 'hackban <user id> [reason]',
+      usage: 'hackban <member:user id> [reason:string]',
       category: 'Moderation',
       extended: 'This command bans a user not in the server.',
       aliases: ['forceban'],

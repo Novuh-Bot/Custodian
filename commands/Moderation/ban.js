@@ -5,7 +5,7 @@ class Ban extends Moderation {
     super(client, {
       name: 'ban',
       description: 'Bans a mentioned user.',
-      usage: 'ban <@mention> [reason]',
+      usage: 'ban <member:user> [reason:string]',
       extended: 'This bans the mentioned user, with or without a reason.',
       category: 'Moderation',
       aliases: ['B&', 'b&', 'bean', 'bent'],

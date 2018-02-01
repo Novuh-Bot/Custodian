@@ -6,7 +6,7 @@ class Buy extends Social {
       name: 'buy',
       description: 'Buys a role listed in the servers shop.',
       category: 'Social',
-      usage: 'buy <role>',
+      usage: 'buy <role:string>',
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'
     });

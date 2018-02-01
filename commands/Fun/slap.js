@@ -7,7 +7,7 @@ class Slap extends Command {
       description: 'Slaps a mentioned user',
       extended: 'Slaps the user that you mentioned.',
       category: 'Fun',
-      usage: 'slap <@mention>',
+      usage: 'slap <member:user>',
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'
     });

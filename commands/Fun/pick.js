@@ -6,7 +6,7 @@ class Pick extends Command {
       name: 'pick',
       description: 'Pick out of a list',
       category: 'Fun',
-      usage: 'pick <option1>, <option2>, <option3>, <etc>',
+      usage: 'pick <option:string>, <option:string>, [option:string]',
       extended: 'This command will help you select out of a list of supplied options.',
       aliases: ['choose'],
       botPerms: ['SEND_MESSAGES']

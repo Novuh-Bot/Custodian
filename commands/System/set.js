@@ -6,7 +6,7 @@ class Set extends Command {
       name: 'set',
       description: 'View or change settings for your server.',
       category: 'System',
-      usage: 'set <view/get/edit> <key> <value>',
+      usage: 'set <flag:view|get|edit> <key:string> <value:string|integer>',
       guildOnly: true,
       aliases: ['setting', 'settings'],
       permLevel: 'Administrator'

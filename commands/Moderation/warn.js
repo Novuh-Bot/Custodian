@@ -5,7 +5,7 @@ class Warn extends Moderation {
     super(client, {
       name: 'warn',
       description: 'Warns a mentioned user.',
-      usage: 'warn <@mention> <reason>',
+      usage: 'warn <member:user> <reason:string>',
       extended: 'This warns the mentioned user, with a reason.',
       category: 'Moderation',      
       aliases: ['caution'],

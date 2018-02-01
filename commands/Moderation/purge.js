@@ -5,7 +5,7 @@ class Purge extends Moderation {
     super(client, {
       name: 'purge',
       description: 'It purges between 2 and 99 messages.',
-      usage: 'purge [user] <number>',
+      usage: 'purge [member:user] <number:integer>',
       extended: 'This command will either purge a mentioned users messages (between 2 and 99), or the bots own messages.',
       aliases: ['prune'],
       botPerms: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],

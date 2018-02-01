@@ -22,7 +22,7 @@ class Fight extends Command {
       name: 'fight',
       description: 'Sends a fight message.',
       extended: 'Mention a user to \'fight\' them.',
-      usage: 'fight <mention>',
+      usage: 'fight <member:user>',
       aliases: [],
       category: 'Fun',
       botPerms: ['SEND_MESSAGES'],

@@ -5,7 +5,7 @@ class Request extends Moderation {
     super(client, {
       name: 'request',
       description: 'Requests a moderation action.',
-      usage: 'request <action type> <reason>',
+      usage: 'request <action:string> <reason:string>',
       category: 'Moderation',
       extended: 'This command can be used to request a moderation action. The request then gets sent to a review channel if setup.',
       aliases: [],

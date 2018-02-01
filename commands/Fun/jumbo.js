@@ -10,7 +10,7 @@ class Jumbo extends Command {
       name: 'jumbo',
       description: 'Get\'s an emoji, and jumbos it!',
       category: 'Fun',
-      usage: 'jumbo <emoji id>',
+      usage: 'jumbo <emoji:emoji>',
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'
     });

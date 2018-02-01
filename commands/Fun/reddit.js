@@ -6,7 +6,7 @@ class Reddit extends Social {
     super(client, {
       name: 'reddit',
       description: 'Posts a random subreddit entry.',
-      usage: 'reddit [-new|-random|-hot|-top] [subreddit]',
+      usage: 'reddit [flag:-new|-random|-hot|-top] [subreddit:subreddit]',
       category: 'Fun',
       botPerms: ['SEND_MESSAGES'],
     });

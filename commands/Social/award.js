@@ -5,7 +5,7 @@ class Award extends Social {
     super(client, {
       name: 'award',
       description: 'Gives a nominated user points.',
-      usage: 'award <@mention|userid> <amount>',
+      usage: 'award <member:user> <amount:integer>',
       category:'Moderation',
       extended: 'This will give points to a nominated user.',
       cost: 0,

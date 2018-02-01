@@ -8,7 +8,7 @@ class Urban extends Command {
       name: 'urban',
       description: 'Searches Urban Dictionary for a word.',
       category: 'Fun',
-      usage: 'urban <word> [result number]',
+      usage: 'urban <word:string> [result number:integer]',
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'
     });

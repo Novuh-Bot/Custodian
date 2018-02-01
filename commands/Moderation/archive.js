@@ -6,7 +6,7 @@ class Archive extends Command {
       name: 'archive',
       description: 'Archives messages.',
       category: 'Moderation',
-      usage: 'archive <message count>',
+      usage: 'archive <amount:integer>',
       guildOnly: true,
       extended: 'Archives x amount of messages in your channel, where x is the amount you specify.',
       botPerms: ['SEND_MESSAGES'],

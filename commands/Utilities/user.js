@@ -7,7 +7,7 @@ class User extends Command {
     super(client, {
       name: 'user',
       description: 'Get detailed info for a mentioned user.',
-      usage: 'user [@mention|userid]',
+      usage: 'user [member:user]',
       category: 'Utilities',
       extended: 'This command will get detailed information on either a mentioned user, or yourself.',
       botPerms: ['SEND_MESSAGES', 'EMBED_LINKS']

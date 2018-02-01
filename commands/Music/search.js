@@ -11,7 +11,7 @@ class Search extends Command {
       description: 'Searches for a YouTube video.',
       category: 'Music',
       guildOnly: 'true',
-      usage: 'search',
+      usage: 'search <term:string>',
       permLevel: 'User'
     });
   }

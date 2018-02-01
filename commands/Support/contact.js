@@ -5,7 +5,7 @@ class Contact extends Command {
     super(client, {
       name: 'contact',
       description: 'Contact Bot Support.',
-      usage: 'contact <message>',
+      usage: 'contact <message:string>',
       category: 'Support',
       extended: 'This command will forward your Support DM to the Support Guild, your consent is **required** to use this command.',
       aliases: ['dm', 'support'],

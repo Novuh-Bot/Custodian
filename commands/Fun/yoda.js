@@ -7,7 +7,7 @@ class Yoda extends Social {
       name: 'yoda',
       description: 'With this, like Yoda you can speak. Yes',
       category: 'Fun',
-      usage: 'yoda <message>',
+      usage: 'yoda <message:string>',
       extended: 'This command will turn any supplied text into Yoda speech, results may vary.',
       botPerms: ['SEND_MESSAGES']
     });

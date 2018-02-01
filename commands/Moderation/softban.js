@@ -5,7 +5,7 @@ class Ban extends Moderation {
     super(client, {
       name: 'softban',
       description: 'Bans a mentioned user, then unbans them.',
-      usage: 'softban <@mention> [reason]',
+      usage: 'softban <member:user> [reason:string]',
       extended: 'A hard kick. It kicks so hard, all the user\'s messages of the last 2 days are deleted.',
       category: 'Moderation',      
       aliases: ['gentlebann', 'hardkick'],

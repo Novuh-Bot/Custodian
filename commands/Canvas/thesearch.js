@@ -7,7 +7,7 @@ class Thesearch extends Command {
       name: 'thesearch',
       description: 'Searches the universe..',
       category: 'Canvas',
-      usage: 'thesearch [@mention]',
+      usage: 'thesearch [member:user] <text:string>',
       botPerms: ['ATTACH_FILES']
     });
   }

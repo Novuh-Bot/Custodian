@@ -13,7 +13,7 @@ class Play extends Command {
       description: 'Plays a song.',
       extended: 'Plays a song that you specified as an argument.',
       category: 'Music',
-      usage: 'play <youtube link | search term>',
+      usage: 'play <video:string>',
       botPerms: ['CONNECT', 'SPEAK', 'SEND_MESSAGES'],
       permLevel: 'User'
     });

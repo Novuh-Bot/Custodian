@@ -5,7 +5,7 @@ class Kick extends Moderation {
     super(client, {
       name: 'kick',
       description: 'Kicks a mentioned user.',
-      usage: 'kick <@mention|userid> [reason]',
+      usage: 'kick <member:user> [reason:string]',
       extended: 'This kicks the mentioned user, with or without a reason.',
       category: 'Moderation',      
       aliases: ['toss', 'boot', 'throw'],

@@ -7,7 +7,7 @@ class Volume extends Command {
       description: 'Sets the volume for the bot.',
       category: 'Music',
       guildOnly: 'true',
-      usage: 'volume [value]',
+      usage: 'volume [value:integer]',
       permLevel: 'User'
     });
   }

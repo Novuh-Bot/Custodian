@@ -5,7 +5,7 @@ class Reason extends Moderation {
     super(client, {
       name: 'reason',
       description: 'Updates a case log with a new reason.',
-      usage: 'reason <case number> <reason>',
+      usage: 'reason <infraction:integer> <reason:string>',
       extended: 'This will allow a member of staff to update a mod-log case reason.',
       category: 'Moderation',      
       botPerms: ['SEND_MESSAGES', 'BAN_MEMBERS', 'EMBED_LINKS'],

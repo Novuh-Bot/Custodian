@@ -7,7 +7,7 @@ class Help extends Command {
       name: 'help',
       description: 'Displays all the available commands for your permission level.',
       category: 'System',
-      usage: 'help [command]',
+      usage: 'help [command:string]',
       aliases: ['h', 'halp'],
       botPerms: ['SEND_MESSAGES'],
       permLevel: 'User'

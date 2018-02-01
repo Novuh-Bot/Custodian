@@ -10,7 +10,7 @@ class Weather extends Command {
     super(client, {
       name: 'weather',
       description: 'The weather report.',
-      usage: 'weather <location>',
+      usage: 'weather <location:string>',
       category: 'Utilities',
       extended: 'Get the weather for the nominated location.',
       aliases: ['w'],

@@ -6,7 +6,7 @@ class Lockdown extends Moderation {
     super(client, {
       name: 'lockdown',
       description: 'Locks down a channel.',
-      usage: 'lockdown <time in ms>',
+      usage: 'lockdown <time:integer>',
       category: 'Moderation',
       extended: 'Revokes chat permissions in a channel.',
       aliases: ['ld'],
