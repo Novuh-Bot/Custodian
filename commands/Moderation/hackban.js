@@ -10,7 +10,7 @@ class Hackban extends Moderation {
       extended: 'This command bans a user not in the server.',
       aliases: ['forceban'],
       botPerms: ['SEND_MESSAGES', 'BAN_MEMBERS'],
-      permLevel: 'Moderator'
+      permLevel: 'Administrator'
     });
   }
 
