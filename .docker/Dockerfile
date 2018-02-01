@@ -3,7 +3,7 @@ FROM node:8
 RUN mkdir -p /nodedeps/node_modules
 
 WORKDIR /nodedeps
-COPY package*.json .
+COPY package*.json . /
 
 RUN npm install
 
