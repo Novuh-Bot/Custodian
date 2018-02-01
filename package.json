@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"This is a test.\"",
-    "start": "node index.js"
+    "start": "node index.js",
+    "prepublish": "node util/setup.js"
   },
   "engines": {
     "node": ">=8"
