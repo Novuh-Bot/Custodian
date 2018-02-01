@@ -106,6 +106,7 @@ let prompts = [
 
   baseConfig = baseConfig
     .replace("{{token}}", `"${answers.token}"`)
+    .replace("{{york-api-key", `${answers.yorkAPIKey}`)
     .replace("{{youtube-api-key}}", `"${answers.youtubeAPIKey}"`)
     .replace("{{log-channel}}", `"${answers.logChannel}"`)
     .replace("{{oauth-secret}}", `"${answers.oauthSecret}"`)

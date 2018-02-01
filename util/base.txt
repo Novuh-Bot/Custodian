@@ -8,7 +8,7 @@ const config = {
   // Your bot"s token. Available on Available on https://discordapp.com/developers/applications/me.
   "token": {{token}},
 
-  "yorkAPIKey": {{yorkAPIKey}},
+  "yorkAPIKey": {{york-api-key}},
 
   "youtubeAPIKey": {{youtube-api-key}},
 
