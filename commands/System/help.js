@@ -66,6 +66,11 @@ class Help extends Command {
           command = this.client.commands.get(command);
           message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
         }
+        break;
+      }
+      
+      case ('cat2'): {
+        const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
       }
     }
   }

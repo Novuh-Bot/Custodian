@@ -7,6 +7,7 @@ class ServerInfo extends Command {
       name: 'serverinfo',
       description: 'Displays server information & statistics.',
       usage: 'serverinfo',
+      category: 'Utilities'
       extended: 'This command will return an organised embed with server information and statistics.',
       guildOnly: true,
       aliases: ['serverstats','guildinfo','guildstats'],
