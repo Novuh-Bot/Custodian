@@ -88,13 +88,13 @@ class Social extends Command {
         }
 
         if (payer === payee) {
-          const msg = await message.channel.send(`You have claimed your daily ${pointsReward}${this.emoji(message.guild.id)} points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
+          const msg = await message.channel.send(`You have claimed your daily ${pointsReward}$ points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
           getPayer.daily = msg.createdTimestamp + (dailyTime * 60 * 60 * 1000);
           getPayer.points += pointsReward;
           this.client.points.set(`${message.guild.id}-${payer}`, getPayer);
           return msg;
         } else {
-          const msg = await message.channel.send(`You have donated your daily ${pointsReward}${this.emoji(message.guild.id)} points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
+          const msg = await message.channel.send(`You have donated your daily ${pointsReward}$ points, ` + (reminded ? `A reminder was also created for you to \`collect daily in ${message.guild.name}\`, a day from now, ` : '') + 'Ain\'t that dandy?');
           getPayer.daily = msg.createdTimestamp + (dailyTime * 60 * 60 * 1000);
           getPayee.points += pointsReward;
           this.client.points.set(`${message.guild.id}-${payee}`, getPayee);
