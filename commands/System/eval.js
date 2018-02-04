@@ -25,7 +25,8 @@ class Eval extends Command {
     try {
       const evaled = eval(code);
       const clean = await this.client.clean(this.client, evaled);
-      message.channel.send(`\`\`\`js\n${clean}\n\`\`\``);
+      const msg = await message.channel.send('Evaling.');
+      msg.edit(`\`\`\`js\n${clean}\n\`\`\`\n\n⏱ Took ${msg.createdTimestamp - message.createdTimestamp}ms`);
     } catch (err) {
       message.channel.send(`\`ERROR\` \`\`\`xl\n${await this.client.clean(this.client, err)}\n\`\`\``);
     }
