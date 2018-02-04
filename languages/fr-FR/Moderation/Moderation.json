@@ -1,0 +1,13 @@
+{
+  "blacklistNoMntn": "Tu dois indiquer un id d'utilisateur ou une mention pour le blacklister.",
+  "blacklistExists": "Cette utilisateur est déjà blacklisté.",
+  "blacklistYrslf": "Tu ne peux pas te blacklister toi-même. ~~crétin~~",
+  "blacklistAdd": "Utilisateur ajouté à la blacklist avec succès.",
+  "blacklistRmvFail": "Cet utilisateur n'est pas blacklisté.",
+  "blacklistRmv": "Cet utilisateur n'est plus blacklisté.",
+  "blacklistNoExist": "Personne n'est blacklisté.",
+  "lockdownNoTime": "Utilisation de la commande invalide, tu dois indiquer une durée pour cette commande.",
+  "purgeNoAmnt": "Un montant à supprimer doit être indiqué.",
+  "purgeIncorrectUsage": "Tu dois indiquer un utilisateur et un montant, ou juste un montant de messages à purger.",
+  "requestNoActn": "Utilisation de la commande invalide, tu dois indiquer une action pour utiliser cette commande."
+}

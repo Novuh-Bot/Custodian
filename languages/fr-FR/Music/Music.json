@@ -1,0 +1,13 @@
+{
+  "musicNoChnl": "Tu dois rejoindre un salon d'abord.",
+  "musicPlybckAlrdyPause": "Le lecteur est déjà en pause.",
+  "musicPlybckPause": "Lecteur mis en pause.",
+  "musicIncorrectURL": "Utilisation de la commande invalide, tu dois indiquer un lien Youtube ou un terme de recherche.",
+  "musicPlybackNoPause": "Le lecteur n'a pas été mis en pause.",
+  "musicPlybackResume": "Reprise de la lecture.",
+  "musicSkipping": "Passage de la piste.",
+  "musicNoVotes": "Personne n'a voté, désolé !",
+  "musicVol": "Le volume est actuellement réglé à",
+  "musicVolInvalidAmnt": "Le volume doit être une valeur entre 0 % et 100 %.",
+  "musicVolSet": "Volume réglé à"
+}

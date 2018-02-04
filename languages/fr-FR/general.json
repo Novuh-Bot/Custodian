@@ -1,0 +1,7 @@
+{
+  "noNSFW": "Impossible d'envoyer du contenu NSFW dans un salon SFW.",
+  "incorrectArgUsage": "Utilisation de la commande invalide, utilise ceci comme référence.",
+  "incorrectModCmdUsage": "Utilisation de la commande invalide, vous devez mentionner quelqu'un pour utiliser cette commande.",
+  "modNoReason": "Utilisation de la commande invalide, tu dois indiquer une raison pour utiliser cette commande.",
+  "NaN": "Montant invalide.",
+}

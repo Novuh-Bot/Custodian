@@ -1,0 +1,9 @@
+{
+  "incorrectSocialAmnt": "Tu ne peux pas payer un utilisateur moins que zéro, t'veux faire quoi ? L'voler ?",
+  "incorrectPayBal": "Tu l'paies avec de l'air ? Mec me force pas à te gifler 👋",
+  "incorrectDeductAmnt": "Tu ne peux pas déduire moins de zéro, qu'est-ce que t'essaies de faire ? L'récompenser ?", 
+  "incorrectDeductBal": "T'essaies de lui prendre de l'air ? Mec me force pas à te gifler 👋",
+  "socialAwardYrslf": "Tu ne peux pas te récompenser toi-même, pourquoi t'as même essayé.",
+  "socialPayYrslf": "Tu ne peux pas te payer toi-même, pourquoi t'as essayé ?",
+  "socialDeductYrslf": "Tu ne peux pas te pnir toi-même, pourquo it'as essayé ?"
+}

@@ -1,0 +1,9 @@
+{
+  "myLvl": "Ton niveau de permission est :",
+  "addRoleNoTarget": "Cet utilisateur n'est pas dans cette guilde. Réessaie.",
+  "noRslt": "Aucun résultat pour ",
+  "srcNoCat": "Tu dois indiquer une catégorie.",
+  "srcNoCmd": "Tu dois indiquer une commande à voir.",
+  "weatherReply": "Veuillez patienter...",
+  "weatherNoArgs": "Aucune donnée indiquée."
+}
