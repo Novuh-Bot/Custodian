@@ -16,6 +16,7 @@ class Archive extends Command {
 
   async run(message, args, level) {
     const amount = args[0];
+    if (!amount) return message.channel.send(`${message.author}, |\`🛑\`| You must supply an integer to use this command.`);
     try {
       const msgs = await message.channel.fetchMessages({ limit: `${amount}`})
         .then(messages => messages.map(m => `${m.createdAt} (${m.guild.id} / #${m.channel.id} / ${m.author.id}) ${m.author.tag} : ${m.cleanContent}`).join('\n'));
@@ -27,7 +28,9 @@ class Archive extends Command {
       const archive = `http://hastebin.com/${hasteURL.body.key}.txt`;
       message.channel.send(`Here's the archive. ${archive}`);
     } catch (error) {
-      throw error;
+      if (error.message === 'Invalid form body') {
+        message.channel.send(`${message.author}, |\`🛑\`| You must supply an integer to use this command.`);
+      }
     }
   }
 }
