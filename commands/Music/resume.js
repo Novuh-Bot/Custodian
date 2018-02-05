@@ -23,7 +23,7 @@ class Resume extends Command {
       message.reply(`${lang.musicNoChnl}`);
     }
 
-    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply(`${lang.musicNoPause}`);
+    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply(`${lang.musicPlybackNoPause}`);
     message.channel.send(`${lang.musicPlybckResume}`);
     this.client.playlists.get(message.guild.id).dispatcher.resume();
   } 
