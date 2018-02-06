@@ -5,21 +5,19 @@ class Help extends Command {
   constructor(client) {
     super(client, {
       name: 'help',
-      description: 'Displays all the available commands for your permission level.',
+      description: 'Displays all the available commands for you.',
       category: 'System',
-      usage: 'help [command:string]',
-      aliases: ['h', 'halp'],
-      botPerms: ['SEND_MESSAGES'],
-      permLevel: 'User'
+      usage: 'help [command]',
+      aliases: ['h', 'halp']
     });
   }
-
+    
   async run(message, args, level) {
-    if (!message.flags.length) {
-      const settings = message.guild ? this.client.settings.get(message.guild.id) : this.client.config.defaultSettings;
-      
+    if (!args[0]) {
+      const settings = message.settings;
+
       const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
-      
+
       const commandNames = myCommands.keyArray();
       const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
       let currentCategory = '';
@@ -28,13 +26,12 @@ class Help extends Command {
       sorted.forEach( c => {
         const cat = c.help.category.toProperCase();
         if (currentCategory !== cat) {
-          output += `\n== ${cat} ==\n`;
+          output += `\u200b\n== ${cat} ==\n`;
           currentCategory = cat;
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
-      await message.channel.send(output, {code:'asciidoc', split: true});
-      
+      message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
       const TOS = new RichEmbed()
         .setAuthor('Custodian', `${this.client.user.displayAvatarURL}`)
         .setTitle('Custodian Terms of Service')
@@ -43,38 +40,15 @@ class Help extends Command {
         .setDescription('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.')
         .addField('\u200B', 'Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
       message.channel.send({ embed: TOS });
-    }
-
-    switch (message.flags[0]) {
-      case ('cat'): {
-        const settings = this.client.settings.get(message.guild.id);
-        const serverLang = `${settings.lang}`;
-        const category = args[0];
-        const cap = category.toProperCase();
-        let output = `= ${cap} =\n\n`;
-        const lang = require(`../../languages/${serverLang}/${category}/${category}.json`);
-        const desc = `${lang.categoryDesc}`;
-        output += `${desc}`;
-        message.channel.send(output, {code:'asciidoc'});
-        break;
-      }
-
-      case ('cmd'): {
-        let command = args[0];
-        const settings = this.client.settings.get(message.guild.id);
-        if (this.client.commands.has(command)) {
-          command = this.client.commands.get(command);
-          message.channel.send(`= ${command.help.name} = \n${command.help.description}\ncategory:: ${command.help.category}\nusage:: ${settings.prefix}${command.help.usage}\naliases:: ${command.conf.aliases.join(', ')}\ndetails:: ${command.help.extended}\npermissions:: ${command.conf.botPerms.join(', ')}`, {code:'asciidoc'});
-        }
-        break;
-      }
-      
-      case ('cat2'): {
-        const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
+    } else {
+      let command = args[0];
+      if (this.client.commands.has(command)) {
+        command = this.client.commands.get(command);
+        if (level < this.client.levelCache[command.conf.permLevel]) return;
+        message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\nalises:: ${command.conf.aliases.join(', ')}`, {code:'asciidoc'});
       }
     }
   }
 }
-
-
+    
 module.exports = Help;

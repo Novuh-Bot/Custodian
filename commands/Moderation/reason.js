@@ -18,7 +18,7 @@ class Reason extends Moderation {
     const newReason   =  args.join(' ');
     const settings    =  message.settings;
     const channel     =  message.guild.channels.exists('name', settings.modLogChannel);
-    if (!channel) return message.reply(`Cannot find the \`${settings.modLogChannel}\` channel.`);
+    if (!channel) return message.reply(`Cannot find the \`${settings.modLogChannel}\` channel. Try running \`${settings.prefix}set edit modLogChannel logs\`.`);
     const modlog      =  message.guild.channels.find('name', settings.modLogChannel);
     const messages    =  await modlog.fetchMessages({limit: 100});
     const caseLog     =  await messages.find(m => m.embeds[0] && m.embeds[0].footer && m.embeds[0].footer.text === `Case ${caseNumber}`);

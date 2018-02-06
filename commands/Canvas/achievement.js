@@ -15,13 +15,24 @@ class Achievement extends Command {
   }
 
   async run(message, args, level) {
-    const text = args.slice(1).join(' ');
-    if (text.length < 1) return message.channel.send('You must give an achievement description.');
-    if (text.length > 22) return message.channel.send('I can only handle a maximum of 22 characters');
-    try {
-      await message.channel.send(new Attachment(await this.client.api.achievement((message.mentions.users.first() || message.author).displayAvatarURL, text), 'achievement.png'));
-    } catch (error) {
-      throw error;
+    if (message.mentions.users.size === 0) {
+      const text = args.join(' ');
+      if (text.length < 1) return message.channel.send('You must give an achievement description.');
+      if (text.length > 22) return message.channel.send('I can only handle a maximum of 22 characters');
+      try {
+        await message.channel.send(new Attachment(await this.client.api.achievement((message.mentions.users.first() || message.author).displayAvatarURL, text), 'achievement.png'));
+      } catch (error) {
+        throw error;
+      }
+    } else {
+      const text = args.slice(1).join(' ');
+      if (text.length < 1) return message.channel.send('You must give an achievement description.');
+      if (text.length > 22) return message.channel.send('I can only handle a maximum of 22 characters');
+      try {
+        await message.channel.send(new Attachment(await this.client.api.achievement((message.mentions.users.first() || message.author).displayAvatarURL, text), 'achievement.png'));
+      } catch (error) {
+        throw error;
+      }
     }
   }
 }

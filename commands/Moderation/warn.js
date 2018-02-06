@@ -21,7 +21,7 @@ class Warn extends Moderation {
     const generalErr = require(`../../languages/${serverLang}/general.json`);
     
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
-    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
+    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel. Try running \`${settings.prefix}set edit modLogChannel logs\`.`;
     const target   = await this.verifyMember(message.guild, args[0]);
     if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;
     const modLevel = this.modCheck(message, args[0], level);

@@ -21,7 +21,7 @@ class Mute extends Moderation {
     const generalErr = require(`../../languages/${serverLang}/general.json`);
 
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
-    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
+    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel. Try running \`${settings.prefix}set edit modLogChannel logs\`.`;
     const muteRole = this.client.guilds.get(message.guild.id).roles.find('name', settings.muteRole);
     const target   = await this.verifyMember(message.guild, args[0]);
     if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;

@@ -21,14 +21,14 @@ class Hackban extends Moderation {
     const generalErr = require(`../../languages/${serverLang}/general.json`);
     
     const channel  = message.guild.channels.exists('name', settings.modLogChannel);
-    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel.`;
+    if (!channel)    throw `${message.author}, I cannot find the \`${settings.modLogChannel}\` channel. Try running \`${settings.prefix}set edit modLogChannel logs\`.`;
     const target   = args[0];
     if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;
     const modLevel = this.hackCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');
     try {
-      message.guild.ban(target, {days:7, reason: reason.length < 1 ? 'No reason supplied.': reason});
+      message.guild.ban(target, {reason: reason.length < 1 ? 'No reason supplied.': reason});
       await this.buildHackLog(this.client, message.guild, 'hb', target, message.author, reason);
       await message.channel.send('They were successfully banned.');
     } catch (error) {
