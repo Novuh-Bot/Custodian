@@ -15,7 +15,7 @@ class Eval extends Command {
 
   async run(message, [code], level) { // eslint-disable-line no-unused-vars     
     const stopwatch = new Stopwatch();
-    let syncTime, asyncTime;    
+    let syncTime, asyncTime;
     try {
       const evaled = eval(code);
       const clean = await this.client.clean(this.client, evaled);
