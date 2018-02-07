@@ -12,7 +12,7 @@ class Eval extends Command {
       usage: 'eval <expression:string>',
       extended: 'This is an extremely dangerous command, use with caution and never eval stuff strangers tell you.',
       aliases: ['ev'],
-      permLevel: 'Bot Admin'
+      permLevel: 'Bot Owner'
     });
   }
 
@@ -35,10 +35,11 @@ class Eval extends Command {
       output = inspect(output, { depth: 0, maxArrayLength: null });
       output = output.replace(filter, '[TOKEN]');
       output = this.clean(output);
+      const type = typeof(output);
       if (output.length < 1950) {
         stopwatch.stop();
         const time = this.formatTime(syncTime, asyncTime);
-        message.channel.send(`\`\`\`js\n${output}\n\`\`\`\n\n${time}`);
+        message.channel.send(`**Output:**\n\`\`\`js\n${output}\`\`\`\n**Type:**\`\`\`${type}\`\`\`\n${time}`);
       } else {
         try {
           const { body } = await post('https://www.hastebin.com/documents').send(output);

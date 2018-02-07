@@ -72,5 +72,16 @@ class Command {
       throw error;
     }
   }
+
+  async i18n(message) {
+    try {
+      const { lang } = this.client.settings.get(message.guild.id);
+      const serverLang = require(`../languages/${lang}/${this.help.category}/${this.help.category}.json`);
+      const generalErr = require(`../languages/${lang}.json`);
+      return { serverLang, generalErr };
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 module.exports = Command;
