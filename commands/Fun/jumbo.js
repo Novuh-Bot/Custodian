@@ -38,7 +38,9 @@ class Jumbo extends Command {
         message.channel.send({ file: 'emote.png' });
       }
     } catch (error) {
-      throw error;
+      if (error.message === 'TypeError: Cannot read property \'1\' of null') {
+        message.reply('Give me an actual emote.');
+      }
     }
   }
 }
