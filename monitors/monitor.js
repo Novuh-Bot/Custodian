@@ -29,7 +29,7 @@ module.exports = class {
     setTimeout(() => {
       timeout.set(`${message.guild.id}-${message.author.id}`, false);
       score.points += points;
-      console.log(`Awarded ${points} points to ${message.author.username}`);
+      client.log('Log', `Awarded ${points} points to ${message.author.username}`, 'Points');
     }, parseInt(settings.scoreTime) * 60 * 1000);
 
     const curLevel = Math.floor(0.1 * Math.sqrt(score.points));
