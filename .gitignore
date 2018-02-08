@@ -7,7 +7,7 @@
 /unused/
 
 # Specific Files
-pakage-lock.json
+package-lock.json
 config.js
 /VPS/config.js
 launcher.js
