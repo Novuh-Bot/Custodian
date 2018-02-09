@@ -54,6 +54,6 @@
     "twemoji": "^2.5.0",
     "twitch.tv-api": "^1.2.4",
     "unfluff": "^1.1.0",
-    "ytdl-core": "^0.18.7"
+    "ytdl-core": "^0.20.1"
   }
 }
