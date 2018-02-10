@@ -4,7 +4,8 @@
   "description": "Custodian is a utilitarian and moderation bot designed to make moderating your Discord server easier. It features per server settings and a dashboard to keep track of your servers settings.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"This is a test.\"",
+    "test": "eslint .",
+    "lint": "eslint --fix .",
     "start": "node index.js",
     "prepublish": "node util/installer.js"
   },
@@ -55,5 +56,8 @@
     "twitch.tv-api": "^1.2.4",
     "unfluff": "^1.1.0",
     "ytdl-core": "^0.20.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0"
   }
 }
