@@ -46,6 +46,7 @@
     "passport-discord": "^0.1.2",
     "pornsearch": "^2.2.5",
     "querystring": "^0.2.0",
+    "rainbowsix-api-node": "0.0.1",
     "request": "^2.83.0",
     "simple-youtube-api": "^2.1.0",
     "slot-machine": "^2.1.0",
