@@ -50,10 +50,10 @@ class r6 extends Command {
         .addField('Total Bullets Fired', response.player.stats.overall.bullets_fired, true)
         .addField('Total Bullets Hit', response.player.stats.overall.bullets_hit, true)
         .addField('Total Headshots', response.player.stats.overall.headshots, true)
-        .addField('Penetration Kills', response.player.stats.overall.penetration_kills, true)
-        .addField('Total Ranked Playtime', rankedPlaytime, true)
-        .addField('Total Casual Playtime', casualPlaytime, true)
-        .addField('Total Playtime', overallPlaytime, true);
+        .addField('Overall KDR', response.player.stats.ranked.kd + response.player.stats.casual.kd, true);
+        // .addField('Total Ranked Playtime', rankedPlaytime, true)
+        // .addField('Total Casual Playtime', casualPlaytime, true)
+        // .addField('Total Playtime', overallPlaytime, true);
       msg.delete();
       message.channel.send({ embed });
     }).catch(error => {
