@@ -17,10 +17,10 @@ class r6 extends Command {
   }
 
   async run(message, args, level) {
-    const platforms = ['uplay'];
+    const platforms = ['uplay', 'xone', 'ps4'];
     const R6 = new RainbowSixApi();
     const platform = args[0];
-    if (!platforms.includes(platform)) return message.channel.send('Platform must be `uplay` currently.');
+    if (!platforms.includes(platform)) return message.channel.send('Platform must either be `xone`, `uplay`, or `ps4`.');
     const username = args.splice(1).join(' ');
     const msg = await message.channel.send(`Fetching the stats of ${username}.`);
     R6.stats(username, platform).then(response => {
