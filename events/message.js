@@ -1,4 +1,3 @@
-const monitor = require('../monitors/monitor.js');
 const moment = require('moment');
 require('moment-duration-format');
 
@@ -10,15 +9,12 @@ module.exports = class {
   async run(message) {
 
     if (message.author.bot) return;
-    const blacklist = this.client.blacklist.get('list');
-    if (blacklist.includes(message.author.id)) return;
 
     const defaults = this.client.config.defaultSettings;
     const settings = message.guild ? this.client.settings.get(message.guild.id) : defaults;
     message.settings = settings;
     
     const level = this.client.permlevel(message);
-    monitor.run(this.client, message, level);
 
     const mentionPrefix = new RegExp(`^<@!?${this.client.user.id}> `);
     const prefixMention = mentionPrefix.exec(message.content);

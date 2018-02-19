@@ -1,30 +1,13 @@
 # Directories
 /node_modules/
 /data/
-/Experimental/
 /VPS/
-/commands/NSFW/
-/unused/
+
 
 # Specific Files
 package-lock.json
 config.js
 /VPS/config.js
 launcher.js
-.js
 emote.png
 emote.gif
-
-# Classes
-base/Music.js
-
-
-# Commands
-commands/Music/queue.js
-commands/Music/skip.js
-commands/Music/spotify.js
-commands/Fun/csgo.js
-commands/Fun/respect.js
-commands/Moderation/hackban.js
-commands/Moderation/inf.js
-commands/Moderation/checkban.js

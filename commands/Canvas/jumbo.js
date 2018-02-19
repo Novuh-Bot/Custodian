@@ -9,7 +9,7 @@ class Jumbo extends Command {
     super(client, {
       name: 'jumbo',
       description: 'Get\'s an emoji, and jumbos it!',
-      category: 'Fun',
+      category: 'Canvas',
       usage: 'jumbo <emoji:emoji>',
       botPerms: ['SEND_MESSAGES', 'ATTACH_FILES'],
       permLevel: 'User'
