@@ -11,4 +11,4 @@ WORKDIR /app
 
 ENV NODE_PATH=/nodedeps/node_modules
 
-CMD ["npm", "start"]
+CMD ["bash", ".docker/startloop.sh"]
