@@ -6,7 +6,6 @@ module.exports = class {
   }
   async run(member) {
     const guild = member.guild;
-    this.client.points.delete(`${guild.id}-${member.id}`);
     if (!member || !member.id || !guild) return;
     try {
       const guildBans = await guild.fetchBans();
