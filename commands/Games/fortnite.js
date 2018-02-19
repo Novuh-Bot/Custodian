@@ -44,3 +44,5 @@ class Fortnite extends Command {
       .setColor(message.guild.member(this.client.user.id).roles.highest.color || 0x00AE86));
   }
 }
+
+module.exports = Fortnite;
