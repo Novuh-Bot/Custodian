@@ -20,11 +20,11 @@ class Resume extends Command {
     
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {
-      message.reply(`${lang.musicNoChnl}`);
+      message.lang(message, lang, this.help.category, 'musicNoChnl');
     }
 
-    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply(`${lang.musicPlybackNoPause}`);
-    message.channel.send(`${lang.musicPlybckResume}`);
+    if (!this.client.playlists.get(message.guild.id).dispatcher.paused) return message.lang(message, lang, this.help.category, 'musicPlybckNoPause');
+    message.lang(message, lang, this.help.category, 'musicPlybckResume');
     this.client.playlists.get(message.guild.id).dispatcher.resume();
   } 
 }

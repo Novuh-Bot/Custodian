@@ -25,7 +25,7 @@ class Skip extends Command {
     const voiceUsers = Math.floor(message.member.voiceChannel.members.filter(m => m.user.id !== this.client.user.id).size *2 / 3);
 
     if (voiceUsers < 2 || message.author.permLevel > 2) {
-      return message.channel.send(`${lang.musicSkipping}`).then(() => {
+      return message.lang(message, lang, this.help.category, 'musicSkipping').then(() => {
         this.client.playlists.get(message.guild.id).dispatcher.end('skip');
       });
     }
@@ -39,12 +39,12 @@ class Skip extends Command {
       'max': voiceUsers,
       time: 10000
     }).then(collected => {
-      if (collected.size > voiceUsers) return message.channel.send(`${lang.musicSkipping}`).then(() => {
+      if (collected.size > voiceUsers) return message.lang(message, lang, this.help.category, 'musicSkipping').then(() => {
         this.client.playlists.get(message.guild.id).dispatcher.end('skip');
       });
     }).catch(collected => {
       if (collected.size === 0) {
-        return message.channel.send(`${lang.musicNoVotes}`);
+        return message.lang(message, lang, this.help.category, 'musicNoVotes');
       }
       message.channel.send(`Only ${collected.size} out of ${voiceUsers} voted before time ran out.`);
     });

@@ -22,7 +22,7 @@ class Pause extends Command {
       message.reply(`${lang.musicNoChnl}`);
     }
 
-    if (this.client.playlists.get(message.guild.id).dispatcher.paused) return message.reply(`${lang.musicPlybckAlrdyPause}`);
+    if (this.client.playlists.get(message.guild.id).dispatcher.paused) return message.lang(message, lang, this.help.category, 'musicPlybckAlrdyPause');
     message.channel.send(`${lang.musicPlybckPause}`);
     this.client.playlists.get(message.guild.id).dispatcher.pause();
   } 

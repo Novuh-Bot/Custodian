@@ -33,9 +33,9 @@ class Conf extends Command {
   
     // Adding a new key adds it to every guild (it will be visible to all of them)
     if (action === 'add') {
-      if (!key) return message.reply(`${lang.settingsNoKeyAdd}`);
-      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
-      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyAdd');
+      if (defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyAlrdyExist');
+      if (value.length < 1) return message.lang(message, lang, this.help.category, 'settingsNoKeyValue');
 
       // `value` being an array, we need to join it first.
       defaults[key] = value.join(' ');
@@ -47,9 +47,9 @@ class Conf extends Command {
   
     // Changing the default value of a key only modified it for guilds that did not change it to another value.
     if (action === 'edit') {
-      if (!key) return message.reply(`${lang.settingsNoKeyEdit}`);
-      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
-      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyEdit');
+      if (defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyAlrdyExist');
+      if (value.length < 1) return message.lang(message, lang, this.help.category, 'settingsNoKeyValue');
 
       defaults[key] = value.join(' ');
 
@@ -60,9 +60,9 @@ class Conf extends Command {
     // WARNING: DELETING A KEY FROM THE DEFAULTS ALSO REMOVES IT FROM EVERY GUILD
     // MAKE SURE THAT KEY IS REALLY NO LONGER NEEDED!
     if (action === 'del') {
-      if (!key) return message.reply(`${lang.settingsNoKeyDel}`);
-      if (!defaults[key]) return message.reply(`${lang.settingsKeyNotExist}`);    
-    
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyDel');
+      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
+
       // Throw the 'are you sure?' text at them.
       const response = await this.client.awaitReply(message, `Are you sure you want to permanently delete ${key} from all guilds? This **CANNOT** be undone.`);
 
@@ -90,8 +90,8 @@ class Conf extends Command {
   
     // Display a key's default value
     if (action === 'get') {
-      if (!key) return message.reply(`${lang.settingsNoKeyView}`);
-      if (!defaults[key]) return message.reply(`${lang.settingsKeyNotExist}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyView');
+      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
       message.reply(`The value of ${key} is currently ${defaults[key]}`);
 
       // Display all default settings.

@@ -1,3 +1,5 @@
+const { Message } = require('discord.js');
+
 module.exports = (client) => {
   
   /**
@@ -131,6 +133,11 @@ module.exports = (client) => {
   };
   Array.prototype.random = function() {
     return this[Math.floor(Math.random() * this.length)];
+  };
+
+  Message.prototype.lang = function(message, lang, category, key) {
+    const serverLang = require(`../languages/${lang}/${category}/${category}.json`);
+    message.channel.send(`${serverLang[key]}`);
   };
 
   client.wait = require('util').promisify(setTimeout);

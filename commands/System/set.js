@@ -22,9 +22,9 @@ class Set extends Command {
     const generalErr = require(`../../languages/${serverLang}/general.json`);
   
     if (action === 'add') {
-      if (!key) return message.reply(`${lang.settingsNoKeyAdd}`);
-      if (defaults[key]) return message.reply(`${lang.settingsKeyAlrdyExist}`);
-      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyAdd');
+      if (defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyAlrdyExist');
+      if (value.length < 1) return message.lang(message, lang, this.help.category, 'settingsNoKeyValue');
 
       settings[key] = value.join(' ');
   
@@ -33,8 +33,8 @@ class Set extends Command {
     } else
 
     if (action === 'edit') {
-      if (!key) return message.reply(`${lang.settingsNoKeyEdit}`);
-      if (value.length < 1) return message.reply(`${lang.settingsNoKeyValue}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyEdit');
+      if (value.length < 1) return message.lang(message, lang, this.help.category, 'settingsNoKeyValue');
     
       settings[key] = value.join(' ');
 
@@ -43,8 +43,8 @@ class Set extends Command {
     } else
   
     if (action === 'del' || action === 'reset') {
-      if (!key) return message.reply(`${lang.settingsNoKeyDel}`);
-      if (!settings[key]) return message.reply(`${lang.settingsKeyNotExist}`);  
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyDel');
+      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
       
       const response = await this.client.awaitReply(message, `Are you sure you want to reset \`${key}\` to the default \`${defaults[key]}\`?`);
 
@@ -61,8 +61,8 @@ class Set extends Command {
     } else
 
     if (action === 'get') {
-      if (!key) return message.reply(`${lang.settingsNoKeyView}`);
-      if (!settings[key]) return message.reply(`${lang.settingsKeyNotExist}`);
+      if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyView');
+      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
       message.reply(`The value of ${key} is currently ${settings[key]}`);
       
     } else {
