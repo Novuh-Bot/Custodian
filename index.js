@@ -1,4 +1,9 @@
-if (process.version.slice(1).split('.')[1] < 5) throw new Error('Node 8.5.0 or higher is required. Update Node on your system.');
+const major = 8;
+const minor = 5;
+const patch = 0;
+const version = `${major}.${minor}.${patch}`;
+if (process.version < version) throw new Error('Node 8.5.0 or higher is required. Update Node on your system.');
+
 
 const Discord = require('discord.js');
 const { promisify } = require('util');
@@ -125,7 +130,10 @@ class Custodian extends Discord.Client {
 const client = new Custodian({
   fetchAllMembers: true
 });
+
 console.log(client.config.permLevels.map(p=>`${p.level} : ${p.name}`));
+
+client.on('error', err => console.log(err));
 
 require('./modules/functions.js')(client);
 

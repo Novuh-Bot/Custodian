@@ -1,4 +1,4 @@
-const Social = require('../../base/Social.js');
+const Social = require('../../base/Command.js');
 const { Attachment } = require('discord.js');
 
 class Beautiful extends Social {

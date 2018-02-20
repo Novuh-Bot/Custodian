@@ -1,4 +1,4 @@
-const Social = require('../../base/Social.js');
+const Social = require('../../base/Command.js');
 const snek = require('snekfetch');
 const { Attachment } = require('discord.js');
 

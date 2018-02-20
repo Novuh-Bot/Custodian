@@ -20,16 +20,7 @@ const defaultSettings = `{
   "welcomeEnabled": "false",
   "welcomeChannel": "welcome",
   "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
-  "extensiveLogging": "false",
-  "levelNotice": "false",
-  "minPoints": "1",
-  "maxPoints": "50",
-  "pointsReward": "250",
-  "dailyTime": "24",
-  "costMulti": "10",
-  "customEmoji": "false",
-  "gEmojiID": "367673348899078165",
-  "uEmoji": "💲"
+  "extensiveLogging": "false"
 }`;
 
 const settings = new Enmap({provider: new EnmapLevel({name: "settings"})});
@@ -58,33 +49,13 @@ let prompts = [
   },
   {
     type: "input",
-    name: "logChannel",
-    message: "Please enter the channel ID from your Discord Server for master logs."
+    name: "twitchId",
+    message: "Please enter your Twitch API ID."
   },
   {
     type: "input",
-    name: "oauthSecret",
-    message: "Please enter the oauth secret found under your client secret on the bot application page."
-  },
-  {
-    type: "input",
-    name: "callbackURL",
-    message: "Please enter the dashboards callback URL."
-  },
-  {
-    type: "input",
-    name: "sessionSecret",
-    message: "Please enter a session secret. This can be complete gibberish."
-  },
-  {
-    type: "input",
-    name: "domain",
-    message: "Please enter the domain your dashboard should run on."
-  },
-  {
-    type: "input",
-    name: "port",
-    message: "Please enter the port your dashboard should run on."
+    name: "twitchSecret",
+    message: "Please enter your Twitch API Secret."
   }
 ];
 
@@ -106,14 +77,10 @@ let prompts = [
 
   baseConfig = baseConfig
     .replace("{{token}}", `"${answers.token}"`)
-    .replace("{{york-api-key", `${answers.yorkAPIKey}`)
+    .replace("{{york-api-key}}", `"${answers.yorkAPIKey}"`)
     .replace("{{youtube-api-key}}", `"${answers.youtubeAPIKey}"`)
-    .replace("{{log-channel}}", `"${answers.logChannel}"`)
-    .replace("{{oauth-secret}}", `"${answers.oauthSecret}"`)
-    .replace("{{callback-url}}", `"${answers.callbackURL}"`)
-    .replace("{{session-secret}}", `"${answers.sessionSecret}"`)
-    .replace("{{domain}}", `"${answers.domain}"`)
-    .replace("{{port}}", `"${answers.port}"`);
+    .replace("{{twitch-id}}", `"${answers.twitchId}"`)
+    .replace("{{twitch-secret}}", `"${answers.twitchSecret}"`);
     
   fs.writeFileSync("./config.js", baseConfig);
 

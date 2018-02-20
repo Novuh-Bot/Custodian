@@ -1,6 +1,6 @@
 const Command = require('../../base/Command.js');
-const { id, secret } = require('../../config.js');
-const twitch = new (require('twitch.tv-api'))({id: id, secret: secret});
+const { twitchId, twitchSecret } = require('../../config.js');
+const twitch = new (require('twitch.tv-api'))({id: twitchId, secret: twitchSecret});
 const { RichEmbed } = require('discord.js');
 
 class Twitch extends Command {

@@ -1,4 +1,5 @@
 const { Message } = require('discord.js');
+const { inspect } = require('util');
 
 module.exports = (client) => {
   
@@ -143,7 +144,8 @@ module.exports = (client) => {
   client.wait = require('util').promisify(setTimeout);
 
   process.on('uncaughtException', (err) => {
-    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
+    const errorMessage = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
+    const errorMsg = inspect(errorMessage, { depth: 10 });
     console.error('Uncaught Exception: ', errorMsg);
     process.exit(1);
   });

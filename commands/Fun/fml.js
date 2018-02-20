@@ -1,4 +1,4 @@
-const Social = require('../../base/Social.js');
+const Social = require('../../base/Command.js');
 const request = require('snekfetch');
 const HTMLParser = require('fast-html-parser');
 const { RichEmbed } = require('discord.js');

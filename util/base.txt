@@ -12,15 +12,9 @@ const config = {
 
   "youtubeAPIKey": {{youtube-api-key}},
 
-  "logChannel": {{log-channel}},
+  "twitchID": {{twitch-id}},
 
-  "dashboard": {
-    "oauthSecret": {{oauth-secret}},
-    "callbackURL": {{callback-url}},
-    "sessionSecret": {{session-secret}},
-    "domain": {{domain}},
-    "port": {{port}}
-  },
+  "twitchSecret": {{twitch-secret}},
 
   "defaultSettings": {
     "prefix": "/",
@@ -35,16 +29,7 @@ const config = {
     "welcomeEnabled": "false",
     "welcomeChannel": "welcome",
     "welcomeMessage": "Say hello to {{user}}, everyone! We all need a warm welcome sometimes :D",
-    "extensiveLogging": "false",
-    "levelNotice": "false",
-    "minPoints": "1",
-    "maxPoints": "50",
-    "pointsReward": "250",
-    "dailyTime": "24",
-    "costMulti": "10",
-    "customEmoji": "false",
-    "gEmojiID": "367673348899078165",
-    "uEmoji": "💲" 
+    "extensiveLogging": "false" 
   },
 
   permLevels: [
