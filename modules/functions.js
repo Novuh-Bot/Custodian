@@ -1,6 +1,4 @@
-const { Message, Channel } = require('discord.js');
 const { inspect } = require('util');
-const ms = require('ms');
 
 module.exports = (client) => {
   
@@ -95,62 +93,6 @@ module.exports = (client) => {
       .replace(client.token, 'mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0');
 
     return text;
-  };
-
-  client.lockChannel = async (client, message, time) => {
-    if (!this.client.lockit) this.client.lockit = [];
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: false
-    }).then(() => {
-      message.channel.send(`Channel locked down for ${ms(ms(time))}`).then(() => {
-        this.client.lockit[message.channel.id] = setTimeout(() => {
-          message.channel.overwritePermissions(message.guild.id, {
-            SEND_MESSAGES: null
-          }).then(message.channel.send('Lockdown has been lifted')).catch(console.error);
-          delete this.client.lockit[message.channel.id];
-        }, ms(time));
-      });
-    });
-  };
-
-  client.unlockChannel = async (client, message) => {
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: null
-    });
-  };
-
-  String.prototype.toProperCase = function() {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  };
-  Array.prototype.random = function() {
-    return this[Math.floor(Math.random() * this.length)];
-  };
-
-  Message.prototype.lang = function(message, lang, category, key) {
-    const serverLang = require(`../languages/${lang}/${category}/${category}.json`);
-    message.channel.send(`${message.author} |\`❌\`| ${serverLang[key]}`);
-  };
-
-  Channel.prototype.lock = async function(client, message, time) {
-    if (!this.client.lockit) this.client.lockit = [];
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: false
-    }).then(() => {
-      message.channel.send(`The channel has been locked down for ${ms(ms(time), { long: true })}.`).then(() => {
-        this.client.lockit[message.channel.id] = setTimeout(() => {
-          message.channel.overwritePermissions(message.guild.id, {
-            SEND_MESSAGES: null
-          }).then(message.channel.send('The lockdown has been lifted.')).catch(console.error);
-          delete this.client.lockit[message.channel.id];
-        }, ms(time));
-      });
-    });
-  };
-
-  Channel.prototype.unlock = async function(message) {
-    message.channel.overwritePermissions(message.guild.id, {
-      SEND_MESSAGES: null
-    });
   };
 
   client.wait = require('util').promisify(setTimeout);
