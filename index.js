@@ -1,7 +1,4 @@
-const major = 8;
-const minor = 5;
-const patch = 0;
-const version = `${major}.${minor}.${patch}`;
+const version = '8.5.0';
 if (process.version < version) throw new Error('Node 8.5.0 or higher is required. Update Node on your system.');
 
 
@@ -25,7 +22,6 @@ class Custodian extends Discord.Client {
     this.playlists = new Enmap();
     this.commands = new Enmap();
     this.aliases = new Enmap();
-    this.invspam = new Enmap();
 
     this.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
     this.consent = new Enmap({provider: new EnmapLevel({name: 'consent'})});
