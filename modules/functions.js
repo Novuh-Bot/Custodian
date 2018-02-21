@@ -1,5 +1,6 @@
-const { Message } = require('discord.js');
+const { Message, Channel } = require('discord.js');
 const { inspect } = require('util');
+const ms = require('ms');
 
 module.exports = (client) => {
   
@@ -96,38 +97,27 @@ module.exports = (client) => {
     return text;
   };
 
-  /**
-   * Simplified version of getting Guild settings.
-   * @param {GuildID} id 
-   */
-  client.getSettings = (id) => {
-    const defaults = client.getSettings('default');
-    let guild = client.getSettings(id);
-    if (typeof guild != 'object') guild = {};
-    const returnObject = {};
-    Object.keys(defaults).forEach((key) => {
-      returnObject[key] = guild[key] ? guild[key] : defaults[key];
+  client.lockChannel = async (client, message, time) => {
+    if (!this.client.lockit) this.client.lockit = [];
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: false
+    }).then(() => {
+      message.channel.send(`Channel locked down for ${ms(ms(time))}`).then(() => {
+        this.client.lockit[message.channel.id] = setTimeout(() => {
+          message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: null
+          }).then(message.channel.send('Lockdown has been lifted')).catch(console.error);
+          delete this.client.lockit[message.channel.id];
+        }, ms(time));
+      });
     });
-    return returnObject;
-  };
-  
-  /**
-   * Simplified version of setting Guild settings.
-   * @param {GuildID} id 
-   * @param {Value} newSettings 
-   */
-  client.writeSettings = (id, newSettings) => {
-    const defaults = client.getSettings('default');
-    let settings = client.getSettings(id);
-    if (typeof settings != 'object') settings = {};
-    for (const key in newSettings) {
-      if (defaults[key] !== newSettings[key])  {
-        settings[key] = newSettings[key];
-      }
-    }
-    client.settings.set(id, settings);
   };
 
+  client.unlockChannel = async (client, message) => {
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: null
+    });
+  };
 
   String.prototype.toProperCase = function() {
     return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
@@ -138,7 +128,29 @@ module.exports = (client) => {
 
   Message.prototype.lang = function(message, lang, category, key) {
     const serverLang = require(`../languages/${lang}/${category}/${category}.json`);
-    message.channel.send(`${serverLang[key]}`);
+    message.channel.send(`${message.author} |\`❌\`| ${serverLang[key]}`);
+  };
+
+  Channel.prototype.lock = async function(client, message, time) {
+    if (!this.client.lockit) this.client.lockit = [];
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: false
+    }).then(() => {
+      message.channel.send(`The channel has been locked down for ${ms(ms(time), { long: true })}.`).then(() => {
+        this.client.lockit[message.channel.id] = setTimeout(() => {
+          message.channel.overwritePermissions(message.guild.id, {
+            SEND_MESSAGES: null
+          }).then(message.channel.send('The lockdown has been lifted.')).catch(console.error);
+          delete this.client.lockit[message.channel.id];
+        }, ms(time));
+      });
+    });
+  };
+
+  Channel.prototype.unlock = async function(message) {
+    message.channel.overwritePermissions(message.guild.id, {
+      SEND_MESSAGES: null
+    });
   };
 
   client.wait = require('util').promisify(setTimeout);
