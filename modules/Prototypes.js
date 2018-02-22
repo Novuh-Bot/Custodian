@@ -1,4 +1,4 @@
-const { Message, Channel } = require('discord.js');
+const { Message, Channel, RichEmbed, TextChannel, DMChannel, User } = require('discord.js');
 const ms = require('ms');
 
 
@@ -17,6 +17,10 @@ Array.prototype.random = function() {
 Message.prototype.lang = function(message, lang, category, key) {
   const serverLang = require(`../languages/${lang}/${category}/${category}.json`);
   message.channel.send(`${message.author} |\`❌\`| ${serverLang[key]}`);
+};
+
+Message.prototype.buildEmbed = function() {
+  return this.channel.buildEmbed();
 };
 
 Channel.prototype.lock = async function(client, message, time) {
@@ -40,3 +44,13 @@ Channel.prototype.unlock = async function(message) {
     SEND_MESSAGES: null
   });
 };
+
+Channel.prototype.buildEmbed = function() {
+  return Object.defineProperty(new RichEmbed(), 'sendToChannel', { value: this });
+};
+
+RichEmbed.prototype.send = function(content) {
+  if (!this.sendToChannel || !(this.sendToChannel instanceof TextChannel || this.sendToChannel instanceof User || this.sendToChannel instanceof DMChannel)) return Promise.reject('Embed not created in a channel');
+  return this.sendToChannel.send(content || '', { embed: this });
+};
+
