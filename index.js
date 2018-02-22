@@ -49,11 +49,6 @@ class Custodian extends Discord.Client {
     console.log(`[${type}] [${title}] ${msg}`);
   }
 
-  permCheck(message, perms) {
-    if (message.channel.type !== 'text') return;
-    return message.channel.permissionsFor(message.guild.me).missing(perms);
-  }
-
   loadCommand(commandPath, commandName) {
     try {
       const props = new (require(`${commandPath}${path.sep}${commandName}`))(client);

@@ -9,7 +9,7 @@ class Beautiful extends Social {
       category: 'Canvas',
       usage: 'beautiful <member:user>',
       aliases: ['pretty', 'ooh'],
-      botPerms: ['ATTACH_FILES']
+      botPerms: ['ATTACH_FILES', 'SEND_MESSAGES']
     });
   }
 

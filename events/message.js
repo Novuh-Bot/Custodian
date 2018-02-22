@@ -63,7 +63,8 @@ This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd
     this.client.log('Log', `[${moment(message.createdAt).format('h:mm:ss')}] ${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
 
     if (message.channel.type === 'text') {      
-      const mPerms = this.client.permCheck(message, cmd.conf.botPerms);
+      const mPerms = message.channel.permissionsFor(message.guild.me).missing(cmd.conf.botPerms);
+      if (mPerms.includes('SEND_MESSAGES')) return;
       if (mPerms.length) return message.channel.send(`The bot does not have the following permissions \`${mPerms.join(', ')}\``);
     }
 
