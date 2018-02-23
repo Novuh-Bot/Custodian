@@ -32,7 +32,7 @@ class Help extends Command {
         }
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
-      message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
+      await message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
       const TOS = new RichEmbed()
         .setAuthor('Custodian', `${this.client.user.displayAvatarURL}`)
         .setTitle('Custodian Terms of Service')
