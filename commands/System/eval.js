@@ -25,24 +25,24 @@ class Eval extends Command {
     const rev = client.token.split('').reverse().join('[^]{0,2}');
     const filter = new RegExp(`${token}|${rev}`, 'g');
     try {
-      let output = eval(code);
+      let result = eval(code);
       syncTime = stopwatch.friendlyDuration;
-      if (output instanceof Promise || (Boolean(output) && typeof output.then === 'function' && typeof output.catch === 'function')) {
+      if (output instanceof Promise || (Boolean(result) && typeof result.then === 'function' && typeof result.catch === 'function')) {
         stopwatch.restart();
-        output = await output;
+        result = await result;
         asyncTime = stopwatch.friendlyDuration;
       }
-      output = inspect(output, { depth: 0, maxArrayLength: null });
-      output = output.replace(filter, '[TOKEN]');
-      output = this.clean(output);
-      const type = typeof(output);
-      if (output.length < 1950) {
+      result = inspect(result, { depth: 0, maxArrayLength: null });
+      result = output.replace(filter, '[TOKEN]');
+      result = this.clean(result);
+      const type = typeof(result);
+      if (result.length < 1950) {
         stopwatch.stop();
         const time = this.formatTime(syncTime, asyncTime);
-        message.channel.send(`**Output:**\n\`\`\`js\n${output}\`\`\`\n**Type:**\`\`\`${type}\`\`\`\n${time}`);
+        message.evalBlock('js', result, type, time);
       } else {
         try {
-          const { body } = await post('https://www.hastebin.com/documents').send(output);
+          const { body } = await post('https://www.hastebin.com/documents').send(result);
           message.channel.send(`Output was to long so it was uploaded to hastebin https://www.hastebin.com/${body.key}.js `);
         } catch (error) {
           message.channel.send(`I tried to upload the output to hastebin but encountered this error ${error.name}:${error.message}`);

@@ -23,6 +23,14 @@ Message.prototype.buildEmbed = function() {
   return this.channel.buildEmbed();
 };
 
+Message.prototype.evalBlock = function(lang, expression, type, time) {
+  return this.channel.send(`**Output:**\n\`\`\`${lang}\n${expression}\n\`\`\`**Type:**\n\`\`\`${type}\`\`\`\n${time}`);
+};
+
+Message.prototype.codeBlock = function(lang, expression) {
+  return `\`\`\`${type}\n${expression}\`\`\``;
+};
+
 Channel.prototype.lock = async function(client, message, time) {
   if (!this.client.lockit) this.client.lockit = [];
   message.channel.overwritePermissions(message.guild.id, {
