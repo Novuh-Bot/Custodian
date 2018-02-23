@@ -1,13 +1,25 @@
 const { inspect } = require('util');
+const moment = require('moment');
+require('moment-duration-format');
 
 module.exports = (client) => {
   
-  /**
-   * Check to gain consent to store messages from the user, and open a support case under their account name and ID.
-   * @param {Client} client The client that is calling this function.
-   * @param {message} message The message on which the check is being preformed.
-   * @param {msg} msg The supplied message that is sent to support.
-   */
+  client.ratelimit = async (message, level, key, duration) => {
+    if (level > 2) return false;
+    
+    duration = duration * 1000;
+    const ratelimits = client.ratelimits.get(message.author.id) || {}; //get the ENMAP first.
+    if (!ratelimits[key]) ratelimits[key] = Date.now() - duration; //see if the command has been run before if not, add the ratelimit
+    const differnce = Date.now() - ratelimits[key]; //easier to see the difference
+    if (differnce < duration) { //check the if the duration the command was run, is more than the cooldown
+      return moment.duration(duration - differnce).format('D [days], H [hours], m [minutes], s [seconds]', 1); //returns a string to send to a channel
+    } else {
+      ratelimits[key] = Date.now(); //set the key to now, to mark the start of the cooldown
+      client.ratelimits.set(message.author.id, ratelimits); //set it
+      return true;
+    }
+  };
+
   client.checkConsent = async (client, message, msg) => {
     const ticketIdentifier = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 5);
     const embed = client.supportMsg(message, msg, ticketIdentifier);
@@ -40,12 +52,6 @@ module.exports = (client) => {
     }
   };
 
-  /**
-   * Support message to be sent to the support guild.
-   * @param {message} message The message object.
-   * @param {msg} msg The message that is sent to support.
-   * @param {ticketIdentifier} ticketIdentifier Case ticket identifier.
-   */
   client.supportMsg = (message, msg, ticketIdentifier) => {
     const {
       RichEmbed
@@ -59,12 +65,6 @@ module.exports = (client) => {
     return embed;
   };
 
-  /**
-   * Simplified method of awaitMessages. Creates a message filter searching for replies from the author.
-   * @param {msg} msg Message object.
-   * @param {message} question Message object assigned to the question value.
-   * @param {integer} limit Integer defined to the limit value.
-   */
   client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m=>m.author.id == msg.author.id;
     await msg.channel.send(question);
@@ -76,11 +76,6 @@ module.exports = (client) => {
     }
   };
 
-  /**
-   * Function to clean an evaled string.
-   * @param {Client} client 
-   * @param {text} text 
-   */
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise')
       text = await text;

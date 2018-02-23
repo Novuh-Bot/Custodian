@@ -8,7 +8,8 @@ class Volume extends Command {
       category: 'Music',
       guildOnly: 'true',
       usage: 'volume [value:integer]',
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 10
     });
   }
 

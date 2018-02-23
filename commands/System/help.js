@@ -8,7 +8,8 @@ class Help extends Command {
       description: 'Displays all the available commands for you.',
       category: 'System',
       usage: 'help [command]',
-      aliases: ['h', 'halp']
+      aliases: ['h', 'halp'],
+      cooldown: 10
     });
   }
     

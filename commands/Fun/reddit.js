@@ -9,6 +9,7 @@ class Reddit extends Social {
       usage: 'reddit [flag:-new|-random|-hot|-top] [subreddit:subreddit]',
       category: 'Fun',
       botPerms: ['SEND_MESSAGES'],
+      cooldown: 30
     });
   }
 

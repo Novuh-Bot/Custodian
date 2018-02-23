@@ -8,7 +8,8 @@ class Thesearch extends Command {
       description: 'Searches the universe..',
       category: 'Canvas',
       usage: 'thesearch [member:user] <text:string>',
-      botPerms: ['ATTACH_FILES']
+      botPerms: ['ATTACH_FILES'],
+      cooldown: 10
     });
   }
 

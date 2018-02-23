@@ -12,7 +12,8 @@ class Search extends Command {
       category: 'Music',
       guildOnly: 'true',
       usage: 'search <term:string>',
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 30
     });
   }
 

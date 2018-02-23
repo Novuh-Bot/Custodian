@@ -12,7 +12,8 @@ class Jumbo extends Command {
       category: 'Canvas',
       usage: 'jumbo <emoji:emoji>',
       botPerms: ['SEND_MESSAGES', 'ATTACH_FILES'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 20
     });
   }
 

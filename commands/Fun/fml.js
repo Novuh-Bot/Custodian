@@ -13,7 +13,8 @@ class FML extends Social {
       extended: 'This command grabs a random "fuck my life" story from fmylife.com and displays it in an organized embed.',
       aliases: ['fuckmylife', 'fuckme'],
       botPerms: ['EMBED_LINKS'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 20
     });
   }
 

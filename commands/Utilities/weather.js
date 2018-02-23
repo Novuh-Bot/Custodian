@@ -14,7 +14,8 @@ class Weather extends Command {
       category: 'Utilities',
       extended: 'Get the weather for the nominated location.',
       aliases: ['w'],
-      botPerms: ['SEND_MESSAGES']
+      botPerms: ['SEND_MESSAGES'],
+      cooldown: 30
     });
   }
 

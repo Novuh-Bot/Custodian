@@ -11,7 +11,8 @@ class Respect extends Social {
       usage: 'respect <member:user>',
       extended: 'A command to pay respects to someone, Advanced Warfare style.',
       aliases: ['pressf', 'f', 'rip', 'ripme'],
-      botPerms: ['ATTACH_FILES']
+      botPerms: ['ATTACH_FILES'],
+      cooldown: 10
     });
   }
 

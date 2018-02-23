@@ -11,7 +11,8 @@ class Twitch extends Command {
       category: 'Fun',
       usage: 'twitch <user:stream name>',
       botPerms: ['EMBED_LINKS', 'SEND_MESSAGES'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 60
     });
   }
 

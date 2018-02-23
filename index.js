@@ -2,7 +2,7 @@ const version = '8.5.0';
 if (process.version < version) throw new Error('Node 8.5.0 or higher is required. Update Node on your system.');
 require('./modules/Prototypes.js');
 
-const Discord = require('discord.js');
+const { Client, Collection } = require('discord.js');
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const Enmap = require('enmap');
@@ -12,7 +12,7 @@ const path = require('path');
 const fs = require('fs');
 const Idiot = require('idiotic-api');
 
-class Custodian extends Discord.Client {
+class Custodian extends Client {
   constructor(options) {
     super(options);
 
@@ -22,6 +22,7 @@ class Custodian extends Discord.Client {
     this.playlists = new Enmap();
     this.commands = new Enmap();
     this.aliases = new Enmap();
+    this.ratelimits = new Collection();
 
     this.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
     this.consent = new Enmap({provider: new EnmapLevel({name: 'consent'})});

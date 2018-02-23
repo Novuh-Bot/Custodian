@@ -7,7 +7,8 @@ class Skip extends Command {
       description: 'Skips the current song.',
       category: 'Music',
       guildOnly: true,
-      usage: 'skip'
+      usage: 'skip',
+      cooldown: 10
     });
   }
   

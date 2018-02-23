@@ -8,7 +8,8 @@ class Stop extends Command {
       category: 'Music',
       guildOnly: 'true',
       usage: 'stop',
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 10
     });
   }
 

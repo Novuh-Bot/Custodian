@@ -20,7 +20,8 @@ class Google extends Command {
       extended: 'Searches Google for your question.',
       aliases: ['g'],
       botPerms: ['EMBED_LINKS'],
-      permLevel: 'Bot Admin'
+      permLevel: 'Bot Admin',
+      cooldown: 30
     });
   }
 

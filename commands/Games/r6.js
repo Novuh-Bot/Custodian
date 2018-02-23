@@ -12,7 +12,8 @@ class r6 extends Command {
       category: 'Games',
       usage: 'r6 <username> <platform>',
       botPerms: ['SEND_MESSAGES', 'EMBED_LINKS'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 30
     });
   }
 
@@ -25,11 +26,6 @@ class r6 extends Command {
     const msg = await message.channel.send(`Fetching the stats of ${username}.`);
     R6.stats(username, platform).then(response => {
       const stats = inspect(response, {depth:7});
-      console.log(stats);
-      const rankedPlaytime = moment(response.player.stats.ranked.playtime).format('h:mm:ss');
-      const casualPlaytime = moment(response.player.stats.casual.playtime).format('h:mm:ss');
-      const playtime = response.player.stats.ranked.playtime + response.player.stats.casual.playtime;
-      const overallPlaytime = moment(playtime).format('h:mm:ss');
       const embed = new RichEmbed()
         .setAuthor(`${response.player.username}'s stats`, message.author.displayAvatarURL)
         .setColor('RANDOM')
@@ -51,9 +47,6 @@ class r6 extends Command {
         .addField('Total Bullets Hit', response.player.stats.overall.bullets_hit, true)
         .addField('Total Headshots', response.player.stats.overall.headshots, true)
         .addField('Overall KDR', response.player.stats.ranked.kd + response.player.stats.casual.kd, true);
-        // .addField('Total Ranked Playtime', rankedPlaytime, true)
-        // .addField('Total Casual Playtime', casualPlaytime, true)
-        // .addField('Total Playtime', overallPlaytime, true);
       msg.delete();
       message.channel.send({ embed });
     }).catch(error => {

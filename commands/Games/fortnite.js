@@ -13,7 +13,8 @@ class Fortnite extends Command {
       usage: 'fortnite <pc | xbl | psn> <username>',
       aliases: ['fort', 'nite', 'fn'],
       botPerms: ['SEND_MESSAGES', 'EMBED_LINKS'],
-      permLevel: 'Bot Owner'
+      permLevel: 'Bot Owner',
+      cooldown: 60
     });
   }
 

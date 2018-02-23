@@ -10,7 +10,8 @@ class Urban extends Command {
       category: 'Fun',
       usage: 'urban <word:string> [result number:integer]',
       botPerms: ['SEND_MESSAGES'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 20
     });
   }
 

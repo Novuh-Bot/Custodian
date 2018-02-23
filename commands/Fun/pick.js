@@ -9,7 +9,8 @@ class Pick extends Command {
       usage: 'pick <option:string>, <option:string>, [option:string]',
       extended: 'This command will help you select out of a list of supplied options, separated by a comma.',
       aliases: ['choose'],
-      botPerms: ['SEND_MESSAGES']
+      botPerms: ['SEND_MESSAGES'],
+      cooldown: 10
     });
   }
 

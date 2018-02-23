@@ -10,7 +10,8 @@ class Achievement extends Command {
       usage: 'achievement [member:user] <text:string>',
       extended: 'Either mention a user with text to give the achievement their user avatar, or just supply text for your own achievement.',
       aliases: ['get', 'achieveget', 'achievementget'],
-      botPerms: ['ATTACH_FILES']
+      botPerms: ['ATTACH_FILES'],
+      cooldown: 10
     });
   }
 

@@ -40,6 +40,13 @@ module.exports = class {
     const cmd = this.client.commands.get(command) || this.client.commands.get(this.client.aliases.get(command));
     if (!cmd) return;
 
+    const rateLimit = await this.client.ratelimit(message, level, cmd.help.name, cmd.conf.cooldown); 
+    
+    if (typeof rateLimit == 'string') {
+      this.client.log('Log', `${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) got ratelimited while running command ${cmd.help.name}`);
+      return message.channel.send(`Please wait ${rateLimit.toPlural()} to run this command.`); //return stop command from executing
+    }
+    
     if (cmd && !message.guild && cmd.conf.guildOnly)
       return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
 

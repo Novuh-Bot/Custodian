@@ -15,7 +15,8 @@ class Play extends Command {
       category: 'Music',
       usage: 'play <video:string>',
       botPerms: ['CONNECT', 'SPEAK', 'SEND_MESSAGES'],
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 10
     });
   }
 

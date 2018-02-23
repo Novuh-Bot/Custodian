@@ -8,7 +8,8 @@ class Resume extends Command {
       category: 'Music',
       guildOnly: 'true',
       usage: 'resume',
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 10
     });
   }
 

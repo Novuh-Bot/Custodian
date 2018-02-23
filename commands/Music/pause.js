@@ -8,7 +8,8 @@ class Pause extends Command {
       category: 'Music',
       guildOnly: 'true',
       usage: 'pause',
-      permLevel: 'User'
+      permLevel: 'User',
+      cooldown: 10
     });
   }
 
