@@ -2,12 +2,11 @@
 /node_modules/
 /data/
 /VPS/
+/util/
 
 
 # Specific Files
-package-lock.json
 config.js
-/VPS/config.js
 launcher.js
 emote.png
 emote.gif
