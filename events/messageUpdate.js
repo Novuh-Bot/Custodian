@@ -22,7 +22,6 @@ module.exports = class {
     if (!oldMessage || !oldMessage.id || !oldMessage.content || !oldMessage.guild) return;
     const channel = oldMessage.guild.channels.find('name', 'raw-logs');
     if (!channel) return;
-    const clean = `\`[${moment(oldMessage.createdAt).format('h:mm:ss')}]\` 📝 ${oldMessage.author.tag} (\`${oldMessage.author.id}\`) Message Edited in **#${oldMessage.channel.name}**:\n**B**: ${oldMessage.cleanContent}\n**N**: ${newMessage.cleanContent}`;
-    channel.send(clean.cleanContent);
+    channel.send(`\`[${moment(oldMessage.createdAt).format('h:mm:ss')}]\` 📝 ${oldMessage.author.tag} (\`${oldMessage.author.id}\`) Message Edited in **#${oldMessage.channel.name}**:\n**B**: ${oldMessage.cleanContent}\n**N**: ${newMessage.cleanContent}`);
   }
 };
