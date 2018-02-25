@@ -9,7 +9,7 @@ class Eval extends Command {
       name: 'eval',
       description: 'Evaluates arbitrary Javascript.',
       category: 'System',
-      usage: 'eval <expression:string>',
+      usage: '<expression:string>',
       extended: 'This is an extremely dangerous command, use with caution and never eval stuff strangers tell you.',
       aliases: ['ev'],
       permLevel: 'Bot Owner'
@@ -27,13 +27,13 @@ class Eval extends Command {
     try {
       let result = eval(code);
       syncTime = stopwatch.friendlyDuration;
-      if (output instanceof Promise || (Boolean(result) && typeof result.then === 'function' && typeof result.catch === 'function')) {
+      if (result instanceof Promise || (Boolean(result) && typeof result.then === 'function' && typeof result.catch === 'function')) {
         stopwatch.restart();
         result = await result;
         asyncTime = stopwatch.friendlyDuration;
       }
       result = inspect(result, { depth: 0, maxArrayLength: null });
-      result = output.replace(filter, '[TOKEN]');
+      result = result.replace(filter, '[TOKEN]');
       result = this.clean(result);
       const type = typeof(result);
       if (result.length < 1950) {
