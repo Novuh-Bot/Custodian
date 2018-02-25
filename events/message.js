@@ -33,7 +33,8 @@ module.exports = class {
     }
 
     if (!prefix && message.channel.type === 'dm') { 
-      this.client.log('DM', `${message.author.username} ⇒ ${this.client.user.username}: ${message}`);
+      // this.client.log('DM', `${message.author.username} ⇒ ${this.client.user.username}: ${message}`);
+      this.client.log('DM', `${message.author.username} ⟹  ${this.client.user.username}: ${message}`);
     }
 
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
