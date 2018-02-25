@@ -31,7 +31,7 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
         
       - run:
-          name: install deps
+          name: run eslint
           command: |
             echo "Running ESLint"
             npm test

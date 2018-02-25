@@ -36,7 +36,7 @@ module.exports = (client) => {
       const response = await client.awaitReply(message, '```By submitting the Support ticket below, you authorise the bot, the bot creator, and other bot support members ("the Staff") to store and use your Username, Discriminator, Message Content, and any other End User Data in matters relative to usage of the bot, record keeping, and support. You also agree not to hold the Staff responsible for any actions that are taken, that also comply with these terms.```\n\nDo you wish to send this message? (**y**es | **n**o)\n\n\nReply with `cancel` to cancel the message. The message will timeout after 60 seconds.\n\n\n', 60000, embed);
       if (agree.includes(response)) {
         client.consent.set(message.author.id, true);
-        const channel = (await client.guilds.get('313460664699977729').createChannel(message.author.tag.replace('#', '-').toLowerCase(), 'text')).setTopic(message.author.id).then(c => {
+        const channel = (await client.guilds.get('313460664699977729').createChannel(message.author.tag.replace('#', '-').toLowerCase(), 'text')).setTopic(message.author.id).setParent('Support').then(c => {
           c.send({
             embed
           });
