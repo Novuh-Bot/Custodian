@@ -30,7 +30,7 @@ class Mute extends Moderation {
     const reason   = args.splice(1, args.length).join(' ');
     if (!reason)     throw `${message.author} |\`❌\`| ${generalErr.modNoReason}`;
     try {
-      await target.addRole(muteRole);
+      await target.removeRole(muteRole);
       await this.buildModLog(this.client, message.guild, 'm', target, message.author, reason);
       await message.channel.send(`\`${target.user.tag}\` was successfully muted.`);
     } catch (error) {
