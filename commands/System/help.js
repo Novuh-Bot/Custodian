@@ -33,14 +33,14 @@ class Help extends Command {
         output += `${settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: ${c.help.description}\n`;
       });
       await message.channel.send(output, {code:'asciidoc', split: { char: '\u200b' }});
-      const TOS = new RichEmbed()
+      message.buildEmbed()
         .setAuthor('Custodian', `${this.client.user.displayAvatarURL}`)
         .setTitle('Custodian Terms of Service')
         .setFooter('\n\nCustodian © 2018 OGNovuh', `${this.client.user.displayAvatarURL}`)
         .setTimestamp()
         .setDescription('By using this bot, Custodian, or joining/being in any guild/server that the bot, Custodian, is in, you automatically agree that you allow the bot, Custodian, to do the following.')
-        .addField('\u200B', 'Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames');
-      message.channel.send({ embed: TOS });
+        .addField('\u200B', 'Collect/Store the following data on you:\n➢ Username and Discriminator\n➢ User ID\n➢ Deleted Messages\n➢ DMs\n➢ Edited Messages\n➢ Message IDs\n➢ Infractions\n➢ Nicknames')
+        .send();
     } else {
       let command = args[0];
       if (this.client.commands.has(command)) {

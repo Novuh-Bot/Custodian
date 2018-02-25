@@ -32,7 +32,9 @@ module.exports = class {
       return message.channel.send(mentionMsg);
     }
 
-    if (!prefix) return;
+    if (!prefix && message.channel.type === 'dm') { 
+      this.client.log('DM', `${message.author.username} ⇒ ${this.client.user.username}: ${message}`);
+    }
 
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();    
@@ -44,7 +46,7 @@ module.exports = class {
     
     if (typeof rateLimit == 'string') {
       this.client.log('Log', `${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) got ratelimited while running command ${cmd.help.name}`);
-      return message.channel.send(`Please wait ${rateLimit.toPlural()} to run this command.`); //return stop command from executing
+      return message.channel.send(`Please wait ${rateLimit.toPlural()} to run this command.`);
     }
     
     if (cmd && !message.guild && cmd.conf.guildOnly)
@@ -68,6 +70,7 @@ This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd
     }
     
     this.client.log('Log', `[${moment(message.createdAt).format('h:mm:ss')}] ${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
+    console.log(message.type);
 
     if (message.channel.type === 'text') {      
       const mPerms = message.channel.permissionsFor(message.guild.me).missing(cmd.conf.botPerms);
