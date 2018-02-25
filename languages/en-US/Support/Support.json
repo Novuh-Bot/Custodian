@@ -1,4 +1,4 @@
 {
-  "categoryDesc": "This is a category locked to Bot Support members.",
+  "supportNoConsent": "I cannot contact this user until they consent.",
   "closeMsg": "This is an automated response letting you know that this ticket is being closed.\nIf you need more support with this issue, please open a new ticket."
 }

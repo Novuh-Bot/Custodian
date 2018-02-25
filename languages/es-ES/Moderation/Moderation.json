@@ -1,4 +1,7 @@
 {
+  "incorrectArgUsage": "Uso de comando inválido, por favor use esto como un punto de referencia.",
+  "incorrectModCmdUsage": "El uso de comandos no es válido, debe mencionar a alguien para usar este comando.",
+  "modNoReason": "El uso de comandos no es válido, debe proporcionar un motivo para usar este comando.",
   "blacklistNoMntn": "Debe proporcionar una identificación de usuario o mencionarla para ponerla en una lista negra.",
   "blacklistExists": "Ese usuario ya está en la lista negra.",
   "blacklistYrslf": "No puedes ponerte en la lista negra. ~~ idiota ~~",

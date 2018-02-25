@@ -1,4 +1,7 @@
 {
+  "incorrectModCmdUsage": "Utilisation de la commande invalide, vous devez mentionner quelqu'un pour utiliser cette commande.",
+  "incorrectArgUsage": "Utilisation de la commande invalide, utilise ceci comme référence.",
+  "modNoReason": "Utilisation de la commande invalide, tu dois indiquer une raison pour utiliser cette commande.",
   "blacklistNoMntn": "Tu dois indiquer un id d'utilisateur ou une mention pour le blacklister.",
   "blacklistExists": "Cette utilisateur est déjà blacklisté.",
   "blacklistYrslf": "Tu ne peux pas te blacklister toi-même. ~~crétin~~",

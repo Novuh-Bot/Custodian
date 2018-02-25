@@ -22,13 +22,11 @@ class Weather extends Command {
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     try {
       const settings = this.client.settings.get(message.guild.id);
-      const serverLang = `${settings.lang}`;
-      const lang = require(`../../languages/${serverLang}/${this.help.category}/${this.help.category}.json`);
-      const generalErr = require(`../../languages/${serverLang}/general.json`);
-
-      const _message = await message.reply(`${lang.weatherReply}`);
+      
+      const _message = await message.lang(message, lang, this.help.category, 'weatherReply');
       if (!args[0]) {
-        _message.edit(`${lang.weatherNoArgs}`);
+        _message.delete();
+        message.lang(message, lang, this.help.category, 'weatherNoArgs');
       } else {
         const cb = '```';
         snekfetch.get(`http://wttr.in/${args.join(' ').replace(' ', '%20')}?T0`).then((data) => {

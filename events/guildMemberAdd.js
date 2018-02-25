@@ -1,3 +1,4 @@
+const { Attachment } = require('discord.js');
 const moment = require('moment');
 const { yorkAPIKey } = require('../config.js');
 
@@ -21,8 +22,7 @@ module.exports = class {
     const welcomeMessage = settings.welcomeMessage.replace('{{user}}', member.user.tag);
     member.guild.channels.find('name', settings.welcomeChannel).send(welcomeMessage).catch(console.error);
 
-    const { body } = await snekfetch.get(`http://api.anidiots.guide/api/gearz_welcome/?bot=${member.user.bot}&avatar=${member.user.displayAvatarURL({format:'png', size:128})}&usertag=${encodeURIComponent(`${member.user.tag}`)}`).set('token', `${yorkAPIKey}`);
-
-    await channel.send({ files: [{ attachment: body, name: 'welcome.png' }] });
+    const { user } = member;
+    await guild.channels.find('name', settings.welcomeChannel).send(new Attachment(await this.client.api.welcome('gearz', user.bot, user.tag, user.displayAvatarURL, `${guild.name}#${guild.memberCount}`), 'welcome.png'));
   }
 };

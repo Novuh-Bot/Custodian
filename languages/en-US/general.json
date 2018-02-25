@@ -1,8 +1,0 @@
-{
-  "noNSFW": "Cannot display NSFW content in a SFW channel.",
-  "incorrectArgUsage": "Invalid command usage, please use this as a reference point.",
-  "incorrectModCmdUsage": "Invalid command usage, you must mention someone to use this command.",
-  "modNoReason": "Invalid command usage, you must supply a reason to use this command.",
-  "NaN": "Not a valid amount.",
-  "supportNoConsent": "I cannot contact this user until they consent."
-}

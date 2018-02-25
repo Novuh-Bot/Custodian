@@ -27,10 +27,8 @@ class Conf extends Command {
   // Retrieve Default Values from the default settings in the bot.
     const defaults = this.client.settings.get('default');
     const settings = this.client.settings.get(message.guild.id);
-    const serverLang = `${settings.lang}`;
-    const lang = require(`../../languages/${serverLang}/${this.help.category}/${this.help.category}.json`);
-    const generalErr = require(`../../languages/${serverLang}/general.json`);
-  
+    const lang = settings.lang;
+    
     // Adding a new key adds it to every guild (it will be visible to all of them)
     if (action === 'add') {
       if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyAdd');

@@ -1,3 +1,4 @@
 {
+  "supportNoConsent": "No puedo contactar a este usuario hasta que consientan.",
   "closeMsg": "Esta es una respuesta automática que le informa que este ticket se cierra.\nSi necesita más ayuda con este problema, abra un nuevo ticket."
 }

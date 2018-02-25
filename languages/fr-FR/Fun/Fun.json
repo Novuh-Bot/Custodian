@@ -1,4 +1,5 @@
 {
+  "noNSFW": "Impossible d'envoyer du contenu NSFW dans un salon SFW.",
   "fightNoMntn": "Tu dois choisir quelqu'un à combattre.",
   "pickNoTxt": "Utilisation de la commande invalide, tu dois indiquer des choses à départager.",
   "pickInvalidAmnt": "Utilisation de la commande invalide, tu dois indiquer au moins deux choses à départager.",

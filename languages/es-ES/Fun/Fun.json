@@ -1,4 +1,5 @@
 {
+  "noNSFW": "No se puede mostrar el contenido NSFW en un canal SFW.",
   "fightNoMntn": "Debes elegir a alguien para pelear.",
   "pickNoTxt": "El uso de comandos no es válido, debe proporcionar elementos para elegir.",
   "pickInvalidAmnt": "El uso de comandos no es válido, debe proporcionar al menos dos elementos para elegir.",

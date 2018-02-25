@@ -28,7 +28,7 @@ class Play extends Command {
     
     const youtube = new ytapi(config.youtubeAPIKey);
     const song = args.join(' ');
-    if (!song.length) throw `${message.author} |\`❌\`| ${lang.musicIncorrectURL}`;
+    if (!song.length) return message.lang(message, lang, this.help.category, 'musicIncorrectURL');
     
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guide.voiceConnection.channel : null);
     if (!voiceChannel || (!message.member.voiceChannel && message.author.permLevel < 2)) {

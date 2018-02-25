@@ -21,15 +21,15 @@ class Twitch extends Command {
     if (data.stream === null) {
       message.reply('Due to the limitations of the Twitch API, I cannot get information on an offline user. We apologize for the inconvience.');
     } else {
-      const embed = new RichEmbed()
+      message.buildEmbed()
         .setAuthor(data.stream.channel.display_name, data.stream.channel.logo, data.stream.channel.url)
         .setTitle(data.stream.channel.status)
         .setThumbnail(data.stream.channel.logo)
         .setImage(data.stream.preview.large)
         .setURL(data.stream.channel.url)
         .addField('Category', data.stream.channel.game, true)
-        .addField('Viewers', data.stream.viewers, true);
-      message.channel.send({ embed });
+        .addField('Viewers', data.stream.viewers, true)
+        .send();
     }
   }
 }
