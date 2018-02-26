@@ -18,7 +18,7 @@ class Custodian extends Client {
 
     this.config = require('./config.js');
     
-    this.api = new Idiot.Client(this.config.yorkAPIKey);
+    this.api = new Idiot.Client(this.config.apiKeys.yorkAPIKey);
     
     this.queue = {};
     this.playlists = new Enmap();

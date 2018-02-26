@@ -23,7 +23,7 @@ class Play extends Command {
   async run(message, args, level) {
     const { lang } = this.client.settings.get(message.guild.id);
     
-    const youtube = new ytapi(config.youtubeAPIKey);
+    const youtube = new ytapi(this.client.config.apiKeys.youtubeAPIKey);
     const song = args.join(' ');
     if (!song.length) return message.lang(message, lang, this.help.category, 'musicIncorrectURL');
     

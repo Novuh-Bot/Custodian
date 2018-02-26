@@ -1,6 +1,4 @@
 const Command = require('../../base/Command.js');
-const { twitchId, twitchSecret } = require('../../config.js');
-const twitch = new (require('twitch.tv-api'))({id: twitchId, secret: twitchSecret});
 const { RichEmbed } = require('discord.js');
 
 class Twitch extends Command {
@@ -17,6 +15,9 @@ class Twitch extends Command {
   }
 
   async run(message, [user], level) {
+    const twitchId = this.client.config.twitchCredentials.id;
+    const twitchSecret = this.client.config.twitchCredentials.secret;
+    const twitch = new (require('twitch.tv-api'))({id: twitchId, secret: twitchSecret});    
     const data = await twitch.getUser(user);
     if (data.stream === null) {
       message.reply('Due to the limitations of the Twitch API, I cannot get information on an offline user. We apologize for the inconvience.');
