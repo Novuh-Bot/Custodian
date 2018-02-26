@@ -10,3 +10,6 @@ config.js
 launcher.js
 emote.png
 emote.gif
+
+# Commands
+commands/System/ignore.js

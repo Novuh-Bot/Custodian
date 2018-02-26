@@ -14,6 +14,7 @@ module.exports = class {
       this.client.users.delete('1');
     }
 
+    if (!this.client.ignoredusers.get('list')) this.client.ignoredusers.set('list', []);
   
     this.client.log('Log', `${this.client.user.tag}, ready to serve ${this.client.users.size} users in ${this.client.guilds.size} servers on version ${bot.version}.`, 'Ready!');
 

@@ -17,16 +17,19 @@ class Custodian extends Client {
     super(options);
 
     this.config = require('./config.js');
+    
     this.api = new Idiot.Client(this.config.yorkAPIKey);
+    
     this.queue = {};
     this.playlists = new Enmap();
     this.commands = new Enmap();
     this.aliases = new Enmap();
+    
     this.ratelimits = new Collection();
 
-    this.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
-    this.consent = new Enmap({provider: new EnmapLevel({name: 'consent'})});
-    this.reminders = new Enmap({provider: new EnmapLevel({name: 'reminders'})});
+    this.settings = new Enmap({ provider: new EnmapLevel({ name: 'settings' }) });
+    this.consent = new Enmap({ provider: new EnmapLevel({ name: 'consent' }) });
+    this.reminders = new Enmap({ provider: new EnmapLevel({ name: 'reminders' }) });
   }
 
   permlevel(message) {

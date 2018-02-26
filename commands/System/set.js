@@ -59,7 +59,7 @@ class Set extends Command {
 
     if (action === 'get') {
       if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyView');
-      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
+      if (!settings[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
       message.reply(`The value of ${key} is currently ${settings[key]}`);
       
     } else {

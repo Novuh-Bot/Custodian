@@ -7,6 +7,7 @@ module.exports = class {
   }
 
   async run(oldMessage, newMessage) {
+    if (config.ignoredUsers.includes(oldMessage.author.id)) return;
     if (oldMessage.author.bot) {
       return false;
     }
