@@ -32,7 +32,9 @@ module.exports = class {
       return message.channel.send(mentionMsg);
     }
 
-    if (!prefix) return;
+    if (!prefix && message.channel.type === 'dm') { 
+      this.client.log('DM', `${message.author.username} ⟹  ${this.client.user.username}: ${message}`);
+    } else if (!prefix) return;
 
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();    
