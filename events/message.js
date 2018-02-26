@@ -33,7 +33,6 @@ module.exports = class {
     }
 
     if (!prefix && message.channel.type === 'dm') { 
-      // this.client.log('DM', `${message.author.username} ⇒ ${this.client.user.username}: ${message}`);
       this.client.log('DM', `${message.author.username} ⟹  ${this.client.user.username}: ${message}`);
     }
 
@@ -71,8 +70,7 @@ This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd
     }
     
     this.client.log('Log', `[${moment(message.createdAt).format('h:mm:ss')}] ${this.client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`, 'CMD');
-    console.log(message.type);
-
+    
     if (message.channel.type === 'text') {      
       const mPerms = message.channel.permissionsFor(message.guild.me).missing(cmd.conf.botPerms);
       if (mPerms.includes('SEND_MESSAGES')) return;

@@ -6,6 +6,7 @@ class Purge extends Moderation {
       name: 'purge',
       description: 'It purges between 2 and 99 messages.',
       usage: 'purge [member:user] <number:integer>',
+      category: 'Moderation',
       extended: 'This command will either purge a mentioned users messages (between 2 and 99), or the bots own messages.',
       aliases: ['prune'],
       botPerms: ['SEND_MESSAGES', 'MANAGE_MESSAGES'],
@@ -17,12 +18,11 @@ class Purge extends Moderation {
     const settings = this.client.settings.get(message.guild.id);
     const serverLang = `${settings.lang}`;
     const lang = require(`../../languages/${serverLang}/${this.help.category}/${this.help.category}.json`);
-    const generalErr = require(`../../languages/${serverLang}/general.json`);
     
     const user = message.mentions.users.first();
     const amount = parseInt(message.content.split(' ')[1]) ? parseInt(message.content.split(' ')[1]) : parseInt(message.content.split(' ')[2]);
-    if (!amount) return message.reply(`${lang.purgeNoAmnt}`);
-    if (!amount && !user) return message.reply(`${lang.purgeIncorrectUsage}`);
+    if (!amount) return message.lang(message, lang, this.help.category, 'purgrNoAmnt');
+    if (!amount && !user) return message.lang(message, lang, this.help.category, 'purgeIncorrectUsage');
     message.channel.fetchMessages({ limit: amount }).then((messages) => {
       if (user) {
         const filterBy = user ? user.id : this.client.user.id;

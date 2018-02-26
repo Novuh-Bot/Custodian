@@ -16,12 +16,11 @@ class Ban extends Moderation {
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     const { lang, prefix, modLogChannel } = this.client.settings.get(message.guild.id);
-    // const lang = `${settings.lang}`;
 
     const channel  = message.guild.channels.exists('name', modLogChannel);
-    if (!channel)    return message.lang(message, lang, this.help.category, 'channelNoExist');
+    if (!channel)    return message.reply(`|\`❌\`| I cannot find the \`${modLogChannel}\` channel. Try running \`${prefix}set edit modLogChannel logs\`.`);
     const target   = await this.verifyMember(message.guild, args[0]);
-    if (!target)     throw `${message.author} |\`❌\`| ${generalErr.incorrectModCmdUsage}.`;
+    if (!target)     return message.lang(message, lang, this.help.category, 'incorrectModCmdUsage');
     const modLevel = this.modCheck(message, args[0], level);
     if (typeof modLevel === 'string') return message.reply(modLevel);
     const reason   = args.splice(1, args.length).join(' ');

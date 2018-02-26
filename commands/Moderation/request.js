@@ -22,9 +22,9 @@ class Request extends Moderation {
     
     const action = args[0];
     const author = message.author.tag;
-    if (!action) throw `${message.author} |\`❌\`| ${lang.requestNoActn}`;
+    if (!action) return message.lang(message, lang, this.help.category, 'requestNoActn');
     const reason = args.splice(1, args.length).join(' ');
-    if (!reason) `${message.author} |\`❌\`| ${generalErr.modNoReason}`;
+    if (!reason) return message.lang(message, lang, this.help.category, 'modNoReason');
     try {
       await this.buildRequest(this.client, message.guild, author, action, reason);
     } catch (error) {
