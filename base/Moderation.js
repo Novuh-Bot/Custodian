@@ -28,12 +28,12 @@ class Moderation extends Command {
       const modBot = message.guild.me;
       const id = await this.verifyUser(user);
       const target = await message.guild.fetchMember(id).catch(() => { message.channel.send(`${message.author}, |\`❓\`| Cannot find member in guild.`); });
-      if (target.highestRole.position >= modBot.highestRole.position) message.channel.send(`${message.author}, |\`🛑\`| You cannot perform that action on someone of equal, or higher role.`);
-      if (message.author.id === id) message.channel.send(`${message.author}, |\`🛑\`| You cannot moderate yourself.`);
+      if (target.highestRole.position >= modBot.highestRole.position) return message.channel.send(`${message.author}, |\`🛑\`| You cannot perform that action on someone of equal, or higher role.`);
+      if (message.author.id === id) return message.channel.send(`${message.author}, |\`🛑\`| You cannot moderate yourself.`);
       const author = target.user;
       const member = target;
       const msg = { author:author, member:member, guild: message.guild, client: this.client, channel: message.channel };
-      if (level <= this.client.permlevel(msg)) message.channel.send(`${message.author}, |\`🛑\`| You cannot perform that action on someone of equal, or a higher permission level.`);
+      if (level <= this.client.permlevel(msg)) return message.channel.send(`${message.author}, |\`🛑\`| You cannot perform that action on someone of equal, or a higher permission level.`);
       return target;
     } catch (error) {
       throw error;
