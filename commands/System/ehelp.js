@@ -3,6 +3,8 @@ const RichDisplay = require('../../modules/RichDisplay.js');
 
 const { RichEmbed } = require('discord.js');
 
+const perpage = 10;
+
 class Ehelp extends Command {
   constructor(client) {
     super(client, {
@@ -16,6 +18,11 @@ class Ehelp extends Command {
   }
 
   async run(message, [type, page], level) {
+    const display = new RichDisplay(new RichEmbed()
+      .setColor(message.guild.me.highestRole.color || 5198940)
+      .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL)
+    );
+    
     let currentCategory = '';
 
     const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
@@ -23,7 +30,7 @@ class Ehelp extends Command {
     const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
 
 
-    const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
+    const sorted = this.client.commands.sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
     if (!type) {
       const description = `Command category list\n\nUse \`${message.settings.prefix}help 
       <category>\` to find commands for a specific category`;
@@ -34,12 +41,7 @@ class Ehelp extends Command {
           return `\n\`${message.settings.prefix}help ${cat.toLowerCase()}\` | Shows ${cat} commands`;
         }
       }).join('');
-      const display = new RichDisplay(new RichEmbed()
-        .setColor(message.guild.me.highestRole.color || 5198940)
-        .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL)
-        .setTitle('Command Category List')
-      );
-      display.addPage(template => template.setDescription(output));
+      display.addPage(template => template.setDescription(output).setTitle('Command Category List'));
     } else {
       let n = 0;
       sorted.forEach(c => {
@@ -64,13 +66,6 @@ class Ehelp extends Command {
       }
     
       if (num) {
-        const display = new RichDisplay(new RichEmbed()
-          .setColor(message.guild.me.highestRole.color || 5198940)
-          .setFooter(`Requested by ${message.author.tag}`, message.author.displayAvatarURL)
-        );
-        embed.setTitle('Command category help')
-          .setDescription(`A list of commands in the ${type} category.\n(Total of ${num} commands in this category)\n\nTo get help on a specific command do \`${message.settings.prefix}help <command>\`\n\n${num > 10 && pg === 1 ? `To view more commands do\` ${message.settings.prefix}help <category> 2\`` : '' }`)
-          .addField('Commands', output);
         display.addPage(template => template.setDescription(`A list of commands in the ${type} category.\n(Total of ${num} commands in this category)\n\nTo get help on a specific command do \`${message.settings.prefix}help <command>\`\n\n${num > 10 && pg === 1 ? `To view more commands do\` ${message.settings.prefix}help <category> 2\`` : '' }`).addField('Commands', output));
       }
     }

@@ -9,6 +9,8 @@ module.exports = class {
 
   async run(oldMessage, newMessage) {
     if (config.ignoredUsers.includes(oldMessage.author.id)) return;
+    if (config.ignoredChannels.includes(oldMessage.channel.id)) return;
+
     if (oldMessage.author.bot) {
       return false;
     }

@@ -38,6 +38,7 @@ class RichDisplay {
       forward: '▶',
       last: '⏭',
       info: 'ℹ',
+      jump: '🔢',
       stop: '⏹'
     };
     this.footered = false;
@@ -86,6 +87,7 @@ class RichDisplay {
     const emojis = this._determineEmojis(
       [],
       !('stop' in options) || ('stop' in options && options.stop),
+      !('jump' in options) || ('jump' in options && options.jump),
       !('firstLast' in options) || ('firstLast' in options && options.firstLast),
     );
     const message = msg.editable ? await msg.edit('', { embed: this.pages[options.startPage || 0] }) : await msg.channel.send(this.pages[options.startPage || 0]);

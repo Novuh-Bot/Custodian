@@ -22,8 +22,8 @@ class Custodian extends Client {
     
     this.queue = {};
     this.playlists = new Enmap();
-    this.commands = new Enmap();
-    this.aliases = new Enmap();
+    this.commands = new Collection();
+    this.aliases = new Collection();
     
     this.ratelimits = new Collection();
 

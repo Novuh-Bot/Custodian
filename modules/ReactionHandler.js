@@ -51,8 +51,9 @@ class ReactionHandler extends ReactionCollector {
     this.reactionsDone = false;
 
     this._queueEmojiReactions(emojis.slice(0));
-    this.on('collect', (reaction, user) => {
-      reaction.remove(user);
+    this.on('collect', (user, reaction) => {
+      console.log(user);
+      reaction.remove(reaction.users.second());
       this[this.methodMap.get(reaction.emoji.name)](user);
     });
     this.on('end', () => {
