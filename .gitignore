@@ -13,3 +13,6 @@ emote.gif
 
 # Commands
 commands/System/ignore.js
+
+# Events
+events/messageReactionAdd.js

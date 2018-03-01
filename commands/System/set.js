@@ -41,7 +41,7 @@ class Set extends Command {
   
     if (action === 'del' || action === 'reset') {
       if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyDel');
-      if (!defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
+      if (!settings[key]) return message.lang(message, lang, this.help.category, 'settingsKeyNotExist');
       
       const response = await this.client.awaitReply(message, `Are you sure you want to reset \`${key}\` to the default \`${defaults[key]}\`?`);
 
