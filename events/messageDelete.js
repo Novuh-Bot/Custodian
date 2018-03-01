@@ -10,7 +10,7 @@ module.exports = class {
   async run(message, client) {
 
     if (config.ignoredUsers.includes(message.author.id)) return;
-    if (config.ignoredChannel.includes(message.channel.id)) return;
+    if (config.ignoredChannels.includes(message.channel.id)) return;
     
     if (!message || !message.id || !message.content || !message.guild) return;
     const channel = message.guild.channels.find('name', 'raw-logs');
