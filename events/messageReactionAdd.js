@@ -10,7 +10,7 @@ module.exports = class {
         'description': description, 
         'author': { 
           'name': author,
-          'url': authorURL
+          'icon_url': authorURL
         },
         'image': { 
           'url': image 
@@ -47,7 +47,7 @@ module.exports = class {
         await starMsg.edit({ embed });
       }
       if (!stars) {
-        if (!reaction.message.guild.channels.exists('name', this.client.settings.get(reaction.message.guild.id).starboardChannel)) throw `It appears that you do not have a \`${client.settings.get(reaction.message.guild.id).starboardChannel}\` channel.`;
+        if (!reaction.message.guild.channels.exists('name', this.client.settings.get(reaction.message.guild.id).starboardChannel)) throw `It appears that you do not have a \`${this.client.settings.get(reaction.message.guild.id).starboardChannel}\` channel.`;
         const image = reaction.message.attachments.size > 0 ? await this.extension(reaction, reaction.message.attachments.array()[0].url) : '';
         if (image === '' && reaction.message.cleanContent.length < 1) return reaction.message.channel.send(`${user}, you cannot star an empty message.`);
         const embed = await this.starEmbed(15844367, reaction.message.cleanContent, reaction.message.author.tag, reaction.message.author.displayAvatarURL, new Date(), `⭐ 1 | ${reaction.message.id}`, `${image}`);
