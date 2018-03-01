@@ -20,7 +20,7 @@ class Set extends Command {
 
     if (action === 'add') {
       if (!key) return message.lang(message, lang, this.help.category, 'settingsNoKeyAdd');
-      if (defaults[key]) return message.lang(message, lang, this.help.category, 'settingsKeyAlrdyExist');
+      if (settings[key]) return message.lang(message, lang, this.help.category, 'settingsKeyAlrdyExist');
       if (value.length < 1) return message.lang(message, lang, this.help.category, 'settingsNoKeyValue');
 
       settings[key] = value.join(' ');
