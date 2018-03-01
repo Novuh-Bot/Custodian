@@ -13,7 +13,7 @@ class Ehelp extends Command {
       category: 'System',
       cooldown: 30,
       botPerms: ['ADD_REACTIONS', 'EMBED_LINKS', 'SEND_MESSAGES'],
-      permLevel: 'User'
+      permLevel: 'Bot Owner'
     });
   }
 
