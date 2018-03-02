@@ -10,7 +10,7 @@ module.exports = class {
         'description': description, 
         'author': { 
           'name': author,
-          'url': authorURL
+          'icon_url': authorURL
         },
         'image': { 
           'url': image 
@@ -40,7 +40,7 @@ module.exports = class {
       if (stars) {
         const star = /\⭐\s([0-9]{1,3})\s\|\s([0-9]{17,20})/g.exec(stars.embeds[0].footer.text);
         const _star = stars.embeds[0];
-        const embed = await this.starEmbed(_star.color, _star.description, _star.author.name, _star.author.displayAvatarURL, _star.createdTimestamp, `⭐ ${parseInt(star[1])-1} | ${reaction.message.id}`, _star.image.url);
+        const embed = await this.starEmbed(_star.color, _star.description, _star.author.name, _star.author.displayAvatarURL, _star.createdTimestamp, `⭐ ${parseInt(star[1])-1} | ${reaction.message.id}`, `${image}`);
         const starMsg = await reaction.message.guild.channels.find('name', this.client.settings.get(reaction.message.guild.id).starboardChannel).fetchMessage(stars.id);
         await starMsg.edit({ embed });
       }
