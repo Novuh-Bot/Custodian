@@ -13,5 +13,6 @@ emote.gif
 
 # Commands
 commands/System/ignore.js
+commands/Utilities/quote.js
 
 # Events

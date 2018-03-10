@@ -20,7 +20,7 @@ class Lockdown extends Moderation {
 
     const time = args.join(' ');
     if (!time) return message.lang(message, lang, this.help.category, 'lockdownNoTime');
-    message.channel.lock(this.client, message, time);
+    message.channel.lock(this.client, message, time); 
   }
 }
 
