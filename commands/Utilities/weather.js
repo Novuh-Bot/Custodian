@@ -21,7 +21,7 @@ class Weather extends Command {
 
   async run(message, args, level) { // eslint-disable-line no-unused-vars
     try {
-      const settings = this.client.settings.get(message.guild.id);
+      const { lang } = this.client.settings.get(message.guild.id);
       
       const _message = await message.lang(message, lang, this.help.category, 'weatherReply');
       if (!args[0]) {
