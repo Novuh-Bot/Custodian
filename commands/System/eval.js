@@ -1,5 +1,5 @@
 const Command = require('../../base/Command.js');
-const Stopwatch = require('../../util/Stopwatch.js');
+const Stopwatch = require('../../modules/Stopwatch.js');
 const { inspect } = require('util');
 const { post } = require('snekfetch');
 
