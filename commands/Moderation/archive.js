@@ -17,6 +17,7 @@ class Archive extends Command {
   async run(message, args, level) {
     const amount = args[0];
     if (!amount) return message.channel.send(`${message.author}, |\`🛑\`| You must supply an integer to use this command.`);
+    await message.delete();
     try {
       const msgs = await message.channel.fetchMessages({ limit: `${amount}`})
         .then(messages => messages.map(m => `${m.createdAt} (${m.guild.id} / #${m.channel.id} / ${m.author.id}) ${m.author.tag} : ${m.cleanContent}`).join('\n'));
