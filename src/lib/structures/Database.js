@@ -20,10 +20,10 @@ module.exports.connect = function(client) {
     "case" SERIAL PRIMARY KEY,                   \
     "reason" TEXT,                               \
     "type" TEXT,                                 \
-    "moderator",                                 \
-    "moderator_id",                              \
-    "user",                                      \
-    "user_id"                                    \
+    "moderator" TEXT,                            \
+    "moderator_id" BIGSERIAL,                    \
+    "user" TEXT,                                 \
+    "user_id" BIGSERIAL                          \
     );'
   );
 
