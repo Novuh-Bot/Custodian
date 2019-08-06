@@ -9,20 +9,15 @@ module.exports = {
   debug: msg => {
     log(chalk`{bold.green DEBUG}: ${msg}`);
   },
-
+  
   info: msg => {
     log(chalk`{bold.grey INFO}: ${msg}`);
   },
 
-  load: msg => {
-    log(chalk`{bold.cyan LOADING}: ${msg}`);
+  warn: msg => {
+    log(chalk`{bold.yellow WARN}: ${msg}`);
   },
   
-
-  http: msg => {
-    log(chalk`{bold.yellow HTTP}: ${msg}`);
-  },
-
   error: (e, exit = false) => {
     if (!(e instanceof Error)) {
       exit ? log(chalk`{bold.black.bgRed FATAL}: ${e}`) : log(chalk`{bold.red ERROR}: ${e}`);
@@ -33,8 +28,12 @@ module.exports = {
     } 
   },
 
-  warn: msg => {
-    log(chalk`{bold.yellow WARN}: ${msg}`);
+  load: msg => {
+    log(chalk`{bold.cyan LOADING}: ${msg}`);
+  },
+
+  http: msg => {
+    log(chalk`{bold.yellow HTTP}: ${msg}`);
   },
 
   command: msg => {

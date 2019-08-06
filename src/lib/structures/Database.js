@@ -7,19 +7,23 @@ module.exports.connect = function(client) {
   client.logger.debug('Opening DB Connection!');
   connection.connect();
   this.query(
-    'CREATE TABLE IF NOT EXISTS guilds (      \
-     "id" BIGSERIAL PRIMARY KEY,              \
-     "name" TEXT,                             \
-     "owner" BIGSERIAL,                       \
-     "prefix" TEXT DEFAULT \'--\'             \
+    'CREATE TABLE IF NOT EXISTS guilds (         \
+     "id" BIGSERIAL PRIMARY KEY,                 \
+     "name" TEXT,                                \
+     "owner" BIGSERIAL,                          \
+     "prefix" TEXT DEFAULT \'--\'                \
      );'
   );
 
   this.query(
-    'CREATE TABLE IF NOT EXISTS members (    \
-    "id" BIGSERIAL PRIMARY KEY,              \
-    "name" TEXT,                             \
-    "infractions" ARRAY[]                    \
+    'CREATE TABLE IF NOT EXISTS infractions (    \
+    "case" SERIAL PRIMARY KEY,                   \
+    "reason" TEXT,                               \
+    "type" TEXT,                                 \
+    "moderator",                                 \
+    "moderator_id",                              \
+    "user",                                      \
+    "user_id"                                    \
     );'
   );
 
@@ -78,6 +82,22 @@ module.exports.selectGuilds = function(name) {
   return connection.query(selectGuildsQuery);
 };
 
+module.exports.updatePrefix = function(id, prefix) {
+  const updatePrefixQuery = {
+    text: 'UPDATE guilds SET prefix = $2 WHERE id = $1',
+    values: [id, prefix]
+  };
+  return connection.query(updatePrefixQuery);
+};
+
+
+module.exports.selectPrefix = function(id) {
+  const selectPrefixQuery = {
+    text: 'SELECT prefix FROM guilds WHERE id = $1',
+    values: [id]
+  };
+  return connection.query(selectPrefixQuery);
+};
 
 // Member Related Queries
 
@@ -96,25 +116,6 @@ module.exports.removeMember = function(id) {
     values: [id]
   };
   return connection.query(removeMemberQuery);
-};
-
-// Meta Related Queries
-
-module.exports.updatePrefix = function(id, prefix) {
-  const updatePrefixQuery = {
-    text: 'UPDATE guilds SET prefix = $2 WHERE id = $1',
-    values: [id, prefix]
-  };
-  return connection.query(updatePrefixQuery);
-};
-
-
-module.exports.selectPrefix = function(id) {
-  const selectPrefixQuery = {
-    text: 'SELECT prefix FROM guilds WHERE id = $1',
-    values: [id]
-  };
-  return connection.query(selectPrefixQuery);
 };
 
 // Helper Queries
