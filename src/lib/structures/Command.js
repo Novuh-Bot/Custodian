@@ -4,6 +4,7 @@ class Command {
     description = 'No description provided.',
     category = 'Miscellaneous',
     usage = 'No usage provided.',
+    _usage = '',
     guildOnly = false,
     aliases = new Array(),
     permLevel = 'User',
@@ -11,7 +12,7 @@ class Command {
     location = ''
   }) {
     this.client = client;
-    this.help = { name, description, category, usage };
+    this.help = { name, description, category, usage, _usage };
     this.conf = { guildOnly, aliases, permLevel, botPerms, location };
   }
 

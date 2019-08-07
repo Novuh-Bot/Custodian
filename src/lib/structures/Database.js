@@ -7,24 +7,36 @@ module.exports.connect = function(client) {
   client.logger.debug('Opening DB Connection!');
   connection.connect();
   this.query(
-    'CREATE TABLE IF NOT EXISTS guilds (         \
-     "id" BIGSERIAL PRIMARY KEY,                 \
-     "name" TEXT,                                \
-     "owner" BIGSERIAL,                          \
-     "prefix" TEXT DEFAULT \'--\'                \
+    'CREATE TABLE IF NOT EXISTS guilds (                 \
+     "id" BIGSERIAL PRIMARY KEY,                         \
+     "name" TEXT,                                        \
+     "owner" BIGSERIAL,                                  \
+     "prefix" TEXT DEFAULT \'--\'                        \
      );'
   );
 
   this.query(
-    'CREATE TABLE IF NOT EXISTS infractions (    \
-    "case" SERIAL PRIMARY KEY,                   \
-    "reason" TEXT,                               \
-    "type" TEXT,                                 \
-    "moderator" TEXT,                            \
-    "moderator_id" BIGSERIAL,                    \
-    "user" TEXT,                                 \
-    "user_id" BIGSERIAL                          \
+    'CREATE TABLE IF NOT EXISTS infractions (            \
+    "case" SERIAL PRIMARY KEY,                           \
+    "reason" TEXT,                                       \
+    "type" TEXT,                                         \
+    "moderator" TEXT,                                    \
+    "moderator_id" BIGSERIAL,                            \
+    "user" TEXT,                                         \
+    "user_id" BIGSERIAL                                  \
     );'
+  );
+
+  this.query(
+    'CREATE TABLE IF NOT EXISTS settings (               \
+     "id" BIGSERIAL PRIMARY KEY,                         \
+     "autopunishment" BOOLEAN DEFAULT false,             \
+     "maxWarns" INTEGER,                                 \
+     "maxMutes" INTEGER,                                 \
+     "maxKicks" INTEGER,                                 \
+     "logChannel" BIGSERIAL DEFAULT null,                \
+     "rich" BOOLEAN DEFAULT false                        \
+     );'
   );
 
   client.logger.debug('Done! Starting Bot.');
@@ -116,6 +128,17 @@ module.exports.removeMember = function(id) {
     values: [id]
   };
   return connection.query(removeMemberQuery);
+};
+
+// Infraction Queries
+
+module.exports.createInfraction = async function(mod, mod_id, caseNum, user, user_id, type, reason) {
+  const createInfractionQuery = {
+    text: 'INSERT INTO infractions (case, reason, type, moderator, moderator_id, user, user_id) ' +
+        'VALUES ($3, $7, $6, $1, $2, $4, $5)',
+    values: [mod, mod_id, caseNum, user, user_id, type, reason]
+  };
+  return connection.query(createInfractionQuery);
 };
 
 // Helper Queries
