@@ -9,11 +9,7 @@ class Warn extends Command {
   }
 
   async run(message, args, level) {
-    const guild = await this.client.db.getGuildSettings(message.guild.id);
+    const res = await this.client.db.getGuildSettings(message.guild.id);
     const { rich, logChannel, autoPunishment } = res.rows[0];
-  }
-
-  async paramCheck(args) {
-
   }
 }

@@ -1,0 +1,17 @@
+MEMBER_BANNED:
+  format: '%s (`%s`) was banned by %s (`%s`) for `%s`'
+
+MEMBER_UNBANNED:
+  format: '%s was unbanned by %s (`%s`) for `%s`'
+
+MEMBER_SOFTBANNED:
+  format: '%s (`%s`) was softbanned by %s (`%s`) for `%s`'
+
+MEMBER_KICKED:
+  format: '%s (`%s`) was kicked by %s (`%s`) for `%s`'
+
+MEMBER_MUTED:
+  format: '%s (`%s`) was muted by %s (`%s`) for `%s`'
+
+MEMBER_WARNED:
+  format: '%s (`%s`) was warned by %s (`%s`) for `%s`'
