@@ -16,6 +16,24 @@ class Command {
     this.conf = { guildOnly, aliases, permLevel, botPerms, location };
   }
 
+  async verifyUser(user) {
+    try {
+      const match = /(?:<@!?)?([0-9]{17,20})>?/gi.exec(user);
+      if (!match) throw 'Invalid user';
+      const id = match[1];
+      const check = await this.client.users.fetch(id);
+      if (check.username !== undefined) return check;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async verifyMember(guild, member) {
+    const user = await this.verifyUser(member);
+    const target = await guild.members.fetch(user);
+    return target;
+  }
+
   async verifyMessage(message, msgid) {
     try {
       const match = /([0-9]{17,20})/.exec(msgid);

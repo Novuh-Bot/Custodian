@@ -12,8 +12,6 @@ class ModerationLog {
     this.type = null;
     this.moderator = null;
     this.user = null;
-
-    this.settings = null;
   }
 
   setType(data) {
@@ -46,8 +44,8 @@ class ModerationLog {
 
 
   async send() {
+    // TODO: Write, gets guild settings
     const res = await this.client.db.getGuildSettings(this.guild.id);
-    this.settings = res.rows[0];
     const { rich, logChannel } = res.rows[0];
 
     const channel = this.guild.channels.get(logChannel);
@@ -67,12 +65,13 @@ class ModerationLog {
   }
 
   async getCase() {
+    // TODO: Write, returns length of infractions table
     const _case = await this.client.db.getInfractionsSize();
     this.case = Number(_case) + 1;
   }
 
   async packData() {
-    await this.client.db.createInfraction(this.moderator.tag, this.moderator_id, this.case, this.user.tag, this.user_id, this.type, this.reason);
+    await this.client.db.createInfraction(this.moderator.tag, this.moderator.id, this.case, this.user.tag, this.user.id, this.type, this.reason);
   }
 
   async buildString(type) {
@@ -154,3 +153,5 @@ class ModerationLog {
     }
   }
 }
+
+module.exports = ModerationLog;
