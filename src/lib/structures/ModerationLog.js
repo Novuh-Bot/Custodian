@@ -1,5 +1,4 @@
 const { MessageEmbed } = require('discord.js');
-const { vsprintf } = require('sprintf-js');
 const { read } = require('node-yaml');
 
 class ModerationLog {
@@ -81,37 +80,37 @@ class ModerationLog {
     switch (type) {
       case 'ban': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString; 
       }
 
       case 'unban': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString;
       }
 
       case 'softban': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString;
       }
 
       case 'kick': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString;
       }
 
       case 'mute': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString;
       }
 
       case 'warn': {
         const rawDataString = data[dataType].format;
-        const dataString = vsprintf(rawDataString, [this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason]);
+        const dataString = rawDataString.format(this.user, this.user.id, this.moderator.tag, this.moderator.id, this.reason);
         return dataString;
       }
     }

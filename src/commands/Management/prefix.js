@@ -6,7 +6,7 @@ class Prefix extends Command {
       name: 'prefix',
       description: 'Change the server prefix.',
       category: 'Management',
-      permLevel: 'Server Owner'
+      permissions: ['admin']
     });
   }
 

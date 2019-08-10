@@ -10,7 +10,6 @@ class Warn extends Command {
   }
 
   async run(message, [member, ...reason], level) {
-    member = message.mentions.members.first() || message.guild.members.get(member);
     member = await this.verifyMember(message.guild, member);
 
     reason = reason.length > 0 ? reason.join( ' ') : null;
