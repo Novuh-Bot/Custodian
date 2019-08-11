@@ -1,17 +1,17 @@
 MEMBER_BANNED:
-  format: '%s (`%s`) was banned by %s (`%s`) for `%s`'
+  format: '{} (`{}`) was banned by {} (`{}`) for `{}`'
 
 MEMBER_UNBANNED:
-  format: '%s was unbanned by %s (`%s`) for `%s`'
+  format: '{} was unbanned by {} (`{}`) for `{}`'
 
 MEMBER_SOFTBANNED:
-  format: '%s (`%s`) was softbanned by %s (`%s`) for `%s`'
+  format: '{} (`{}`) was softbanned by {} (`{}`) for `{}`'
 
 MEMBER_KICKED:
-  format: '%s (`%s`) was kicked by %s (`%s`) for `%s`'
+  format: '{} (`{}`) was kicked by {} (`{}`) for `{}`'
 
 MEMBER_MUTED:
-  format: '%s (`%s`) was muted by %s (`%s`) for `%s`'
+  format: '{} (`{}`) was muted by {} (`{}`) for `{}`'
 
 MEMBER_WARNED:
-  format: '%s (`%s`) was warned by %s (`%s`) for `%s`'
+  format: '{} (`{}`) was warned by {} (`{}`) for `{}`'
