@@ -12,6 +12,7 @@ String.prototype.format = function() {
     const target = '{' + i + '}';
     content = content.split(target).join(String(arguments[i]));
     content = content.replace('{}', String(arguments[i]));
+    content = content.replace('%s', String(arguments[i]));
   }
   return content;
 };

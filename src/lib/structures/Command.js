@@ -8,12 +8,11 @@ class Command {
     guildOnly = false,
     aliases = new Array(),
     permLevel = 'User',
-    permissions = [],
     location = ''
   }) {
     this.client = client;
     this.help = { name, description, category, usage, _usage };
-    this.conf = { guildOnly, aliases, permLevel, permissions, location };
+    this.conf = { guildOnly, aliases, permLevel, location };
   }
 
   async verifyUser(user) {

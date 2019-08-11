@@ -5,7 +5,7 @@ class Warn extends Command {
   constructor(client) {
     super(client, {
       name: 'warn',
-      _usage: '<member:member> [reason:string]' 
+      _usage: '<member:member> [reason:string]'
     });
   }
 
