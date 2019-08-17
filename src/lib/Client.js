@@ -23,6 +23,8 @@ class Bot extends Client {
     this.commands = new Collection();
     this.aliases = new Collection();
 
+    this.playlists = new Collection();
+
     this.redis = new Redis();
 
     this.util = {

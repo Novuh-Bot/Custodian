@@ -43,7 +43,6 @@ class ModerationLog {
 
 
   async send() {
-    // TODO: Write, gets guild settings
     const res = await this.client.db.getGuildSettings(this.guild.id);
     const { rich, logChannel } = res.rows[0];
 

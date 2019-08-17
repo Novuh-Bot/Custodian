@@ -17,9 +17,5 @@ module.exports = class {
 
     this.client.logger.login(`Revision ${botVersion} | Version ${version} | Logged in as ${this.client.user.username}`);
     console.log('\n');
-
-    // setInterval(() => {
-    //   require('../modules/Coindrop')(this.client);
-    // }, constants.coinMeta.interval);
   }
 };

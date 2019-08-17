@@ -94,6 +94,22 @@ module.exports.selectGuilds = function(name) {
   return connection.query(selectGuildsQuery);
 };
 
+module.exports.getGuildSettings = function(id, _value) {
+  if (!_value) _value = '*';
+  const getGuildSettingsQuery = {
+    text: 'SELECT $2 FROM guilds WHERE id = $1',
+    values: [id, _value]
+  };
+  return connection.query(getGuildSettingsQuery);
+};
+
+module.exports.getInfractionsSize = function() {
+  const getInfractionsSizeQuery = {
+    text: 'SELECT COUNT(*) FROM infractions;'
+  };
+  return connection.query(getInfractionsSizeQuery);
+};
+
 module.exports.updatePrefix = function(id, prefix) {
   const updatePrefixQuery = {
     text: 'UPDATE guilds SET prefix = $2 WHERE id = $1',
@@ -101,7 +117,6 @@ module.exports.updatePrefix = function(id, prefix) {
   };
   return connection.query(updatePrefixQuery);
 };
-
 
 module.exports.selectPrefix = function(id) {
   const selectPrefixQuery = {
@@ -132,7 +147,7 @@ module.exports.removeMember = function(id) {
 
 // Infraction Queries
 
-module.exports.createInfraction = async function(mod, mod_id, caseNum, user, user_id, type, reason) {
+module.exports.createInfraction = function(mod, mod_id, caseNum, user, user_id, type, reason) {
   const createInfractionQuery = {
     text: 'INSERT INTO infractions (case, reason, type, moderator, moderator_id, user, user_id) ' +
         'VALUES ($3, $7, $6, $1, $2, $4, $5)',
