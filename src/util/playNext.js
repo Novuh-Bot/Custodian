@@ -17,7 +17,7 @@ const playNext = (message) => {
       .setImage(`https://i.ytimg.com/vi/${nextSong.id}/mqdefault.jpg`)
       .setTimestamp()
       .setURL(nextSong.url);
-    message.channel.send({embed});
+    message.channel.send({ embed });
   } else {
     message.channel.send(`Now playing **${nextSong.songTitle}** (${nextSong.playTime})`);
   }

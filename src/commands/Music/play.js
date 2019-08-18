@@ -1,5 +1,6 @@
 const Command = require('../../lib/structures/Command');
 const playNext = require('../../util/playNext');
+const embedCheck = require('../../util/embedPerms');
 
 const { keys } = require('../../config');
 const { MessageEmbed } = require('discord.js');
@@ -8,8 +9,6 @@ const { parse } = require('url');
 
 const ytapi = require('simple-youtube-api');
 const youtube = new ytapi(keys.ytAPI);
-
-const embed = new MessageEmbed();
 
 class Play extends Command {
   constructor(client) {
@@ -23,7 +22,7 @@ class Play extends Command {
     if (!song.length) return message.respond('You must supply a YouTube url or search term.');
 
     const voiceChannel = message.member.voiceChannel ? message.member.voiceChannel : (message.guild.voiceConnection ? message.guild.voiceConnection.channel : null);
-    if (!voiceChannel || (!message.member.voiceChannel && level < 2)) return message.respond('You must be in a voice channel to use this command.');
+    if (!voiceChannel) return message.respond('You must be in a voice channel to use this command.');
 
     if (!this.client.playlists.has(message.guild.id)) {
       const firstSong = true;
@@ -76,14 +75,14 @@ class Play extends Command {
     if (firstSong) {
       playNext(message);
     } else {
-      embed
+      const embed = new MessageEmbed()
         .setTitle(`**${info.title}** (${minutes}:${seconds}) has been added to the queue`)
         .setColor(0xDD2825)
         .setFooter(`Requested by ${message.guild.member(message.author).displayName}`, message.author.displayAvatarURL())
         .setImage(`https://i.ytimg.com/vi/${info.id}/mqdefault.jpg`)
         .setTimestamp()
         .setURL(`https://www.youtube.com/watch?v=${info.id}`);
-      if (message.channels.permissionsFor(this.client.user).permissions.has('EMBED_LINKS')) {
+      if (embedCheck(message)) {
         message.channel.send({ embed });
       } else {
         message.channel.send(`**${info.title}** (${minutes}:${seconds}) has been added to the queue`);
