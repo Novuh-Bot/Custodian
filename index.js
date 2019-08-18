@@ -9,7 +9,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 process.on('unhandledRejection', err => {
-  console.error(`Uncaught Promise Error: ${err}`);
+  console.error(`Uncaught Promise Error: ${err}:${err.stack}`);
 });
 
 process.on('uncaughtException', (err) => {
