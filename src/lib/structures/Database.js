@@ -34,7 +34,7 @@ module.exports.connect = function(client) {
      "maxWarns" INTEGER,                                 \
      "maxMutes" INTEGER,                                 \
      "maxKicks" INTEGER,                                 \
-     "logChannel" BIGSERIAL DEFAULT null,                \
+     "logChannel" BIGSERIAL,                             \
      "rich" BOOLEAN DEFAULT false                        \
      );'
   );
