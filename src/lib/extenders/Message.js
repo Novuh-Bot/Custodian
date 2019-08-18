@@ -10,7 +10,7 @@ module.exports = Structures.extend('Message', Message => class extends Message {
   respond(content, emoji, embed, options = {}) {
     emoji = emoji ? constants.emojis[emoji] : constants.emojis['xmark'];
     if (embed && typeof(embed) !== Boolean) return new Error('Type of embed must be a boolean.');
-    this.channel.send(`${this.author}, \`|\`<:${emoji}>\`|\` ${content}`, embed);
+    this.channel.send(`${this.author}, \`|\`<:${emoji}>\`|\` ${content}`, embed).catch(console.error);
   }
 
   async awaitReply(question, filter, limit = 60000, embed) {
