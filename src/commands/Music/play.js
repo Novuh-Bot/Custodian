@@ -83,7 +83,7 @@ class Play extends Command {
         .setTimestamp()
         .setURL(`https://www.youtube.com/watch?v=${info.id}`);
       if (embedCheck(message)) {
-        message.channel.send({ embed });
+        message.channel.send({ embed }).catch(console.error);
       } else {
         message.channel.send(`**${info.title}** (${minutes}:${seconds}) has been added to the queue`);
       }
