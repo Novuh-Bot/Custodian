@@ -25,3 +25,5 @@ class Warn extends Command {
       .send();
   }
 }
+
+module.export = Warn;
