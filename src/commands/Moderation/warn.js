@@ -26,4 +26,4 @@ class Warn extends Command {
   }
 }
 
-module.export = Warn;
+module.exports = Warn;
