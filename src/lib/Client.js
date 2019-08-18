@@ -93,7 +93,6 @@ const client = new Bot({
   fetchAllMembers: true,
   partials: ['MESSAGE', 'CHANNEL']
 });
-require('../util/functions')(client);
 
 module.exports.createLogger = async () => {
   client.logger.debug('Initializing Winston logger.');
