@@ -7,3 +7,7 @@ if (process.env.NODE_ENV === 'development') {
   init(process.env.PROD_TOKEN).catch(e => console.log(e));
   createLogger();
 }
+
+process.on('unhandledRejection', err => {
+  console.error(`Uncaught Promise Error: ${e}`);
+}); 
