@@ -61,7 +61,7 @@ class Play extends Command {
     let seconds = time % 60;
     if (seconds < 10) seconds = '0' + seconds;
 
-    this.client.playlists.get(messgae.guild.id).push({
+    this.client.playlists.get(message.guild.id).push({
       url: `https://youtube.com/watch?v=${info.id}`,
       id: info.id,
       channName: info.channel.title,
