@@ -9,5 +9,5 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 process.on('unhandledRejection', err => {
-  console.error(`Uncaught Promise Error: ${e}`);
+  console.error(`Uncaught Promise Error: ${err}`);
 }); 
