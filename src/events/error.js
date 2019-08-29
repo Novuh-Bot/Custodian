@@ -1,9 +1,15 @@
-module.exports = class {
+const Event = require('../lib/structures/Event');
+
+class Error extends Event {
   constructor(client) {
-    this.client = client;
+    super(client, {
+      name: 'error'
+    });
   }
 
-  async run(error) {
-    global.logger.error(error);
+  async run(info) {
+    global.logger.error(info);
   }
-};
+}
+
+module.exports = Error;

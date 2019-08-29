@@ -1,9 +1,13 @@
+const Event = require('../lib/structures/Event');
+
 const moment = require('moment');
 require('moment-duration-format');
 
-module.exports = class {
+class Message extends Event {
   constructor(client) {
-    this.client = client;
+    super(client, {
+      name: 'message'
+    });
   }
 
   async run(message) {
@@ -34,16 +38,6 @@ module.exports = class {
     if (cmd && !message.guild && cmd.conf.guildOnly)
       return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
 
-    if (level < this.client.levelCache[cmd.conf.permLevel]) {
-      if (settings.systemNotice === 'true') {
-        return message.channel.send(`You do not have permission to use this command.
-        Your permission level is ${level} (${this.client.config.permLevels.find(l => l.level === level).name})
-        This command requires level ${this.client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
-      } else {
-        return;
-      }
-    }
-
 
     message.flags = [];
     while (args[0] && args[0][0] === '-') {
@@ -57,14 +51,11 @@ module.exports = class {
       if (mPerms.length) return message.channel.send(`The bot does not have the following permissions \`${mPerms.join(', ')}\``);
     }
 
-    try {
-      const canRun = await this.client.canRun(cmd, message.member);
-      if (canRun) {
-        cmd.run(message, args);
-      }
-    } catch (error) {
-      this.client.emit('error', error);
+    cmd.run(message, args, level).catch(error => {
+      console.log(error);
       message.channel.send(error);
-    }
+    });
   }
-};
+}
+
+module.exports = Message;

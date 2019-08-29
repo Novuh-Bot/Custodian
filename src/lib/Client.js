@@ -13,7 +13,7 @@ const db = require('../lib/structures/Database');
 
 require('../util/Prototypes');
 
-class Bot extends Client {
+class Custodian extends Client {
   constructor(options) {
     super(options);
     
@@ -22,6 +22,7 @@ class Bot extends Client {
 
     this.commands = new Collection();
     this.aliases = new Collection();
+    this.events = new Collection();
 
     this.playlists = new Collection();
 
@@ -87,9 +88,16 @@ class Bot extends Client {
     delete require.cache[require.resolve(`${commandPath}/${commandName}.js`)];
     return false;
   }
+
+  reloadEvent(eventPath, eventName) {
+    delete require.cache[require.resolve(`${eventPath}${path.sep}${eventName}.js`)];
+    const event = new(require(`${eventPath}${path.sep}${eventName}.js`))(client);
+    client.on(eventName, (...args) => event.run(...args));
+    delete require.cache[require.resolve(`${eventPath}${path.sep}${eventName}.js`)];
+  }
 }
 
-const client = new Bot({
+const client = new Custodian({
   fetchAllMembers: true,
   partials: ['MESSAGE', 'CHANNEL']
 });
@@ -135,6 +143,8 @@ module.exports.init = async token => {
     try {
       const event = new(require(`${dir}${path.sep}${name}${ext}`))(client);
       eventList.push(event);
+      event.conf.location = dir;
+      client.events.set(event.conf.name, event);
       client.on(eventName, (...args) => event.run(...args));
       delete require.cache[require.resolve(`${dir}${path.sep}${name}${ext}`)];
     } catch (error) {
